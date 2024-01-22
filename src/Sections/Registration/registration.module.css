@@ -1,0 +1,90 @@
+.Wrapper {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5vw;
+  padding: 2vh 5vw;
+}
+
+.Wrapper > img {
+  width: calc(50%-2.5vw);
+  height: 100%;
+  object-fit: contain;
+}
+
+.ContentWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 3vh;
+}
+
+.ContentWrap .TopSection {
+  display: flex;
+  flex-direction: column;
+  gap: 3vh;
+  align-items: flex-start;
+}
+
+.ContentWrap .TopSection > div {
+  display: flex;
+  gap: 15px;
+}
+.ContentWrap .TopSection > .welc {
+  flex-direction: column;
+  align-items: flex-start;
+}
+.ContentWrap .separator {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.ContentWrap .separator div {
+  width: 100%;
+  height: 2px;
+  background-color: #000;
+}
+
+.ContentWrap .separator p {
+  flex-shrink: 0;
+}
+.ContentWrap .TopSection .googlesign {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: beige;
+  padding: 20px;
+  border-radius: 50px;
+  color: black;
+}
+
+.ContentWrap .BottomSection {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  width: 100%;
+}
+.ContentWrap .BottomSection .inputBox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  background-color: bisque;
+}
+.ContentWrap .BottomSection .inputBox input {
+  background-color: transparent;
+  padding: 10px;
+  width: 100%;
+}
+@media screen and (max-width: 1200px) {
+  .Wrapper {
+    justify-content: center;
+  }
+  .Wrapper > img {
+    display: none;
+  }
+}
