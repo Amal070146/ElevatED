@@ -3,6 +3,6 @@ type Props = {}
 
 export const StudentsList = (_props: Props) => {
   return (
-    <div>StudentsList</div>
+    <div className={styles.studentListWrapper}>StudentsList</div>
   )
 }
