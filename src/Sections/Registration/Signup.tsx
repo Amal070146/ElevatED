@@ -2,9 +2,16 @@ import { ArrowRightsvg } from "../../assets/svg";
 import styles from "./registration.module.css";
 import Logo from "../../Logo.png";
 import image from "./assets/image.png";
+import { useNavigate } from "react-router-dom";
+
 type Props = {};
 
 export const Signup = (_props: Props) => {
+  const navigate = useNavigate();
+
+  const handleNavigation = () => {
+    navigate("/dashboard");
+  };
   return (
     <div className={styles.Wrapper}>
       <div className={styles.ContentWrap}>
@@ -19,7 +26,7 @@ export const Signup = (_props: Props) => {
         </div>
 
         <div className={styles.BottomSection}>
-          <div>
+          <div className={styles.inputBoxSection}>
             <div className={styles.inputBox}>
               <p>Email</p>
               <input type="text" placeholder="anu" />
@@ -28,7 +35,7 @@ export const Signup = (_props: Props) => {
               <p>Password</p>
               <input type="text" placeholder="password" />
             </div>
-            <button>
+            <button onClick={handleNavigation}>
               START YOUR JOURNEY <ArrowRightsvg color="#fff" />
             </button>
           </div>

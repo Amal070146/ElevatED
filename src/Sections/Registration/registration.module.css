@@ -68,17 +68,32 @@
   gap: 2vh;
   width: 100%;
 }
+.ContentWrap .BottomSection .inputBoxSection{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 .ContentWrap .BottomSection .inputBox {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  background-color: bisque;
+  background-color: rgb(205, 205, 205);
+  padding: 10px;
+  border-radius: 20px;
 }
 .ContentWrap .BottomSection .inputBox input {
   background-color: transparent;
   padding: 10px;
   width: 100%;
+}
+
+.ContentWrap .BottomSection .inputBoxSection button {
+  background-color: black;
+  padding: 15px;
+  width: 100%;
+  border-radius: 20px;
+  cursor: pointer;
 }
 @media screen and (max-width: 1200px) {
   .Wrapper {

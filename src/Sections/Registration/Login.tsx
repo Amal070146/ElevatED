@@ -30,7 +30,7 @@ export const Login = (_props: Props) => {
           <div></div>
         </div>
         <div className={styles.BottomSection}>
-          <div>
+          <div className={styles.inputBoxSection}>
             <div className={styles.inputBox}>
               <p>Email</p>
               <input type="text" placeholder="anu" />
