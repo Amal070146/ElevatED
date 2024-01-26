@@ -10,16 +10,16 @@ export const TopNav = () => {
     <div className={styles.TopNAvbarWrapper}>
       <div>
         <p>Hi Amal,</p>
-        <h1>Welcome to Careerio!</h1>
+        <h1>Welcome to ElevatED</h1>
       </div>
       <div className={styles.ButtonWrapper}>
-        <button onClick={() => navigate("/notification/1")}>
+        <button onClick={() => navigate("/notification")}>
           <Notificationsvg />
         </button>
         <button
           className={styles.profileButton}
           onClick={() => {
-            navigate("/profile/1");
+            navigate("/profile");
           }}
         >
           <img src={defaultProfile} alt="" />

@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
-import { Navbar } from "../Navbar/Navbar";
-import { TopNav } from "../Navbar/TopNav";
+import { Navbar } from "../../Components/Navbar/Navbar";
+import { TopNav } from "../../Components/Navbar/TopNav";
 import styles from "./HeroSection.module.css";
 
 export const HeroSection = () => {

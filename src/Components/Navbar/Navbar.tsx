@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
+import logo from "../../Logo.png";
 import {
   DashboardLogo,
-  PostGigsIcons,
-  ProjectsIcons,
-  SearchEngineIcons,
+  ProgressIcons,
+  SettingsIcons,
+  CoursesIcons,
 } from "../../assets/DashboardIcons";
 import { useState } from "react";
 
@@ -13,6 +14,10 @@ export const Navbar = () => {
   return (
     <div className={styles.NavbarWrapper}>
       <div className={styles.TopSection}>
+        <div>
+          <img src={logo} alt="" />
+          <p>ElevatED</p>
+        </div>
         <div>
           <Link
             to="/"
@@ -35,17 +40,17 @@ export const Navbar = () => {
             ></div>
           </Link>
           <Link
-            to="/settings"
+            to="/courses"
             className={
               selectedNav === 1 ? styles.activeNav : styles.inactiveNav
             }
             onClick={() => setSelectedNav(1)}
           >
             <div>
-              <SearchEngineIcons
+              <CoursesIcons
                 colors={`${selectedNav === 1 ? "#4318FF" : "#A3AED0"}`}
               />
-              Search Engine
+              Courses
             </div>
             <div
               className={styles.RectangleBox}
@@ -55,17 +60,17 @@ export const Navbar = () => {
             ></div>
           </Link>
           <Link
-            to="/postgigs"
+            to="/progress"
             className={
               selectedNav === 2 ? styles.activeNav : styles.inactiveNav
             }
             onClick={() => setSelectedNav(2)}
           >
             <div>
-              <PostGigsIcons
+              <ProgressIcons
                 colors={`${selectedNav === 2 ? "#4318FF" : "#A3AED0"}`}
               />{" "}
-              Post Gigs
+              Progress
             </div>
             <div
               className={styles.RectangleBox}
@@ -75,17 +80,17 @@ export const Navbar = () => {
             ></div>
           </Link>
           <Link
-            to="/exploreprojects"
+            to="/settings"
             className={
               selectedNav === 3 ? styles.activeNav : styles.inactiveNav
             }
             onClick={() => setSelectedNav(3)}
           >
             <div>
-              <ProjectsIcons
+              <SettingsIcons
                 colors={`${selectedNav === 3 ? "#4318FF" : "#A3AED0"}`}
               />
-              Explore Projects
+              Settings
             </div>
             <div
               className={styles.RectangleBox}
