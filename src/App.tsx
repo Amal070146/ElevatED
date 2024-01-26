@@ -7,11 +7,13 @@ import {
 import { Login } from "./Sections/Registration/Login";
 import { Signup } from "./Sections/Registration/Signup";
 import { Dashboard } from "./Components/Dashboard/Dashboard";
+import { Settings } from "./Components/Settings/Settings";
+import { HeroSection } from "./Components/HeroSection/HeroSection";
 
 function App() {
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: "/some",
       element: <Navigate to="/login" replace />,
     },
     {
@@ -22,9 +24,14 @@ function App() {
       path: "/signup",
       element: <Signup />,
     },
+
     {
-      path: "/dashboard",
-      element: <Dashboard />,
+      path: "/",
+      element: <HeroSection />,
+      children: [
+        { path: "/", element: <Dashboard /> },
+        { path: "settings", element: <Settings /> },
+      ],
     },
   ]);
   return <RouterProvider router={router} />;

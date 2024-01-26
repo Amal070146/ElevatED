@@ -10,7 +10,7 @@ export const Signup = (_props: Props) => {
   const navigate = useNavigate();
 
   const handleNavigation = () => {
-    navigate("/dashboard");
+    navigate("/");
   };
   return (
     <div className={styles.Wrapper}>
