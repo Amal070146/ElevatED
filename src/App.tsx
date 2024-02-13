@@ -13,9 +13,18 @@ import { Progress } from "./Pages/Progress/Progress";
 import { Courses } from "./Pages/Courses/Courses";
 import { Profile } from "./Pages/Profile/Profile";
 import { Notifications } from "./Pages/Notifications/Notifications";
+import NotFound from "./Pages/NotFound/NotFound";
 
 function App() {
   const router = createBrowserRouter([
+    {
+      path: "*",
+      element: <NotFound />,
+    },
+    {
+      path: "/404",
+      element: <NotFound />,
+    },
     {
       path: "/some",
       element: <Navigate to="/login" replace />,
