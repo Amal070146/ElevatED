@@ -47,7 +47,7 @@ export const Settings = (_props: Props) => {
                 type="text"
                 placeholder="eg:Christ College of Engineering"
               />
-              <div>
+              <div className={styles.checkboxcontainer}>
                 <input type="checkbox" />
                 <p>I’m currently studying here</p>
               </div>
@@ -58,7 +58,7 @@ export const Settings = (_props: Props) => {
               <input type="number" placeholder="eg:2024" />
             </div>
           </div>
-          <div>
+          <div className={styles.checkboxcontainer}>
             <input type="checkbox" />
             <p>Want to receive mail about text and other directions.</p>
           </div>

@@ -1,7 +1,72 @@
 .Wrapper {
   display: flex;
   width: 100%;
-  height: calc(100vh - 80px);
-  padding: 50px 10px;
- 
+  max-height: calc(100% - 80px);
+  padding: 20px 0px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.Wrapper > h2 {
+  color: #0a8677;
+  font-weight: 500;
+}
+
+.BottonConatiner {
+  display: flex;
+  width: 100%;
+  text-align: left;
+  height: 100%;
+  overflow-y: scroll;
+  flex-wrap: wrap;
+}
+
+.BottonConatiner .LeftContainer {
+  width: fit-content;
+  width: 70%;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.BottonConatiner .LeftContainer .InputWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 15px;
+}
+
+.BottonConatiner .LeftContainer .InputWrapper > div {
+  display: flex;
+  flex-direction: column;
+  min-width: 250px;
+  width: calc(50% - 15px);
+  gap: 5px;
+}
+
+.BottonConatiner .LeftContainer .checkboxcontainer {
+  display: flex;
+  gap: 10px;
+}
+.BottonConatiner .RightContainer {
+  width: 30%;
+  min-width: 200px;
+  padding: 25px;
+}
+
+.BottonConatiner .RightContainer .innerWrapper {
+  border-radius: 15px;
+  border: 1px solid #797878;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.BottonConatiner .RightContainer .innerWrapper > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
 }
