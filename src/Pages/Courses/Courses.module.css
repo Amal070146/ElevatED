@@ -5,6 +5,7 @@
   height: calc(100vh - 80px);
   overflow-y: scroll;
   text-align: left;
+  padding-bottom: 50px;
 }
 .BaseCourseSelectWrapper .TopSet {
   display: flex;
@@ -29,6 +30,7 @@
   border: 0.61px solid rgba(142, 152, 168, 0.8);
   background: rgba(255, 255, 255, 0.7);
   padding: 15px;
+  min-width: 250px;
 }
 
 .BaseCourseSelectWrapper .TopSet .courseWrap > div .Line {
@@ -56,4 +58,20 @@
   gap: 20px;
   width: 100%;
   text-align: center;
+}
+
+.BaseCourseSelectWrapper .BottonSet h1{
+    font-size: 2rem;
+    font-weight: 500;
+}
+@media screen and (max-width:1100px) {
+    .BaseCourseSelectWrapper .TopSet .courseWrap > div{
+        width: 45%;
+    }
+}
+
+@media screen and (max-width:750px) {
+    .BaseCourseSelectWrapper .TopSet .courseWrap > div{
+        width: 100%;
+    }
 }

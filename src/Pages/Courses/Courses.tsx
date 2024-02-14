@@ -1,4 +1,3 @@
-
 import styles from "./Courses.module.css";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -55,7 +54,56 @@ export const Courses = () => {
       progress: "50",
     },
   ];
-
+  const NewCourse = [
+    {
+      name: "Chemistry",
+      description: `"Chemical Symphony: Where Molecules Dance and Reactions Speak."`,
+      author: "Rahul Dev - Delhi Public School, New Delhi",
+      noofmodules: 5,
+    },
+    {
+      name: "Maths",
+      description: `"Unlocking the Beauty of Numbers: Where Logic Meets Imagination."`,
+      author: "Rahul Dev - Delhi Public School, New Delhi",
+      noofmodules: 5,
+    },
+    {
+      name: "Physics",
+      description: `"Unraveling the mysteries of the universe through physics."`,
+      author: "Hari Krishna - Bishop Cotton School, Shimla",
+      noofmodules: 5,
+    },
+    {
+      name: "Geography",
+      description: `"Earth's wonders unfold in geography's diverse landscapes."`,
+      author: "Kevin John - La Martiniere for Boys, Kolkata",
+      noofmodules: 5,
+    },
+    {
+      name: "Chemistry",
+      description: `"Chemical Symphony: Where Molecules Dance and Reactions Speak."`,
+      author: "Rahul Dev - Delhi Public School, New Delhi",
+      noofmodules: 5,
+    },
+    {
+      name: "Maths",
+      description: `"Unlocking the Beauty of Numbers: Where Logic Meets Imagination."`,
+      author: "Rahul Dev - Delhi Public School, New Delhi",
+      noofmodules: 5,
+    },
+    {
+      name: "Physics",
+      description: `"Unraveling the mysteries of the universe through physics."`,
+      author: "Hari Krishna - Bishop Cotton School, Shimla",
+      noofmodules: 5,
+    },
+    {
+      name: "Geography",
+      description: `"Earth's wonders unfold in geography's diverse landscapes."`,
+      author: "Kevin John - La Martiniere for Boys, Kolkata",
+      noofmodules: 5,
+    },
+  ];
   return (
     <div className={styles.BaseCourseSelectWrapper}>
       <div className={styles.TopSet}>
@@ -81,29 +129,31 @@ export const Courses = () => {
       </div>
       <div className={styles.BottonSet}>
         <h1>New Courses To Explore </h1>
-        <div>
-          <Swiper
-            slidesPerView={4}
-            spaceBetween={30}
-            freeMode={true}
-            loop={true}
-            pagination={{
-              clickable: true,
-            }}
-            modules={[FreeMode, Pagination]}
-            className="CourseSwiper"
-          >
-            <SwiperSlide>Slide 1</SwiperSlide>
-            <SwiperSlide>Slide 2</SwiperSlide>
-            <SwiperSlide>Slide 3</SwiperSlide>
-            <SwiperSlide>Slide 4</SwiperSlide>
-            <SwiperSlide>Slide 5</SwiperSlide>
-            <SwiperSlide>Slide 6</SwiperSlide>
-            <SwiperSlide>Slide 7</SwiperSlide>
-            <SwiperSlide>Slide 8</SwiperSlide>
-            <SwiperSlide>Slide 9</SwiperSlide>
-          </Swiper>
-        </div>
+
+        <Swiper
+          slidesPerView={4}
+          spaceBetween={30}
+          freeMode={true}
+          loop={true}
+          pagination={{
+            clickable: true,
+          }}
+          modules={[FreeMode, Pagination]}
+          className="CourseSwiper"
+        >
+          {NewCourse.map(({ name, description, author, noofmodules }) => {
+            return (
+              <SwiperSlide>
+                <div>
+                  <h2>{name}</h2>
+                  <h3>{description}</h3>
+                  <p>{author}</p>
+                </div>
+                <h4>{noofmodules} MODULES</h4>
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
       </div>
     </div>
   );
