@@ -2,7 +2,7 @@
   height: calc(100vh - 80px);
   overflow-y: scroll;
   padding-bottom: 50px;
-  padding: 0px 30px;
+  padding: 0px 30px 30px;
 }
 
 .Wrapper .HeaderSet {
@@ -31,7 +31,9 @@
 .Wrapper .ContentSection {
   display: flex;
   flex-wrap: wrap;
-  gap: 30px;
+  gap: 35px;
+  width: 100%;
+  justify-content: center;
 }
 .Wrapper .ContentSection > div {
   border-radius: 20px;
@@ -41,7 +43,7 @@
   background-color: white;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 20px 30px;
   align-items: center;
   justify-content: center;
   gap: 10px;
@@ -58,4 +60,36 @@
 .Wrapper .QuizButtonSet button {
   border-radius: 50px;
   padding: 10px 30px;
+}
+
+.Wrapper .CalenderWrapper {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+.Wrapper .DailyProgress {
+  width: 60%;
+  background-color: white;
+}
+
+.Wrapper .RecentActivity {
+  background-color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 15px;
+}
+.Wrapper .RecentActivity > div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.Wrapper .RecentActivity > div>div{
+  background-color: #EDEEEE;
+  border-radius: 30px;
+  padding: 10px;
 }

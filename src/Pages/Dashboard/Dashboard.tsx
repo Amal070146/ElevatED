@@ -110,14 +110,14 @@ export const Dashboard = (_props: Props) => {
         <div className={styles.CalenderWrapper}>
           <Calendar />
         </div>
-        <div>
+        <div className={styles.DailyProgress}>
           <div>
             <h2>Daily Progress</h2>
             <p>(or overall progress of correct answers attended) </p>
           </div>
           <SimpleAreaGraph data={Graphdata} />
         </div>
-        <div>
+        <div className={styles.RecentActivity}>
           <h2>Recent Activity</h2>
           <div>
             {recentData.map(({ name }) => {
