@@ -1,0 +1,27 @@
+.CalenderWrapper {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+}
+.CalenderWrapper .CalendarHeader{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+}
+.CalenderWrapper button {
+  background-color: transparent;
+  color: #0A8677;
+  font-size: 25px;
+}
+
+.calendarDay {
+  min-width: 40px;
+  min-height: 40px;
+  text-align: center;
+}
+
+.currentDay {
+  border: 1.5px solid #0A8677;
+  border-radius: 50%;
+}
