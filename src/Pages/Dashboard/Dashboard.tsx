@@ -7,7 +7,6 @@ import SimpleAreaGraph from "../../Components/ProgressContainers/SimpleAreaChart
 
 type Props = {};
 
-
 export const Dashboard = (_props: Props) => {
   const Progressdata = [
     {
@@ -89,18 +88,18 @@ export const Dashboard = (_props: Props) => {
   ];
   return (
     <div className={styles.Wrapper}>
-      <div>
-        <h2>Dashboard</h2>
+      <div className={styles.HeaderSet}>
         <div>
+          <h2>DASHBOARD</h2>
           <div>
             <h1>Welcome, Amal C Paulson </h1>
             <p>Your Journey with elevatEd, an efficient learning</p>
           </div>
-          <img src={imageTop} alt="" />
         </div>
+        <img src={imageTop} alt="" />
       </div>
-      <div>
-        <div>
+      <div className={styles.ContentSection}>
+        <div className={styles.QuizButtonSet}>
           <h2>
             Start your <span className="colorText">Quiz</span>
           </h2>

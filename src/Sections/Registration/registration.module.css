@@ -9,7 +9,7 @@
 }
 
 .Wrapper > img {
-  width: calc(50%-2.5vw);
+  width: calc(50% - 2.5vw);
   height: 100%;
   object-fit: contain;
 }
