@@ -1,10 +1,12 @@
 .OnGoingCourses {
   display: flex;
   flex-direction: column;
-  gap: 70px;
+  gap: 50px;
   width: fit-content;
   height: 360px;
   align-items: center;
+  background-color: white;
+  padding: 20px;
 }
 
 .OnGoingCourses .Header {
@@ -37,7 +39,7 @@
   transform: rotate(270deg);
 }
 .OnGoingCourses .ProgressBar {
-  width: 300px;
+  width: 260px;
   height: 40px;
   border-radius: 30px;
   margin-bottom: 10px;

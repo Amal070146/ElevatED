@@ -8,19 +8,18 @@ import {
   CoursesIcons,
 } from "../../assets/DashboardIcons";
 import { useState } from "react";
+import navimage from "../../assets/navbarImage.png";
+import { Logoutsvg } from "../../assets/svg";
 
 export const Navbar = () => {
   const [selectedNav, setSelectedNav] = useState(0);
   return (
     <div className={styles.NavbarWrapper}>
       <div className={styles.TopSection}>
-        <div>
-          <img src={logo} alt="" />
-          <p>ElevatED</p>
-        </div>
+        <img src={logo} alt="" />
         <div>
           <Link
-            to="/"
+            to="/home"
             className={
               selectedNav === 0 ? styles.activeNav : styles.inactiveNav
             }
@@ -28,16 +27,10 @@ export const Navbar = () => {
           >
             <div>
               <DashboardLogo
-                colors={`${selectedNav === 0 ? "#4318FF" : "#A3AED0"}`}
+                colors={`${selectedNav === 0 ? "#0A8677" : "#A3AED0"}`}
               />
-              Dashboard
+              Home
             </div>
-            <div
-              className={styles.RectangleBox}
-              style={{
-                backgroundColor: `${selectedNav === 0 ? "#4318FF" : "#A3AED0"}`,
-              }}
-            ></div>
           </Link>
           <Link
             to="/courses"
@@ -48,16 +41,10 @@ export const Navbar = () => {
           >
             <div>
               <CoursesIcons
-                colors={`${selectedNav === 1 ? "#4318FF" : "#A3AED0"}`}
+                colors={`${selectedNav === 1 ? "#0A8677" : "#A3AED0"}`}
               />
               Courses
             </div>
-            <div
-              className={styles.RectangleBox}
-              style={{
-                backgroundColor: `${selectedNav === 1 ? "#4318FF" : "#A3AED0"}`,
-              }}
-            ></div>
           </Link>
           <Link
             to="/progress"
@@ -68,16 +55,10 @@ export const Navbar = () => {
           >
             <div>
               <ProgressIcons
-                colors={`${selectedNav === 2 ? "#4318FF" : "#A3AED0"}`}
+                colors={`${selectedNav === 2 ? "#0A8677" : "#A3AED0"}`}
               />{" "}
               Progress
             </div>
-            <div
-              className={styles.RectangleBox}
-              style={{
-                backgroundColor: `${selectedNav === 2 ? "#4318FF" : "#A3AED0"}`,
-              }}
-            ></div>
           </Link>
           <Link
             to="/settings"
@@ -88,27 +69,21 @@ export const Navbar = () => {
           >
             <div>
               <SettingsIcons
-                colors={`${selectedNav === 3 ? "#4318FF" : "#A3AED0"}`}
+                colors={`${selectedNav === 3 ? "#0A8677" : "#A3AED0"}`}
               />
               Settings
-            </div>
-            <div
-              className={styles.RectangleBox}
-              style={{
-                backgroundColor: `${selectedNav === 3 ? "#4318FF" : "#A3AED0"}`,
-              }}
-            >
-              {" "}
             </div>
           </Link>
         </div>
       </div>
+      <img src={navimage} alt="" />
       <button
         onClick={() => {
           localStorage.removeItem("accessToken");
           window.location.reload();
         }}
       >
+        <Logoutsvg />
         Log Out
       </button>
     </div>

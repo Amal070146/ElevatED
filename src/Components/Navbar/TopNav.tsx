@@ -8,10 +8,7 @@ export const TopNav = () => {
   const navigate = useNavigate();
   return (
     <div className={styles.TopNAvbarWrapper}>
-      <div>
-        <p>Hi Amal,</p>
-        <h1>Welcome to ElevatED</h1>
-      </div>
+   
       <div className={styles.ButtonWrapper}>
         <button onClick={() => navigate("/notification")}>
           <Notificationsvg />

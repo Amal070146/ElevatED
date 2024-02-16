@@ -17,9 +17,10 @@
 }
 
 .RightSectionWrapper{
-    max-width: calc(100%-250px);
+    max-width: calc(100%);
     width: calc(100% );
-    padding: 30px;
+  
     height: 100vh;
     overflow: hidden;
+    background-color: #F3F3F3;
 }

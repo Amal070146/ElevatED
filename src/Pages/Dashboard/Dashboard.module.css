@@ -2,4 +2,106 @@
   height: calc(100vh - 80px);
   overflow-y: scroll;
   padding-bottom: 50px;
+  padding: 0px 30px 30px;
+    display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.Wrapper .HeaderSet {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  text-align: left;
+  flex-wrap: wrap;
+}
+
+.Wrapper .HeaderSet h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #0a8677;
+}
+
+.Wrapper .HeaderSet h1 {
+  font-size: 35px;
+  font-weight: 600;
+}
+
+.Wrapper .HeaderSet img {
+  height: 180px;
+}
+
+@media screen and (max-width:1200px) {
+  .Wrapper .HeaderSet img{
+    display: none;
+  }
+}
+.Wrapper .ContentSection {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 35px;
+  width: 100%;
+  justify-content: center;
+}
+.Wrapper .ContentSection > div {
+  border-radius: 20px;
+}
+
+.Wrapper .QuizButtonSet {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 30px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.Wrapper .QuizButtonSet h2 {
+  font-size: 18px;
+  align-self: flex-start;
+}
+.Wrapper .QuizButtonSet img {
+  width: 100%;
+}
+
+.Wrapper .QuizButtonSet button {
+  border-radius: 50px;
+  padding: 10px 30px;
+}
+
+.Wrapper .CalenderWrapper {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+.Wrapper .DailyProgress {
+  width: 60%;
+  background-color: white;
+  padding: 20px;
+  display: flex;
+  text-align: left;
+align-items: center;
+}
+
+.Wrapper .RecentActivity {
+  background-color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 15px;
+}
+.Wrapper .RecentActivity > div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.Wrapper .RecentActivity > div>div{
+  background-color: #EDEEEE;
+  border-radius: 30px;
+  padding: 10px;
 }
