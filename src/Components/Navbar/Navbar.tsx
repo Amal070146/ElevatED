@@ -1,5 +1,6 @@
 import styles from "./Navbar.module.css";
 import logo from "../../Logo.png";
+import miniLogo from '../../../Logo_small.png'
 import {
   DashboardLogo,
   ProgressIcons,
@@ -24,7 +25,8 @@ export const Navbar = () => {
   return (
     <div className={styles.NavbarWrapper}>
       <div className={styles.TopSection}>
-        <img src={logo} alt="" />
+        <img className={styles.MainLogo} src={logo} alt="" />
+        <img className={styles.MiniLogo} src={miniLogo} alt="" />
         <div>
           {navContent.map((content, i) => (
             <a
@@ -60,7 +62,7 @@ export const Navbar = () => {
         }}
       >
         <Logoutsvg />
-        Log Out
+        <p> Log Out</p>
       </button>
     </div>
   );

@@ -1,8 +1,6 @@
 import { PureComponent } from "react";
 import {
   XAxis,
-  YAxis,
-  CartesianGrid,
   Tooltip,
   AreaChart,
   Area,
@@ -40,9 +38,9 @@ export default class SimpleAreaGraph extends PureComponent<SimpleAreaGraphProps>
               bottom: 0,
             }}
           >
-            <CartesianGrid strokeDasharray="3 3" />
+       
             <XAxis dataKey="name" />
-            <YAxis />
+          
             <Tooltip />
             <Area
               type="monotone"

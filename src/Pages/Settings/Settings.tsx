@@ -99,7 +99,7 @@ export const Settings = () => {
           <div className={styles.innerWrapper}>
             <h2>Request as</h2>
             <div>
-              <button onClick={handleFacultyButtonClick}>Faculty</button>
+              <button onClick={handleFacultyButtonClick}>Enabler</button>
 
               <button onClick={handleAdminButtonClick}>Administrator</button>
             </div>
@@ -111,7 +111,7 @@ export const Settings = () => {
                 >
                   x
                 </span>
-                <h2>Faculty Popup</h2>
+                <h2>Enabler</h2>
                 <label htmlFor="eduInstitution">Educational Institution:</label>
                 <input
                   type="text"
@@ -136,7 +136,7 @@ export const Settings = () => {
                 <span className={styles.close} onClick={handleAdminPopupClose}>
                   &times;
                 </span>
-                <h2>Administrator Popup</h2>
+                <h2>Administrator</h2>
                 <label htmlFor="eduInstitution">Educational Institution:</label>
                 <input
                   type="text"
