@@ -54,7 +54,7 @@ export const Login = (_props: Props) => {
     <div className={styles.Wrapper}>
       <div className={styles.ContentWrap}>
         <div className={styles.TopSection}>
-          <img src={Logo} alt="" />
+          <img className={styles.logo_design}  src={Logo} alt="" />
           <div className={styles.welc}>
             <p>WELCOME BACK 👋🏻</p>
             <h1>Continue to your Account.</h1>
