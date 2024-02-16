@@ -12,7 +12,7 @@ const PrivateRoutes: React.FC<PrivateRoutesProps> = ({ children }) => {
     const accessToken = localStorage.getItem("accessToken");
 
     if (!accessToken) {
-      navigate("/login");
+      navigate("/landing");
     }
     // console.log(accessToken);
   }, []);

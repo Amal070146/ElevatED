@@ -13,7 +13,7 @@ import NotFound from "./Pages/NotFound/NotFound";
 import PrivateRoute from "./Services/PrivateRoute";
 
 import { createClient } from "@supabase/supabase-js";
-
+import { Landing } from "./Sections/Registration/Landing/Landing";
 
 export const supabase = createClient(
   "https://gkzzrkcdfbycavuzwbuw.supabase.co",
@@ -32,7 +32,6 @@ const App = () => {
             </PrivateRoute>
           }
         >
-   
           <Route index element={<Dashboard />} />
           <Route path="home" element={<Dashboard />} />
           <Route path="settings" element={<Settings />} />
@@ -40,9 +39,9 @@ const App = () => {
           <Route path="courses" element={<Courses />} />
           <Route path="notification" element={<Notifications />} />
           <Route path="profile" element={<Profile />} />
-   
         </Route>
-    
+
+        <Route path="/landing" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/404" element={<NotFound />} />
