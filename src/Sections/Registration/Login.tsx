@@ -1,20 +1,60 @@
 import { ArrowRightsvg } from "../../assets/svg";
 import styles from "./registration.module.css";
-import Logo from '../../Logo.png'
-import google from '../../assets/google.png'
-import image from './assets/image.png'
+import Logo from "../../Logo.png";
+import google from "../../assets/google.png";
+import image from "./assets/image.png";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { loginUser } from "./LoginApis";
 
 type Props = {};
 
 export const Login = (_props: Props) => {
+  const navigate = useNavigate();
+  const [data, setData] = useState({
+    usernameOrEmail: "",
+    password: "",
+    usernameOrEmailError: "",
+    passwordError: "",
+  });
+
+  const validateForm = () => {
+    let isValid = true;
+    if (data.usernameOrEmail === "") {
+      setData((prevData) => ({
+        ...prevData,
+        usernameOrEmailError: "Please enter a username or email",
+      }));
+      isValid = false;
+    }
+    if (data.password === "") {
+      setData((prevData) => ({
+        ...prevData,
+        passwordError: "Please enter a password",
+      }));
+      isValid = false;
+    }
+    return isValid;
+  };
+
+  const handleLogin = async (formData: any) => {
+    loginUser(formData).then(() => {
+      navigate("/home");
+    });
+  };
+
+  const handleSubmit = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    if (validateForm()) {
+      handleLogin(data);
+    }
+  };
+
   return (
     <div className={styles.Wrapper}>
       <div className={styles.ContentWrap}>
         <div className={styles.TopSection}>
-          <div>
-            <img src={Logo} alt="" />
-            <h2>ElevatED</h2>
-          </div>
+          <img src={Logo} alt="" />
           <div className={styles.welc}>
             <p>WELCOME BACK 👋🏻</p>
             <h1>Continue to your Account.</h1>
@@ -33,13 +73,37 @@ export const Login = (_props: Props) => {
           <div className={styles.inputBoxSection}>
             <div className={styles.inputBox}>
               <p>Email</p>
-              <input type="text" placeholder="anu" />
+              <input
+                type="text"
+                placeholder="Email"
+                value={data.usernameOrEmail}
+                onChange={(e) =>
+                  setData({
+                    ...data,
+                    usernameOrEmail: e.target.value,
+                    usernameOrEmailError: "",
+                  })
+                }
+              />
             </div>
+            {data.usernameOrEmailError && <p>{data.usernameOrEmailError}</p>}
             <div className={styles.inputBox}>
               <p>Password</p>
-              <input type="text" placeholder="password" />
+              <input
+                type="password"
+                placeholder="Password"
+                value={data.password}
+                onChange={(e) =>
+                  setData({
+                    ...data,
+                    password: e.target.value,
+                    passwordError: "",
+                  })
+                }
+              />
             </div>
-            <button>
+            {data.passwordError && <p>{data.passwordError}</p>}
+            <button onClick={handleSubmit}>
               Continue <ArrowRightsvg color="#fff" />
             </button>
           </div>

@@ -19,7 +19,7 @@ export const Navbar = () => {
         <img src={logo} alt="" />
         <div>
           <Link
-            to="/"
+            to="/home"
             className={
               selectedNav === 0 ? styles.activeNav : styles.inactiveNav
             }
