@@ -16,10 +16,10 @@ export const Signup = (_props: Props) => {
     <div className={styles.Wrapper}>
       <div className={styles.ContentWrap}>
         <div className={styles.TopSection}>
-          <div>
-            <img src={Logo} alt="" />
-            <h2>ElevatED</h2>
-          </div>
+          
+            <img className={styles.logo_design} src={Logo} alt="" />
+            
+        
           <div className={styles.welc}>
             <h1>WELCOME to ElevatED</h1>
           </div>
@@ -40,7 +40,7 @@ export const Signup = (_props: Props) => {
             </button>
           </div>
           <p>
-            By Signing up toeLEVATed, means you agree to our Privacy Policy and
+            By Signing up to ElevatED, means you agree to our Privacy Policy and
             Terms of Service
           </p>
           <a href="/login">
