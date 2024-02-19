@@ -91,6 +91,7 @@ export const Progress = (_props: Props) => {
       amt: 2100,
     },
   ];
+  
   return (
     <div className={styles.Wrapper}>
       <div className={styles.DailyTracker}>
@@ -101,16 +102,18 @@ export const Progress = (_props: Props) => {
         </div>
         <BarCharts data={DailyTackerdata} />
       </div>
-      <div>
-        <div>
+    
+      <div className={styles.pie}>
+        <div className={styles.inner_pie}>
           <h2>Subject-wise Tracker</h2>
           <div>
             <p>Subject knowledge can be analysed </p>
             <button>Week</button>
           </div>
+          <CircularGraph data={Subjectdata} />
         </div>
-        <CircularGraph data={Subjectdata} />
       </div>
+
       <div className={styles.DailyProgress}>
         <div>
           <h2>Daily Progress</h2>
