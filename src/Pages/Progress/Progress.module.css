@@ -2,8 +2,23 @@
   width: 100%;
   padding: 10px 30px 30px;
   display: flex;
+  gap: 20px;
   height: calc(100vh - 80px);
   overflow-y: scroll;
+}
+
+.inner_pie{
+  background-color: white;
+  height: 400px;
+  /*display: flex;*/
+  flex-direction: column;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.inner_pie h2{
+  font-size: 18px;
+  align-self: flex-start;
 }
 
 .DailyTracker {
@@ -24,4 +39,18 @@
 .DailyTracker h1{
     font-size: 30px;
     font-weight: 600;
+}
+
+.DailyProgress{
+  background-color: white;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.DailyProgress h2{
+  font-size: 18px;
+  align-self: flex-start;
 }
