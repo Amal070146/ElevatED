@@ -1,10 +1,15 @@
 .Wrapper {
   width: 100%;
   padding: 10px 30px 30px;
-  display: flex;
-  gap: 20px;
   height: calc(100vh - 80px);
   overflow-y: scroll;
+}
+
+.Wrapper .WrapperWrapper{
+  display: flex;
+  gap: 20px;
+  /*float: right;*/
+ 
 }
 
 .inner_pie{
@@ -53,4 +58,10 @@
 .DailyProgress h2{
   font-size: 18px;
   align-self: flex-start;
+}
+
+.Wrapper .progresspageImg{
+  width: 400px;
+  float: right;
+  padding: 20px;
 }
