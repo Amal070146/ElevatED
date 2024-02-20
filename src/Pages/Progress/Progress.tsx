@@ -37,7 +37,6 @@ export const Progress = (_props: Props) => {
     },
   ];
 
-
   const Subjectdata = [
     { name: "Group A", value: 400 },
     { name: "Group B", value: 300 },
@@ -45,8 +44,6 @@ export const Progress = (_props: Props) => {
     { name: "Group D", value: 200 },
   ];
 
-
-  
   const Graphdata = [
     {
       name: "Page A",
@@ -101,15 +98,18 @@ export const Progress = (_props: Props) => {
         </div>
         <BarCharts data={DailyTackerdata} />
       </div>
-      <div>
-        <div>
+      <div className={styles.SubjectTracker}>
+        <div className={styles.ChartHeading}>
           <h2>Subject-wise Tracker</h2>
           <div>
             <p>Subject knowledge can be analysed </p>
             <button>Week</button>
           </div>
         </div>
-        <CircularGraph data={Subjectdata} />
+        <div>
+          <CircularGraph data={Subjectdata} />
+          <div></div>
+        </div>
       </div>
       <div className={styles.DailyProgress}>
         <div>

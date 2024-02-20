@@ -5,6 +5,8 @@ import { OnGoingCourseProgress } from "../../Components/ProgressContainers/OnGoi
 import { Calendar } from "../../Components/Calender/Calender";
 import SimpleAreaGraph from "../../Components/ProgressContainers/SimpleAreaChart/SimpleAreaChart";
 
+import { useNavigate } from "react-router-dom";
+
 type Props = {};
 
 export const Dashboard = (_props: Props) => {
@@ -86,6 +88,12 @@ export const Dashboard = (_props: Props) => {
       name: "Attended DBMS",
     },
   ];
+
+   const navigate = useNavigate();
+
+   const handleStartQuiz = () => {
+     navigate("/quiz"); 
+   };
   return (
     <div className={styles.Wrapper}>
       <div className={styles.HeaderSet}>
@@ -104,7 +112,7 @@ export const Dashboard = (_props: Props) => {
             Start your <span className="colorText">Quiz</span>
           </h2>
           <img src={quizimage} alt="" />
-          <button>Start Quiz</button>
+          <button onClick={handleStartQuiz}>Start Quiz</button>
         </div>
         <OnGoingCourseProgress Progressdata={Progressdata} />
         <div className={styles.CalenderWrapper}>

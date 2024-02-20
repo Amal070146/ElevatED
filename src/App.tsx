@@ -14,6 +14,7 @@ import PrivateRoute from "./Services/PrivateRoute";
 
 import { createClient } from "@supabase/supabase-js";
 import { Landing } from "./Sections/Registration/Landing/Landing";
+import { Quiz } from "./Components/Quiz/Quiz";
 
 export const supabase = createClient(
   "https://gkzzrkcdfbycavuzwbuw.supabase.co",
@@ -39,6 +40,7 @@ const App = () => {
           <Route path="courses" element={<Courses />} />
           <Route path="notification" element={<Notifications />} />
           <Route path="profile" element={<Profile />} />
+          <Route path="quiz" element={<Quiz />} />
         </Route>
 
         <Route path="/landing" element={<Landing />} />
