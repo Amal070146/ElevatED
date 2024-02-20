@@ -74,4 +74,15 @@
     .BaseCourseSelectWrapper .TopSet .courseWrap > div{
         width: 100%;
     }
+/*
+    .newCourseSwiper{
+      padding: 0px;
+      background-color: #7FECED;
+    }
+    
+    .BaseCourseSelectWrapper .newCourseSwiper{
+      background-color: blue;
+      color: aqua;
+    }
+    */
 }

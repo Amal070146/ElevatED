@@ -144,7 +144,7 @@ export const Courses = () => {
           {NewCourse.map(({ name, description, author, noofmodules }) => {
             return (
               <SwiperSlide>
-                <div>
+                <div className={styles.newCourseSwiper}>
                   <h2>{name}</h2>
                   <h3>{description}</h3>
                   <p>{author}</p>

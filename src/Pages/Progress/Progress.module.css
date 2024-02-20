@@ -1,11 +1,31 @@
 .Wrapper {
   width: 100%;
   padding: 10px 30px 30px;
-  display: flex;
   height: calc(100vh - 80px);
   overflow-y: scroll;
   flex-wrap: wrap;
   gap: 30px;
+}
+
+.Wrapper .WrapperWrapper{
+  display: flex;
+  gap: 20px;
+  /*float: right;*/
+ 
+}
+
+.inner_pie{
+  background-color: white;
+  height: 400px;
+  /*display: flex;*/
+  flex-direction: column;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.inner_pie h2{
+  font-size: 18px;
+  align-self: flex-start;
 }
 
 .DailyTracker {
@@ -26,21 +46,4 @@
 .DailyTracker h1 {
   font-size: 30px;
   font-weight: 600;
-}
-
-.SubjectTracker {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  background-color: white;
-  align-items: center;
-  border-radius: 20px;
-  padding: 20px;
-  height: fit-content;
-}
-
-.SubjectTracker .ChartHeading > div {
-  display: flex;
-  align-items: center;
-  gap: 10px;
 }

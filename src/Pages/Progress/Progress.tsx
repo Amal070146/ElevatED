@@ -1,6 +1,7 @@
 import BarCharts from "../../Components/ProgressContainers/Barchart/Barchart";
 import CircularGraph from "../../Components/ProgressContainers/CircularGraph/CircularGraph";
 import SimpleAreaGraph from "../../Components/ProgressContainers/SimpleAreaChart/SimpleAreaChart";
+import progresspageImg from "../../assets/progressPage/progressPgImg.png" 
 import styles from "./Progress.module.css";
 
 type Props = {};
@@ -88,8 +89,10 @@ export const Progress = (_props: Props) => {
       amt: 2100,
     },
   ];
+  
   return (
     <div className={styles.Wrapper}>
+      <div className={styles.WrapperWrapper}>
       <div className={styles.DailyTracker}>
         <h2>Daily Tracker</h2>
         <div>
@@ -98,19 +101,19 @@ export const Progress = (_props: Props) => {
         </div>
         <BarCharts data={DailyTackerdata} />
       </div>
-      <div className={styles.SubjectTracker}>
-        <div className={styles.ChartHeading}>
+ 
+    
+      <div className={styles.pie}>
+        <div className={styles.inner_pie}>
           <h2>Subject-wise Tracker</h2>
           <div>
             <p>Subject knowledge can be analysed </p>
             <button>Week</button>
           </div>
-        </div>
-        <div>
           <CircularGraph data={Subjectdata} />
-          <div></div>
         </div>
       </div>
+
       <div className={styles.DailyProgress}>
         <div>
           <h2>Daily Progress</h2>
@@ -118,7 +121,11 @@ export const Progress = (_props: Props) => {
         </div>
         <SimpleAreaGraph data={Graphdata} />
       </div>
-      <div></div>
+      </div>
+      <div >
+        <img className={styles.progresspageImg} src={progresspageImg} alt="" />
+      </div>
+
     </div>
   );
 };
