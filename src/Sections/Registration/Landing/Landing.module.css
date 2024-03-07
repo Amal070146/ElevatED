@@ -1,48 +1,93 @@
-.Wrapper{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+.Wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 0px 10vw 3vh;
+  gap: 6vh;
 }
 
-.Wrapper .TopNavbar{
-    width: 100%;
-    display: flex;
+.Wrapper .TopNavbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0vw;
+}
+
+.Wrapper .TopNavbar img {
+  width: 150px;
+}
+
+.Wrapper .TopNavbar .Registration {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.Wrapper .bodyWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 3vh;
+}
+
+.Wrapper .bodyWrapper h1 {
+  font-size: 40px;
+  color: rgb(46, 45, 45);
+  text-align: left;
+  max-width: 500px;
+}
+
+.Wrapper .functionWrapper {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.Wrapper .functionWrapper > img {
+  max-width: 250px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.Wrapper .functionWrapper > div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 30px;
+}
+.Wrapper .functionWrapper .functionWrapWrapper {
+  display: flex;
+  gap: 20px;
+  width: calc(100%);
+  flex-wrap: wrap;
+}
+
+.Wrapper .bodyWrapper .eachFunctionWrapper {
+  justify-content: center;
+  width: calc(100% / 4 - 20px);
+  min-height: 200px;
+  min-width: 200px;
+  height: fit-content;
+  border: 2px solid #333;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(26, 70, 142, 0.2);
+  padding: 20px;
+}
+.Wrapper .bodyWrapper .eachFunctionWrapper:hover {
+  background-color: #daedeb;
+}
+.Wrapper .bodyWrapper .eachFunctionWrapper img {
+  max-width: 100%;
+  width: 100px;
+}
+
+@media screen and (max-width: 900px) {
+  .Wrapper .functionWrapper > img {
+    display: none;
+  }
+  .Wrapper .functionWrapper .functionWrapWrapper {
     align-items: center;
-    justify-content: space-between;
-    padding: 20px 10vw;
-}
-
-.Wrapper .TopNavbar img{
-    width: 150px;
-}
-
-.Wrapper .TopNavbar .Registration{
-    display: flex;
     justify-content: center;
-    gap: 5%;
-}
-
-.Wrapper .bodyWrapper{
-    margin-top: 2%;
-}
-
-.Wrapper .bodyWrapper h1{
-    font-size: xx-large;
-    color: rgb(46, 45, 45);
-    max-width:40%;
-}
-
-.Wrapper .functionWrapper .functionWrapWrapper{
-    display: flex;
-    gap:20px
-}
-
-.Wrapper .bodyWrapper .eachFunctionWrapper{
-    justify-content: center;
-    width: 200px;
-    height: 100px;
-    border: 2px solid #333;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(26, 70, 142, 0.2);
-     
+  }
 }
