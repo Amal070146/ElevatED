@@ -59,7 +59,7 @@ export const Quiz = (_props: Props) => {
     // Add more questions with their options here
   ];
 
-  const [questions, setQuestions] = useState(initialQuestions);
+  const [questions] = useState(initialQuestions);
   const [selectedOptions, setSelectedOptions] = useState<number[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
@@ -73,7 +73,7 @@ export const Quiz = (_props: Props) => {
   const goToNextQuestion = () => {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
-      setSelectedOptions([]); // Reset selected options for the next question
+      setSelectedOptions([]); 
     }
   };
 

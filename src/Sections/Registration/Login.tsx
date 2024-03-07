@@ -3,7 +3,7 @@ import styles from "./registration.module.css";
 import Logo from "../../Logo.png";
 import google from "../../assets/google.png";
 import image from "./assets/image.png";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { loginUser } from "./LoginApis";
 
@@ -50,11 +50,15 @@ export const Login = (_props: Props) => {
     }
   };
 
+  const location = useLocation();
+
+  // Access state passed from signup.tsx
+  const fromPage = location.state?.from;
   return (
     <div className={styles.Wrapper}>
       <div className={styles.ContentWrap}>
         <div className={styles.TopSection}>
-          <img className={styles.logo_design}  src={Logo} alt="" />
+          <img className={styles.logo_design} src={Logo} alt="" />
           <div className={styles.welc}>
             <p>WELCOME BACK 👋🏻</p>
             <h1>Continue to your Account.</h1>
@@ -64,6 +68,7 @@ export const Login = (_props: Props) => {
             <p>Log In with Google</p>
           </button>
         </div>
+        <p style={{ color: "green" }}>{fromPage}</p>
         <div className={styles.separator}>
           <div></div>
           <p>Or use Email</p>
