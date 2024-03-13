@@ -89,9 +89,9 @@ export const Progress = (_props: Props) => {
       amt: 2100,
     },
   ];
-  
   return (
     <div className={styles.Wrapper}>
+      
       <div className={styles.WrapperWrapper}>
       <div className={styles.DailyTracker}>
         <h2>Daily Tracker</h2>
@@ -107,7 +107,7 @@ export const Progress = (_props: Props) => {
         <div className={styles.inner_pie}>
           <h2>Subject-wise Tracker</h2>
           <div>
-            <p>Subject knowledge can be analysed </p>
+            <p>Subject knowledge can be analysed </p> <br />
             <button>Week</button>
           </div>
           <CircularGraph data={Subjectdata} />
@@ -120,7 +120,7 @@ export const Progress = (_props: Props) => {
           <p>(or overall progress of correct answers attended) </p>
         </div>
         <SimpleAreaGraph data={Graphdata} />
-      </div>
+      </div> 
       </div>
       <div >
         <img className={styles.progresspageImg} src={progresspageImg} alt="" />
