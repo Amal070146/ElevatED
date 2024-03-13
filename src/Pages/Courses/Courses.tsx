@@ -59,7 +59,7 @@ export const Courses = () => {
       name: "Chemistry",
       description: `"Chemical Symphony: Where Molecules Dance and Reactions Speak."`,
       author: "Rahul Dev - Delhi Public School, New Delhi",
-      noofmodules: 5,
+      noofmodules: 6,
     },
     {
       name: "Maths",
@@ -71,13 +71,13 @@ export const Courses = () => {
       name: "Physics",
       description: `"Unraveling the mysteries of the universe through physics."`,
       author: "Hari Krishna - Bishop Cotton School, Shimla",
-      noofmodules: 5,
+      noofmodules: 4,
     },
     {
       name: "Geography",
       description: `"Earth's wonders unfold in geography's diverse landscapes."`,
       author: "Kevin John - La Martiniere for Boys, Kolkata",
-      noofmodules: 5,
+      noofmodules: 3,
     },
     {
       name: "Chemistry",
@@ -108,7 +108,7 @@ export const Courses = () => {
     <div className={styles.BaseCourseSelectWrapper}>
       <div className={styles.TopSet}>
         <div>
-          <h3>COURSES</h3>
+          <h4>COURSES</h4>
           <h2>
             Amal C Paulson, your{" "}
             <span className="colorText">subjects on going ...!</span>
@@ -145,11 +145,11 @@ export const Courses = () => {
             return (
               <SwiperSlide>
                 <div className={styles.newCourseSwiper}>
-                  <h2>{name}</h2>
-                  <h3>{description}</h3>
+                  <h2>{name}</h2> 
+                  <h4>{description}</h4>
                   <p>{author}</p>
                 </div>
-                <h4>{noofmodules} MODULES</h4>
+                <h5>{noofmodules} MODULES</h5>
               </SwiperSlide>
             );
           })}
