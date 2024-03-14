@@ -6,7 +6,7 @@ type Props = {};
 type Question = {
   id: number;
   questionText: string;
-  options: Option[];
+  options: Option[]; 
 };
 
 type Option = {
@@ -83,7 +83,7 @@ export const Quiz = (_props: Props) => {
     <div className={styles.QuizWrapper}>
       {/* Quiz content and other buttons */}
 
-      <div>
+      <div className={styles.WrapQuizWrapper}>
         <h2>{questions[currentQuestionIndex].questionText}</h2>
         {questions[currentQuestionIndex].options.map((option) => (
           <div key={option.id}>
@@ -96,7 +96,7 @@ export const Quiz = (_props: Props) => {
           </div>
         ))}
       </div>
-      <div>
+      <div className="buttonss">
         <button
           onClick={() => setCurrentQuestionIndex(currentQuestionIndex - 1)}
           disabled={currentQuestionIndex === 0}

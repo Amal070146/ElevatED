@@ -132,7 +132,7 @@ export const Courses = () => {
 
         <Swiper
           slidesPerView={4}
-          spaceBetween={30}
+          spaceBetween={20}
           freeMode={true}
           loop={true}
           pagination={{

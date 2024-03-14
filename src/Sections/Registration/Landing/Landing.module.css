@@ -66,13 +66,17 @@
 .Wrapper .bodyWrapper .eachFunctionWrapper {
   justify-content: center;
   width: calc(100% / 4 - 20px);
-  min-height: 200px;
+  min-height: 220px;
   min-width: 200px;
   height: fit-content;
-  border: 2px solid #333;
+  border: 2px solid #888585;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(26, 70, 142, 0.2);
   padding: 20px;
+}
+
+.Wrapper .bodyWrapper .eachFunctionWrapper h5{
+  font-weight: 500;
 }
 .Wrapper .bodyWrapper .eachFunctionWrapper:hover {
   background-color: #daedeb;
