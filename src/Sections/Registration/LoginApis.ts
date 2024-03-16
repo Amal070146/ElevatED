@@ -1,4 +1,4 @@
-import { supabase } from "../../App";
+import { supabase } from "../../utils/supabase";
 
 
 export const loginUser = async (data1: any) => {
