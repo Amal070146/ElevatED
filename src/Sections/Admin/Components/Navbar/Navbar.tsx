@@ -26,7 +26,9 @@ export const Navbar = () => {
         <div>
           {navContent.map((content, i) => (
             <a
-              href={`/${content.toLowerCase().replace(/\s+/g, "")}`}
+              href={`/admindashboard/${content
+                .toLowerCase()
+                .replace(/\s+/g, "")}`}
               key={i.toString() + content}
             >
               {React.createElement(svgIcons[i], {

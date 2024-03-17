@@ -1,0 +1,53 @@
+.Wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 25px;
+    gap: 3vh;
+    overflow-y: scroll;
+    height: calc(100vh - 80px);
+}
+
+.Wrapper h1{
+    font-size: 26px;
+}
+
+.Wrapper .Header{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+.Wrapper .Header>div{
+    display: flex;
+    gap: 10px;
+}
+
+.Wrapper .Organisations{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+    text-align: left;
+}
+
+.Organisations .Individuals{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.Individuals >div{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+}
+
+.Individuals .Top>.ButtonWrapper{
+    display: flex;
+    gap: 10px;
+}

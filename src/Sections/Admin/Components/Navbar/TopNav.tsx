@@ -8,15 +8,14 @@ export const TopNav = () => {
   const navigate = useNavigate();
   return (
     <div className={styles.TopNAvbarWrapper}>
-   
       <div className={styles.ButtonWrapper}>
-        <button onClick={() => navigate("/notification")}>
+        <button onClick={() => navigate("/admindashboard//notification")}>
           <Notificationsvg />
         </button>
         <button
           className={styles.profileButton}
           onClick={() => {
-            navigate("/profile");
+            navigate("/admindashboard//profile");
           }}
         >
           <img src={defaultProfile} alt="" />

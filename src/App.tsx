@@ -16,6 +16,7 @@ import { Quiz } from "./Components/Quiz/Quiz";
 import { Toaster } from "react-hot-toast";
 import { AdminDashboard } from "./Sections/Admin/Pages/Dashboard/Dashboard";
 import { HeroSectionAdmin } from "./Sections/Admin/Pages/HeroSection/HeroSection";
+import { Organisation } from "./Sections/Admin/Pages/Organisation/Organisation";
 
 const App = () => {
   return (
@@ -39,18 +40,21 @@ const App = () => {
           <Route path="profile" element={<Profile />} />
           <Route path="quiz" element={<Quiz />} />
         </Route>
-
         <Route path="/landing" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/404" element={<NotFound />} />
-        <Route path="/*" element={<Navigate to="/404" replace />} />
 
         {/* Super Admin */}
         <Route path="/admindashboard" element={<HeroSectionAdmin />}>
           <Route index element={<AdminDashboard />} />
-          <Route path="organisation" element={<AdminDashboard />} />
+          <Route path="organisation" element={<Organisation />} />
+          <Route path="college" element={<Organisation />} />
+          <Route path="faculty" element={<Organisation />} />
+          <Route path="settings" element={<Settings />} />
         </Route>
+
+        <Route path="/404" element={<NotFound />} />
+        <Route path="/*" element={<Navigate to="/404" replace />} />
       </Routes>
     </BrowserRouter>
   );
