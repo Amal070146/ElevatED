@@ -17,6 +17,8 @@ import { Toaster } from "react-hot-toast";
 import { AdminDashboard } from "./Sections/Admin/Pages/Dashboard/Dashboard";
 import { HeroSectionAdmin } from "./Sections/Admin/Pages/HeroSection/HeroSection";
 import { Organisation } from "./Sections/Admin/Pages/Organisation/Organisation";
+import { CollegeList } from "./Sections/Admin/Pages/CollegeList/CollegeList";
+import { FacultyList } from "./Sections/Admin/Pages/FacultyList/FacultyList";
 
 const App = () => {
   return (
@@ -48,8 +50,8 @@ const App = () => {
         <Route path="/admindashboard" element={<HeroSectionAdmin />}>
           <Route index element={<AdminDashboard />} />
           <Route path="organisation" element={<Organisation />} />
-          <Route path="college" element={<Organisation />} />
-          <Route path="faculty" element={<Organisation />} />
+          <Route path="college" element={<CollegeList />} />
+          <Route path="faculty" element={<FacultyList />} />
           <Route path="settings" element={<Settings />} />
         </Route>
 
