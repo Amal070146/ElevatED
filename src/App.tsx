@@ -14,7 +14,6 @@ import PrivateRoute from "./Services/PrivateRoute";
 import { Landing } from "./Sections/Registration/Landing/Landing";
 import { Quiz } from "./Components/Quiz/Quiz";
 import { Toaster } from "react-hot-toast";
-import { AdminDashboard } from "./Sections/Admin/Pages/Dashboard/Dashboard";
 import { HeroSectionAdmin } from "./Sections/Admin/Pages/HeroSection/HeroSection";
 import { Organisation } from "./Sections/Admin/Pages/Organisation/Organisation";
 import { CollegeList } from "./Sections/Admin/Pages/CollegeList/CollegeList";
@@ -48,7 +47,7 @@ const App = () => {
 
         {/* Super Admin */}
         <Route path="/admindashboard" element={<HeroSectionAdmin />}>
-          <Route index element={<AdminDashboard />} />
+          <Route index element={<Organisation />} />
           <Route path="organisation" element={<Organisation />} />
           <Route path="college" element={<CollegeList />} />
           <Route path="faculty" element={<FacultyList />} />

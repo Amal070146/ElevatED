@@ -67,6 +67,33 @@ export const CollegeList = (_props: Props) => {
           ))}
         </tbody>
       </table>
+      <h1>College Name</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>College Name</th>
+            <th>Student</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((item, index) => (
+            <tr key={index}>
+              <td>{item.name}</td>
+              <td>{item.student}</td>
+              <td>
+                {item.actions === "taken" ? (
+                  <button>Reject</button>
+                ) : (
+                  <div>
+                    <button>Reject</button>
+                  </div>
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
