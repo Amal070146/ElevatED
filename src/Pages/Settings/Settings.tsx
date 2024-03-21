@@ -5,6 +5,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import AdminRequest from "./AdminRequest";
 
 const schema = z.object({
 	first_name: z.string().min(1, { message: "First name is required" }),
@@ -26,6 +27,7 @@ const schema = z.object({
 type FormFields = z.infer<typeof schema>;
 
 export const Settings = () => {
+	const [adminIsOpen, setAdminIsOpen] = useState(false);
 	const {
 		register,
 		handleSubmit,
@@ -90,38 +92,6 @@ export const Settings = () => {
 		} else {
 			throw "User not found, please login again";
 		}
-	};
-
-	const [showFacultyPopup, setShowFacultyPopup] = useState(false);
-	const [showAdminPopup, setShowAdminPopup] = useState(false);
-	const [eduInstitution, setEduInstitution] = useState("");
-	const [institutionDistrict, setInstitutionDistrict] = useState("");
-	const [institutionId, setInstitutionId] = useState("");
-
-	const handleFacultyButtonClick = () => {
-		setShowFacultyPopup(true);
-	};
-
-	const handleAdminButtonClick = () => {
-		setShowAdminPopup(true);
-	};
-
-	const handleFacultyPopupClose = () => {
-		setShowFacultyPopup(false);
-	};
-
-	const handleAdminPopupClose = () => {
-		setShowAdminPopup(false);
-	};
-
-	const handleFacultyPopupSubmit = () => {
-		// Perform actions with the collected data
-		setShowFacultyPopup(false);
-	};
-
-	const handleAdminPopupSubmit = () => {
-		// Perform actions with the collected data
-		setShowAdminPopup(false);
 	};
 
 	return (
@@ -293,15 +263,13 @@ export const Settings = () => {
 					<div className={styles.innerWrapper}>
 						<h2>Request as</h2>
 						<div>
-							<button onClick={handleFacultyButtonClick}>
-								Enabler
-							</button>
+							<button>Enabler</button>
 
-							<button onClick={handleAdminButtonClick}>
+							<button onClick={() => setAdminIsOpen(true)}>
 								Administrator
 							</button>
 						</div>
-						{showFacultyPopup && (
+						{/* {showFacultyPopup && (
 							<div className={styles.popup}>
 								<span
 									className={styles.close}
@@ -332,57 +300,16 @@ export const Settings = () => {
 										setInstitutionDistrict(e.target.value)
 									}
 								/>
-								<button onClick={handleFacultyPopupSubmit}>
+								<button >
 									Submit
 								</button>
 							</div>
-						)}
-						{showAdminPopup && (
-							<div className={styles.popup}>
-								<span
-									className={styles.close}
-									onClick={handleAdminPopupClose}
-								>
-									&times;
-								</span>
-								<h2>Administrator</h2>
-								<label htmlFor="eduInstitution">
-									Educational Institution:
-								</label>
-								<input
-									type="text"
-									id="eduInstitution"
-									value={eduInstitution}
-									onChange={(e) =>
-										setEduInstitution(e.target.value)
-									}
-								/>
-								<label htmlFor="institutionDistrict">
-									Institution District:
-								</label>
-								<input
-									type="text"
-									id="institutionDistrict"
-									value={institutionDistrict}
-									onChange={(e) =>
-										setInstitutionDistrict(e.target.value)
-									}
-								/>
-								<label htmlFor="institutionId">
-									Institution ID:
-								</label>
-								<input
-									type="text"
-									id="institutionId"
-									value={institutionId}
-									onChange={(e) =>
-										setInstitutionId(e.target.value)
-									}
-								/>
-								<button onClick={handleAdminPopupSubmit}>
-									Submit
-								</button>
-							</div>
+						)} */}
+						{adminIsOpen && (
+							<AdminRequest
+								isOpen={adminIsOpen}
+								setIsOpen={setAdminIsOpen}
+							/>
 						)}
 					</div>
 				</div>
