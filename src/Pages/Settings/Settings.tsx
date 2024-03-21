@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import AdminRequest from "./AdminRequest";
+import EnablerRequest from "./EnablerRequest";
 
 const schema = z.object({
 	first_name: z.string().min(1, { message: "First name is required" }),
@@ -28,6 +29,7 @@ type FormFields = z.infer<typeof schema>;
 
 export const Settings = () => {
 	const [adminIsOpen, setAdminIsOpen] = useState(false);
+	const [enablerIsOpen, setEnablerIsOpen] = useState(false);
 	const {
 		register,
 		handleSubmit,
@@ -263,48 +265,20 @@ export const Settings = () => {
 					<div className={styles.innerWrapper}>
 						<h2>Request as</h2>
 						<div>
-							<button>Enabler</button>
+							<button onClick={() => setEnablerIsOpen(true)}>
+								Enabler
+							</button>
 
 							<button onClick={() => setAdminIsOpen(true)}>
 								Administrator
 							</button>
 						</div>
-						{/* {showFacultyPopup && (
-							<div className={styles.popup}>
-								<span
-									className={styles.close}
-									onClick={handleFacultyPopupClose}
-								>
-									x
-								</span>
-								<h2>Enabler</h2>
-								<label htmlFor="eduInstitution">
-									Educational Institution:
-								</label>
-								<input
-									type="text"
-									id="eduInstitution"
-									value={eduInstitution}
-									onChange={(e) =>
-										setEduInstitution(e.target.value)
-									}
-								/>
-								<label htmlFor="institutionDistrict">
-									Institution District:
-								</label>
-								<input
-									type="text"
-									id="institutionDistrict"
-									value={institutionDistrict}
-									onChange={(e) =>
-										setInstitutionDistrict(e.target.value)
-									}
-								/>
-								<button >
-									Submit
-								</button>
-							</div>
-						)} */}
+						{enablerIsOpen && (
+							<EnablerRequest
+								isOpen={enablerIsOpen}
+								setIsOpen={setEnablerIsOpen}
+							/>
+						)}
 						{adminIsOpen && (
 							<AdminRequest
 								isOpen={adminIsOpen}
