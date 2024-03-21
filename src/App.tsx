@@ -18,6 +18,7 @@ import { HeroSectionAdmin } from "./Sections/Admin/Pages/HeroSection/HeroSection
 import { Organisation } from "./Sections/Admin/Pages/Organisation/Organisation";
 import { CollegeList } from "./Sections/Admin/Pages/CollegeList/CollegeList";
 import { FacultyList } from "./Sections/Admin/Pages/FacultyList/FacultyList";
+import { DetailCourse } from "./Pages/Courses/components/Detail";
 
 const App = () => {
   return (
@@ -37,6 +38,7 @@ const App = () => {
           <Route path="home" element={<Dashboard />} />
           <Route path="progress" element={<Progress />} />
           <Route path="courses" element={<Courses />} />
+          <Route path="/detailcourses/:id" element={<DetailCourse />} />
           <Route path="notification" element={<Notifications />} />
           <Route path="profile" element={<Profile />} />
           <Route path="quiz" element={<Quiz />} />

@@ -10,6 +10,7 @@ import "swiper/css/pagination";
 import "./styles.css";
 
 import { FreeMode, Pagination } from "swiper/modules";
+import { useNavigate } from "react-router-dom";
 
 type Course = {
   name: string;
@@ -32,6 +33,7 @@ export const Courses = () => {
     {
       name: "DataBase Management System (DBMS)",
       progress: "20",
+      
     },
     {
       name: "Operating System (OS)",
@@ -104,6 +106,7 @@ export const Courses = () => {
       noofmodules: 5,
     },
   ];
+  const navigate = useNavigate()
   return (
     <div className={styles.BaseCourseSelectWrapper}>
       <div className={styles.TopSet}>
@@ -117,7 +120,10 @@ export const Courses = () => {
         <div className={styles.courseWrap}>
           {data.map(({ name, progress }) => {
             return (
-              <div key={name}>
+              <div
+                key={name}
+                onClick={() => navigate(`/detailcourses/${name}`)}
+              >
                 <p>{name}</p>
                 <div className={styles.Line}></div>
                 <ProgressBar progress={progress} />
