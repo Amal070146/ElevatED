@@ -12,6 +12,7 @@ import {
   Svg,
   Twitter,
 } from "./svg";
+import { FaStar } from "react-icons/fa";
 type Props = {};
 
 export const Profile = (_props: Props) => {
@@ -41,6 +42,20 @@ export const Profile = (_props: Props) => {
       status: "Completed",
     },
   ];
+   const renderStars = (count: number) => {
+     const totalStars = 5; // Assuming a total of 5 stars for rating
+     const stars = [];
+     for (let i = 0; i < totalStars; i++) {
+       stars.push(
+         i < count ? (
+           <FaStar key={i} style={{ color: "#E5BD51" }} />
+         ) : (
+           <FaStar key={i} style={{ color: "#ddd" }} />
+         )
+       );
+     }
+     return <div>{stars}</div>;
+   };
   return (
     <div className={styles.Wrapper}>
       <div className={styles.Header}>
@@ -99,9 +114,7 @@ export const Profile = (_props: Props) => {
           {data.map((item, index) => (
             <div key={index} className={styles.CourseItem}>
               <div className={styles.Top}>Course {item.status}</div>
-              <div>
-                {item.stars}
-              </div>
+              <div className={styles.Starswrapper}>{renderStars(item.stars)}</div>
               <div className={styles.Detail}>
                 <h2>{item.name}</h2>
                 <p>{item.para}</p>

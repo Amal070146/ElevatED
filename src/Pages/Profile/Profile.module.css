@@ -72,9 +72,12 @@
   background: linear-gradient(278deg, #178e7f 7.87%, #25d7c1 129.92%);
   color: white;
 }
-
+.CourseItem .Starswrapper{
+    padding: 0px 15px;
+    margin-top: -10px;
+}
 .CourseItem .Detail {
-  padding: 5px 15px 15px;
+  padding: 0px 15px 15px;
   background-color: #F4F7FE;
   font-size: 15px;
 }
