@@ -1,0 +1,123 @@
+.Wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  width: 100%;
+}
+
+.Wrapper > h1 {
+  font-size: 28px;
+}
+
+.Wrapper .Header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+.Wrapper .Header > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.Wrapper .Header > button {
+  padding: 10px 25px;
+}
+
+.Wrapper .Header > div button {
+  background-color: transparent;
+  color: #407bff;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.Wrapper .Content {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #797878;
+  width: 100%;
+}
+
+.Wrapper .Content > .Header button {
+  background-color: transparent;
+  color: black;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 10px;
+}
+
+.Wrapper .ModuleContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.ModuleContainer .ModuleWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  width: 100%;
+}
+
+.ModuleContainer .ModuleWrapper > button {
+  background-color: white;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  border-top: 25px solid #8a17d0cc;
+  padding: 20px 20px;
+  min-width: 180px;
+}
+
+.ModuleContainer .ModuleWrapper > button > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  width: 100%;
+}
+.ModuleContainer .ModuleWrapper > button p {
+  background-color: #d9d9d9;
+  padding: 5px 8px;
+  border-radius: 15px;
+  font-size: 14px;
+}
+
+.ModuleContainer .RightPopUpContainer {
+  background-color: white;
+  max-width: 420px;
+  min-width: 330px;
+  padding: 15px;
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 10px;
+}
+
+.ModuleContainer .Filter {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+
+.ModuleContainer .VideosPDF{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.ModuleContainer .VideosPDF button{
+    background-color:#F3F3F3 ;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}

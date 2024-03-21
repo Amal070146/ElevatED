@@ -1,0 +1,129 @@
+.NavbarWrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: fit-content;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 5vh 0px;
+  width: 100%;
+}
+
+.TopSection {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+  align-items: center;
+}
+.TopSection > .MainLogo {
+  width: 150px;
+}
+
+.TopSection > .MiniLogo {
+  display: none;
+}
+.TopSection > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 30px;
+  padding: 0px 20px 0px 20px;
+}
+.TopSection > div > a {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+.TopSection > div > a > p {
+  text-transform: capitalize;
+}
+
+.TopSection svg {
+  width: 30px;
+}
+
+.NavbarWrapper > img {
+  width: 180px;
+}
+
+.NavbarWrapper button {
+  background-color: transparent;
+  color: #797878;
+  border-radius: 70px;
+  padding: 10px 30px;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 18px;
+}
+
+.NavbarWrapper button :hover{
+  color: rgb(224, 71, 71);
+}
+
+/* Top Navbar Section */
+
+.TopNAvbarWrapper {
+  width: 100%;
+  background-color: white;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 20px;
+}
+
+.TopNAvbarWrapper button {
+  background-color: transparent;
+  padding: 0;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.TopNAvbarWrapper button > svg {
+  width: 40px;
+}
+
+
+
+.TopNAvbarWrapper .ButtonWrapper {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.TopNAvbarWrapper .ButtonWrapper .profileButton {
+  padding: 0;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.TopNAvbarWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 850px) {
+  .NavbarWrapper p,
+  .NavbarWrapper > img,
+  .TopSection > .MainLogo {
+    display: none;
+  }
+  .TopSection > .MiniLogo{
+    display: block;
+    width: 50px;
+  }
+  .NavbarWrapper button{
+    padding: 0px;
+  }
+}
