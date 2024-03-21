@@ -7,7 +7,7 @@ export const DetailCourse = (_props: Props) => {
   return (
     <div className={styles.Wrapper}>
       <h1>DataBase Management System</h1>
-      <div>
+      <div className={styles.Header}>
         <div>
           <h3>By Antony Davis</h3>
           <p>
@@ -16,14 +16,13 @@ export const DetailCourse = (_props: Props) => {
         </div>
         <button>Join</button>
       </div>
-      <div>
-        <div>
-          <p>All</p>
+      <div className={styles.Content}>
+        <div className={styles.Header}>
+          <button>All</button>
           <p>Created : 23 Oct 2024</p>
         </div>
-        <div>
-          {" "}
-          <div>
+        <div className={styles.ModuleContainer}>
+          <div className={styles.ModuleWrapper}>
             <button>
               <h3>Module 1</h3>
               <div>
@@ -34,6 +33,8 @@ export const DetailCourse = (_props: Props) => {
             <button>
               <h3>Module 2</h3>
               <div>
+                <p>PDF</p>
+
                 <p>Videos</p>
                 <p>Quiz</p>
               </div>
@@ -59,15 +60,20 @@ export const DetailCourse = (_props: Props) => {
               </div>
             </button>
           </div>
-          <div>
-            <div>
+          <div className={styles.RightPopUpContainer}>
+            <div className={styles.Header}>
               <h2>Module 1</h2>
-              <div>
+              <button>
                 <p>Edit</p>
-                <button>+</button>
-              </div>
+              </button>
             </div>
-            <div>
+            <div className={styles.Filter}>
+              <button>All</button>
+              <button>Video</button>
+              <button>PDF</button>
+              <button>Syllabus</button>
+            </div>
+            <div className={styles.VideosPDF}>
               <button>
                 <VideoSvg />
                 <p>Video 1</p>
