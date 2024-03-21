@@ -79,7 +79,7 @@ export const Profile = (_props: Props) => {
         been creating web applications for over 7 years, I still love it as if
         it was something new.
       </p>
-      <div>
+      <div className={styles.Detailer}>
         <div>
           <Location />
           Ahmedabad, India
@@ -93,13 +93,19 @@ export const Profile = (_props: Props) => {
           amalcpaulson@gmail.com
         </div>
       </div>
-      <div>
+      <div className={styles.CoursesWrapper}>
         <h1>My Courses</h1>
         <div>
           {data.map((item, index) => (
             <div key={index} className={styles.CourseItem}>
-              <h2>{item.name}</h2>
-              <p>{item.para}</p>
+              <div className={styles.Top}>Course {item.status}</div>
+              <div>
+                {item.stars}
+              </div>
+              <div className={styles.Detail}>
+                <h2>{item.name}</h2>
+                <p>{item.para}</p>
+              </div>
             </div>
           ))}
         </div>

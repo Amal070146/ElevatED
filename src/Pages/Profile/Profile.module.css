@@ -1,24 +1,80 @@
-.Wrapper{
-    width: 100%;
-    padding: 3vh 5vw;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    text-align: left;
-    height: calc(100vh - 80px);
-    overflow-y: scroll;
+.Wrapper {
+  width: 100%;
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  text-align: left;
+  height: calc(100vh - 80px);
+  overflow-y: scroll;
 }
 
-.Wrapper .Header{
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 25px;
+.Wrapper .Header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 25px;
 }
 
-.Wrapper .Header >div{
-    display: flex;
-    gap: 10px;
+.Wrapper h1 {
+  font-size: 32px;
+}
+.Wrapper .Header > div {
+  display: flex;
+  gap: 10px;
+}
+
+.Wrapper .Detailer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  max-width: 1100px;
+}
+
+.Wrapper .Detailer > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.Wrapper .CoursesWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.Wrapper .CoursesWrapper > div {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  gap: 15px;
+}
+
+.Wrapper .CoursesWrapper .CourseItem {
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.CourseItem .Top {
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(278deg, #178e7f 7.87%, #25d7c1 129.92%);
+  color: white;
+}
+
+.CourseItem .Detail {
+  padding: 5px 15px 15px;
+  background-color: #F4F7FE;
+  font-size: 15px;
 }
