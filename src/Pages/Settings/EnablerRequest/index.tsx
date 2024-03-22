@@ -74,32 +74,27 @@ const EnablerRequest = (props: Props) => {
 	};
 
 	return (
-		<div>
-			<form action="" onSubmit={handleSubmit(onSubmit)}>
-				<div className={styles.popup}>
-					<span
-						className={styles.close}
-						onClick={() => props.setIsOpen(false)}
-					>
-						x
-					</span>
-					<h2>Enabler</h2>
-					<label htmlFor="eduInstitution">
-						Educational Institution:
-					</label>
-					<input type="text" {...register("name")} />
-					{errors.name && (
-						<div className={styles.error}>
-							{errors.name.message}
-						</div>
-					)}
-					<button disabled={isSubmitting} type="submit">
-						{isSubmitting ? "Loading..." : "Submit"}
-					</button>
-				</div>
-			</form>
-		</div>
-	);
+    <div>
+      <form action="" onSubmit={handleSubmit(onSubmit)}>
+        <div className={styles.popup}>
+          <span className={styles.close} onClick={() => props.setIsOpen(false)}>
+            X
+          </span>
+          <h2>Enabler</h2>
+          <div>
+            <label htmlFor="eduInstitution">Educational Institution:</label>
+            <input type="text" {...register("name")} placeholder="eg:CCE" />
+            {errors.name && (
+              <div className={styles.error}>{errors.name.message}</div>
+            )}
+          </div>
+          <button disabled={isSubmitting} type="submit">
+            {isSubmitting ? "Loading..." : "Submit"}
+          </button>
+        </div>
+      </form>
+    </div>
+  );
 };
 
 export default EnablerRequest
