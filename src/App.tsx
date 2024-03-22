@@ -19,6 +19,7 @@ import { Organisation } from "./Sections/Admin/Pages/Organisation/Organisation";
 import { CollegeList } from "./Sections/Admin/Pages/CollegeList/CollegeList";
 import { FacultyList } from "./Sections/Admin/Pages/FacultyList/FacultyList";
 import { DetailCourse } from "./Pages/Courses/components/Detail";
+import { Verify } from "./Sections/Registration/verify";
 
 const App = () => {
 	return (
@@ -49,6 +50,7 @@ const App = () => {
 				<Route path="/landing" element={<Landing />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/signup" element={<Signup />} />
+				<Route path="/verify" element={<Verify />} />
 
 				{/* Super Admin */}
 				<Route path="/admindashboard" element={<HeroSectionAdmin />}>
