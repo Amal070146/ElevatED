@@ -83,7 +83,7 @@ export const Signup = (_props: Props) => {
 			toast.promise(handleRegistration(), {
 				loading: "Signing up...",
 				success: () => {
-					navigate("/login", {
+					navigate("/verify", {
 						state: { from: "Verify Your Email" },
 					});
 					toast.success("Account created successfully!");
