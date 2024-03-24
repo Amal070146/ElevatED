@@ -1,11 +1,19 @@
+import { useState } from "react";
+
+// Define a type for the response data
+type ReadData = {
+  image_urls: any[]; // Consider specifying a more precise type than any if possible
+  text?: string;
+};
+
 export const PdfReader = () => {
+  // Initialize readData with a type annotation
+  const [readData, setReadData] = useState<ReadData | undefined>(undefined);
+
   function uploadResume() {
-    // Use type assertion to tell TypeScript this is an HTMLInputElement
     const resumeInput = document.getElementById(
       "resumeInput"
     ) as HTMLInputElement;
-
-    // Now TypeScript knows resumeInput is an HTMLInputElement, so it expects the 'files' property to exist
     if (resumeInput && resumeInput.files && resumeInput.files.length > 0) {
       const formData = new FormData();
       formData.append("pdf_file", resumeInput.files[0]);
@@ -16,8 +24,7 @@ export const PdfReader = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data); // Process the server response here
-          // Display response
+          console.log(data);
           displayResponse(data);
         })
         .catch((error) => {
@@ -28,41 +35,25 @@ export const PdfReader = () => {
     }
   }
 
-function displayResponse(data: { images: any[]; text?: string }) {
-  // Create a container for images to separate them from text content
-  const imagesContainer = document.createElement("responseDisplay");
-  imagesContainer.id = "imagesContainer";
-  document.body.appendChild(imagesContainer); // Append the container to the body or a specific element of your choice
-
-  // Setting styles for the images container if necessary
-  imagesContainer.style.maxWidth = "100%";
-
-  data.images.forEach((imageBase64, index) => {
-    const imgElement = document.createElement("img");
-    imgElement.src = `data:image/jpeg;base64,${imageBase64}`;
-    imgElement.alt = `Extracted image ${index + 1}`;
-    imgElement.style.maxWidth = "100%"; // Ensure image max width is 100%
-    imagesContainer.appendChild(imgElement); // Append image to the images container
-
-    // Add a blank line (line break) after each image
-    imagesContainer.appendChild(document.createElement("br"));
-  });
-
-  // If there's also text data to be displayed, create and append a new paragraph or div for it
-  if (data.text) {
-    const textContentElement = document.createElement("p");
-    textContentElement.textContent = data.text;
-      textContentElement.style.color = "black";
-    document.body.appendChild(textContentElement); // Append the text content below the images container
+  function displayResponse(data: ReadData) {
+    setReadData(data);
   }
-}
-
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", height: "100vh" }}>
+    <div style={{ display: "flex", flexDirection: "column" }}>
       <input type="file" id="resumeInput" name="resume" />
       <button onClick={uploadResume}>Upload Resume</button>
-      <p id="responseDisplay" style={{color:"black"}}></p> 
+      {/* Render the text directly in JSX instead of appending to the body */}
+      {readData?.text && <p style={{ color: "black" }}>{readData.text}</p>}
+      {readData?.image_urls &&
+        readData.image_urls.map((url, index) => (
+          <img
+            key={index}
+            src={url}
+            alt={`Extracted Image ${index + 1}`}
+            style={{ maxWidth: "100%", marginTop: "10px" }}
+          />
+        ))}
     </div>
   );
 };
