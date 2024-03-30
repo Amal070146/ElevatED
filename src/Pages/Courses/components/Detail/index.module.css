@@ -2,12 +2,14 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 20px;
+  padding: 0px 30px 30px;
   width: 100%;
 }
 
-.Wrapper > h1 {
-  font-size: 28px;
+.Wrapper > h2 {
+  margin-top: 10px;
+  color: #8a17d0cc;
+  font-weight: 600;
 }
 
 .Wrapper .Header {
@@ -87,7 +89,7 @@
   font-size: 14px;
 }
 
-.ModuleContainer .RightPopUpContainer {
+.ModuleContainer .RightPopUpModuleContainer {
   background-color: white;
   max-width: 420px;
   min-width: 330px;
@@ -97,6 +99,26 @@
   flex-direction: column;
   gap: 20px;
   border-radius: 10px;
+}
+
+.ModuleContainer .RightPopUpMentorDetailsContainer{
+  text-align: left;
+  background-color: white;
+  max-width: 420px;
+  min-width: 330px;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.ModuleContainer .RightPopUpMentorDetailsContainer .mentorHeader{
+  display: flex;
+  
+}
+
+.ModuleContainer .RightPopUpMentorDetailsContainer .MentorSkills button{
+  background-color: #daedeb;
+  color:#0a8677 ;
+  margin: 5px;
 }
 
 .ModuleContainer .Filter {

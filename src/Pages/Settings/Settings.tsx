@@ -98,7 +98,7 @@ export const Settings = () => {
 
 	return (
 		<div className={styles.Wrapper}>
-			<h2>Account</h2>
+			<h3>ACCOUNT</h3>
 			<div className={styles.BottonConatiner}>
 				<div className={styles.LeftContainer}>
 					<div>

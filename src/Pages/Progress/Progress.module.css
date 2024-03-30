@@ -1,13 +1,20 @@
 .Wrapper {
   width: 100%;
-  padding: 10px 30px 30px;
+  padding: 0 30px 30px;
   height: calc(100vh - 80px);
   overflow-y: scroll;
   flex-wrap: wrap;
-  gap: 30px;
+  gap: 30px;;
+  text-align: left;
 } 
 
+.Wrapper h3{
+  margin-top: 10px;
+  color: #0a8677;
+}
+
 .Wrapper .WrapperWrapper{
+  margin-top: 20px;
   display: flex;
   gap: 20px;
 }
