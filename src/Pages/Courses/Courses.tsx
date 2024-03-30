@@ -111,7 +111,7 @@ export const Courses = () => {
     <div className={styles.BaseCourseSelectWrapper}>
       <div className={styles.TopSet}>
         <div>
-          <h4>COURSES</h4>
+          <h3>COURSES</h3>
           <h2>
             Amal C Paulson, your{" "}
             <span className="colorText">subjects on going ...!</span>

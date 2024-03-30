@@ -6,7 +6,7 @@ type Props = {};
 export const DetailCourse = (_props: Props) => {
   return (
     <div className={styles.Wrapper}>
-      <h1>DataBase Management System</h1>
+      <h2>DataBase Management System</h2>
       <div className={styles.Header}>
         <div>
           <h3>By Antony Davis</h3>
@@ -60,7 +60,7 @@ export const DetailCourse = (_props: Props) => {
               </div>
             </button>
           </div>
-          <div className={styles.RightPopUpContainer}>
+          <div className={styles.RightPopUpModuleContainer}>
             <div className={styles.Header}>
               <h2>Module 1</h2>
               <button>
@@ -92,6 +92,19 @@ export const DetailCourse = (_props: Props) => {
                 <VideoSvg />
                 <p>Video 4</p>
               </button>
+            </div>
+          </div>
+          <div className={styles.RightPopUpMentorDetailsContainer}>
+            <h3>Mentor</h3>
+            <div className={styles.mentorHeader}>
+              <img src="" alt="" />
+              <h4>Antony Davis</h4>
+            </div>
+            <div className={styles.MentorSkills}>
+                <button>Teaching</button>
+                <button>Front-End</button>
+                <button>Back-End</button>
+                <button>Web Development</button>
             </div>
           </div>
         </div>

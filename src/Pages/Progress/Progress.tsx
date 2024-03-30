@@ -91,7 +91,7 @@ export const Progress = (_props: Props) => {
   ];
   return (
     <div className={styles.Wrapper}>
-      
+      <h3>PROGRESS</h3>
       <div className={styles.WrapperWrapper}>
       <div className={styles.DailyTracker}>
         <h2>Daily Tracker</h2>

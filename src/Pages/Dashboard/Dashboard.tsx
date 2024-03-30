@@ -98,7 +98,7 @@ export const Dashboard = (_props: Props) => {
     <div className={styles.Wrapper}>
       <div className={styles.HeaderSet}>
         <div>
-          <h2>DASHBOARD</h2>
+          <h3>DASHBOARD</h3>
           <div>
             <h1>Welcome, Amal C Paulson </h1>
             <p>Your Journey with elevatEd, an efficient learning</p>

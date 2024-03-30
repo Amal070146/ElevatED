@@ -7,9 +7,9 @@
   align-items: flex-start;
 }
 
-.Wrapper > h2 {
+.Wrapper > h3 {
+  margin-top: 10px;
   color: #0a8677;
-  font-weight: 500;
 }
 
 .BottonConatiner {
