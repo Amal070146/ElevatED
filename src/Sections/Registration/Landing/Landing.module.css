@@ -4,6 +4,7 @@
   height: 100%;
   padding: 0px 10vw 3vh;
   gap: 6vh;
+  background-color: #daedeb;
 }
 
 .Wrapper .TopNavbar {
@@ -30,13 +31,90 @@
   gap: 3vh;
 }
 
-.Wrapper .bodyWrapper h1 {
-  font-size: 40px;
-  color: rgb(46, 45, 45);
-  text-align: left;
-  max-width: 500px;
+.Wrapper .bodyWrapper .landingHomeWrapper {
+ display: flex;
 }
 
+.Wrapper .bodyWrapper .landingHomeWrapper .TextLandingHome{
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  max-width: 40%;
+}
+
+.Wrapper .bodyWrapper .landingHomeWrapper .TextLandingHome .underline{
+  position: relative;
+}
+
+.Wrapper .bodyWrapper .landingHomeWrapper .TextLandingHome .underline::after{
+  content: '';
+  position: absolute;
+  min-width: 300px;
+  max-width: 80%;
+  border-top: solid 7px #0a8677;
+  bottom:-20px;
+  border-radius:50%;
+  height: 8px;
+  left: 0;
+}
+
+.Wrapper .bodyWrapper .landingHomeWrapper h1 {
+  color: rgb(46, 45, 45);
+  text-align: left;
+  max-width: 70%;
+}
+.Wrapper .bodyWrapper .landingHomeWrapper img{
+  height: 700px;
+}
+
+.Wrapper .bodyWrapper .featuresWrapper{
+  display: flex;
+ justify-content: space-between;
+  width: 100%;
+  background-color: white;
+}
+.Wrapper .bodyWrapper .featuresWrapper .featuresSecHeading{
+  display: flex;
+  flex-direction: column;
+  max-width: 30%;
+  text-align: left;
+  gap: 20px;
+}
+
+.Wrapper .bodyWrapper .featuresWrapper .featuresName{ 
+ display: flex;
+ gap:20px;
+ padding: 20px;
+ min-width: 60%;
+}
+
+.Wrapper .bodyWrapper .featuresWrapper .featuresName img{ 
+  background-color: white;
+  padding: 8px;
+  border-radius: 5px;
+  width: 30px;
+  height: 30px;
+}
+
+.Wrapper .bodyWrapper .featuresWrapper .featuresName .featuresNameTextDiv{
+  text-align: left;
+}
+
+.Wrapper .bodyWrapper .functionWrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.Wrapper .bodyWrapper .functionWrapper .functionWrapWrapper .eachFunctionWrapper{
+  display: flex;
+  gap: 20px;
+}
+
+
+/*
 .Wrapper .functionWrapper {
   display: flex;
   gap: 20px;
@@ -94,4 +172,4 @@
     align-items: center;
     justify-content: center;
   }
-}
+} */

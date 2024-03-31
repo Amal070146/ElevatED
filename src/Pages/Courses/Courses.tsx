@@ -163,4 +163,5 @@ export const Courses = () => {
       </div>
     </div>
   );
+        
 };
