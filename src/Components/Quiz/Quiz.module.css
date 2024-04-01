@@ -1,8 +1,55 @@
-.QuizWrapper{
+.quizSecWrapper{
+    width: 100%;
+}
+
+.quizSecWrapper h3 {
+    margin-top: 10px;
+    color: #0a8677;
+    text-align: left;
+}
+
+.quizSecWrapper .WrapQuizWrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 5%;
+}
+
+.quizSecWrapper .WrapQuizWrapper .QuizWrapper{
     background-color: white;
-    margin-left: 25%;
-    margin-right: 25%;
-    margin-top: 10%;
-    border-radius: 20px;
-    padding: 15px;
+    margin: 0;
+    padding: 40px; 
+    border-radius: 29px;
+    box-shadow: 0px 5.957px 5.957px 0px rgba(0, 0, 0, 0.20);
+    width: 65%;
+    height: 400px;
+}
+
+.quizSecWrapper .WrapQuizWrapper .QuizWrapper .buttonss{
+   display: flex; 
+   gap: 40%;
+}
+
+.quizSecWrapper .WrapQuizWrapper .QuizWrapper .buttonss> button{
+    border-radius: 15px;
+    padding: 10px 25px;
+}
+
+.quizSecWrapper .WrapQuizWrapper .QuizWrapper .QuizQuestionsWrapper{
+    text-align: left;
+    height: 300px;
+}
+.quizSecWrapper .WrapQuizWrapper .QuizWrapper .QuizQuestionsWrapper .QuizHeading{
+    padding: 10px 0;
+}
+
+.quizSecWrapper .WrapQuizWrapper .QuizWrapper .QuizQuestionsWrapper .QuizOptionsWrapper{
+    padding-left: 20px;
+    padding-top: 10px;
+}
+.quizSecWrapper .WrapQuizWrapper .quizSecMainImg{
+    width: 25%;
+    height: 400px;
+    object-fit: contain;
 }
