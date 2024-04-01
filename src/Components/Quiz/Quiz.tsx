@@ -1,12 +1,13 @@
 import { useState } from "react";
 import styles from "./Quiz.module.css";
+import quizSecMainImg from "./quizImage/quizSecMainImg.png"
 
 type Props = {};
 
 type Question = {
   id: number;
   questionText: string;
-  options: Option[]; 
+  options: Option[];
 };
 
 type Option = {
@@ -73,39 +74,46 @@ export const Quiz = (_props: Props) => {
   const goToNextQuestion = () => {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
-      setSelectedOptions([]); 
+      setSelectedOptions([]);
     }
   };
 
   const isNextButtonDisabled = selectedOptions.length === 0;
 
   return (
-    <div className={styles.QuizWrapper}>
-      {/* Quiz content and other buttons */}
-
+    <div className={styles.quizSecWrapper}>
+      <h3>QUIZ</h3>
       <div className={styles.WrapQuizWrapper}>
-        <h2>{questions[currentQuestionIndex].questionText}</h2>
-        {questions[currentQuestionIndex].options.map((option) => (
-          <div key={option.id}>
-            <input
-              type="checkbox"
-              checked={selectedOptions.includes(option.id)}
-              onChange={() => handleOptionChange(option.id)}
-            />{" "}
-            {option.text}
+        <div className={styles.QuizWrapper}>
+          {/* Quiz content and other buttons */}
+          <div className={styles.QuizQuestionsWrapper}>
+            <h2 className={styles.QuizHeading}>{questions[currentQuestionIndex].questionText}</h2>
+            {questions[currentQuestionIndex].options.map((option) => (
+              <div className={styles.QuizOptionsWrapper} key={option.id}>
+                <input
+                  type="checkbox"
+                  checked={selectedOptions.includes(option.id)}
+                  onChange={() => handleOptionChange(option.id)}
+                />{" "}
+                {option.text}
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      <div className="buttonss">
-        <button
-          onClick={() => setCurrentQuestionIndex(currentQuestionIndex - 1)}
-          disabled={currentQuestionIndex === 0}
-        >
-          Previous
-        </button>
-        <button onClick={goToNextQuestion} disabled={isNextButtonDisabled}>
-          Next
-        </button>
+          <div className={styles.buttonss}>
+            <button 
+              style={{backgroundColor:"#E0E4E4",color:"black"}}
+              onClick={() => setCurrentQuestionIndex(currentQuestionIndex - 1)}
+              disabled={currentQuestionIndex === 0}>
+              Previous
+            </button>
+            <button onClick={goToNextQuestion} disabled={isNextButtonDisabled}>
+              Next
+            </button>
+          </div>
+        </div>
+
+        <img className={styles.quizSecMainImg} src={quizSecMainImg} alt="" />
+        
       </div>
     </div>
   );

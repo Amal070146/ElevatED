@@ -1,10 +1,8 @@
 import styles from "./Landing.module.css";
 import Logo from "../../../Logo.png";
 import { useNavigate } from "react-router-dom";
-import functionImgs from "./landingPgImgs/quizFunctionImg.png";
 import women from './landingPgImgs/women.png'
 import quiz from './landingPgImgs/quiz.png'
-import progress from './landingPgImgs/progress.png'
 import subject from "./landingPgImgs/subject.png";
 import courseFeatImg from "./landingPgImgs/courseFeatImg.png"
 import quizFeatImg from "./landingPgImgs/quizFeatImg.png"
@@ -23,26 +21,26 @@ export const Landing = (_props: Props) => {
     navigate("/login");
   };
 
-  const mainFeatures =[ 
+  const mainFeatures = [
     {
-      featureName:"Courses",
-      desc:"Enroll now for top-tier courses with dedicated instructors at your pace.",
-      img:courseFeatImg,
+      featureName: "Courses",
+      desc: "Enroll now for top-tier courses with dedicated instructors at your pace.",
+      img: courseFeatImg,
     },
     {
-      featureName:"Daily Quizzes",
-      desc:"Daily quizzes: an engaging way to boost and test your knowledge.",
-      img:quizFeatImg,
+      featureName: "Daily Quizzes",
+      desc: "Daily quizzes: an engaging way to boost and test your knowledge.",
+      img: quizFeatImg,
     },
     {
-      featureName:"Student Monitoring",
-      desc:"Monitor progress and performance to gauge improvement and achievements.",
-      img:monitoringFeatImg,
+      featureName: "Student Monitoring",
+      desc: "Monitor progress and performance to gauge improvement and achievements.",
+      img: monitoringFeatImg,
     },
     {
-      featureName:"Faculty Engagement",
-      desc:"Engage with instructors and peers to foster connections and collaborative learning.",
-      img:facultyFeatImg,
+      featureName: "Faculty Engagement",
+      desc: "Engage with instructors and peers to foster connections and collaborative learning.",
+      img: facultyFeatImg,
     },
   ];
 
@@ -94,7 +92,7 @@ export const Landing = (_props: Props) => {
         <section>
           <div className={styles.landingHomeWrapper}>
             <div className={styles.TextLandingHome}>
-              <h1  className={styles.underline} >Knowledge, collaboration, academic journey!</h1>
+              <h1 className={styles.underline} >Knowledge, collaboration, academic journey!</h1>
               <p>Tailored quizzes aid students in addressing weaknesses, enhancing comprehension, tracking progress, and receiving personalized study recommendations for continued improvement.</p>
             </div>
             <img src={women} alt="" />
@@ -108,49 +106,49 @@ export const Landing = (_props: Props) => {
               <p>Tailored quizzes aid students in addressing weaknesses, enhancing comprehension, tracking progress, and receiving personalized study recommendations for continued improvement.</p>
             </div>
             <div>
-            {mainFeatures.map(({featureName,desc,img}) =>{
-              return(
-                <div className={styles.featuresName}>
-                  <img src={img} alt="" />
-                  <div className={styles.featuresNameTextDiv}>                                            
-                    <h4>{featureName}</h4>
-                    <p>{desc}</p>
+              {mainFeatures.map(({ featureName, desc, img }) => {
+                return (
+                  <div className={styles.featuresName}>
+                    <img src={img} alt="" />
+                    <div className={styles.featuresNameTextDiv}>
+                      <h4>{featureName}</h4>
+                      <p>{desc}</p>
+                    </div>
                   </div>
-                </div>
-              )
-            })}
+                )
+              })}
             </div>
-          </div>  
+          </div>
         </section>
-        
+
         <section>
           <div className={styles.functionWrapper}>
             <div>
               <h2>Discover how ElevatED transforms your learning!</h2>
               <h4>Your one-stop destination for online learning</h4>
             </div>
-              <div className={styles.functionWrapWrapper}>
-                {Functionss.map(({ image, name, description }) => {
-                  return (
-                    <div className={styles.eachFunctionWrapper}>
-                      <img src={image} alt="" />
-                        <div className={styles.eachFunctionWrapperText}>
-                          <h4>{name}</h4>
-                          <p>{description}</p>
-                        </div>
+            <div className={styles.functionWrapWrapper}>
+              {Functionss.map(({ image, name, description }) => {
+                return (
+                  <div className={styles.eachFunctionWrapper}>
+                    <img src={image} alt="" />
+                    <div className={styles.eachFunctionWrapperText}>
+                      <h4>{name}</h4>
+                      <p>{description}</p>
                     </div>
-                  );
-                })}
-              </div>
-            
+                  </div>
+                );
+              })}
+            </div>
+
           </div>
-        </section> 
+        </section>
 
       </div>
       <section>
-          <div className={styles.landingFooterWrapper}>
-           
-          </div>
+        <div className={styles.landingFooterWrapper}>
+
+        </div>
       </section>
     </div>
   );
