@@ -78,7 +78,10 @@ export const Settings = () => {
 			} else {
 				reset(users);
 				let { data: user_role_link, error: user_role_link_error } =
-					await supabase.from("user_role_link").select("*");
+					await supabase
+						.from("user_role_link")
+						.select("*")
+						.eq("user_id", user.id);
 				if (user_role_link_error) {
 					throw user_role_link_error.message;
 				} else if (user_role_link && user_role_link.length > 0) {
@@ -88,7 +91,6 @@ export const Settings = () => {
 						setIsRoleChangeVisible("0");
 					}
 				}
-				
 			}
 		} else {
 			throw "User not found, please login again";
