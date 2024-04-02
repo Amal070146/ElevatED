@@ -69,7 +69,7 @@ const AdminRequest = (props: Props) => {
 					if (error) {
 						toast.error(error.message);
 					} else if (profileUpdate) {
-						return data;
+						console.log(profileUpdate);
 					}
 				}
 			} else {
@@ -81,7 +81,7 @@ const AdminRequest = (props: Props) => {
 				if (error) {
 					toast.error(error.message);
 				} else if (data) {
-					return data;
+					console.log(data);
 				}
 			}
 			const { data: role, error: roleError } = await supabase
@@ -89,7 +89,7 @@ const AdminRequest = (props: Props) => {
 				.insert([
 					{
 						user_id: user.id,
-						role_id: "71650c91-b579-4d1d-a90e-40d12a1c8ab3",
+						role_id: "8a43634f-f5a2-4823-84f4-a8a9600de4ae",
 					},
 				])
 				.select();
