@@ -59,7 +59,29 @@ const AdminRequest = (props: Props) => {
 				if (error) {
 					toast.error(error.message);
 				} else if (data) {
-					console.log(data);
+					const { data: profileUpdate, error } = await supabase
+						.from("users")
+						.update({
+							working_institute_id: data[0].id,
+						})
+						.eq("id", user.id)
+						.select();
+					if (error) {
+						toast.error(error.message);
+					} else if (profileUpdate) {
+						return data;
+					}
+				}
+			} else {
+				const { data, error } = await supabase
+					.from("users")
+					.update({ working_institute_id: formData.institution_id })
+					.eq("id", user.id)
+					.select();
+				if (error) {
+					toast.error(error.message);
+				} else if (data) {
+					return data;
 				}
 			}
 			const { data: role, error: roleError } = await supabase
