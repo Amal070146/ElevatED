@@ -74,23 +74,24 @@ export const Settings = () => {
 						setIsRoleChangeVisible("0");
 					}
 				}
-				let { data: institution, error } = await supabase
-					.from("institution")
-					.select("*")
-					.eq("is_verified", true);
-				if (error) {
-					throw error.message;
-				} else if (institution) {
-					setInstitutionOptions(
-						institution?.map((institution) => ({
-							value: institution.id,
-							label: institution.name,
-						}))
-					);
-				}
+				
 			}
 		} else {
 			throw "User not found, please login again";
+		}
+		let { data: institution, error } = await supabase
+			.from("institution")
+			.select("*")
+			.eq("is_verified", true);
+		if (error) {
+			throw error.message;
+		} else if (institution) {
+			setInstitutionOptions(
+				institution?.map((institution) => ({
+					value: institution.id,
+					label: institution.name,
+				}))
+			);
 		}
 	};
 
