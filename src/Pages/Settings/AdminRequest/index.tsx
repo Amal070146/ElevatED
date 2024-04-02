@@ -51,27 +51,30 @@ const AdminRequest = (props: Props) => {
 			data: { user },
 		} = await supabase.auth.getUser();
 		if (user) {
-			const { data, error } = await supabase
-				.from("institution")
-				.insert([{ name: formData.name, code: formData.code }])
-				.select();
-			if (error) {
-				toast.error(error.message);
-			} else if (data) {
-				const { data: role, error: roleError } = await supabase
-					.from("user_role_link")
-					.insert([
-						{
-							user_id: user.id,
-							role_id: "8a43634f-f5a2-4823-84f4-a8a9600de4ae",
-						},
-					])
+			if (selectedLabel === "Other") {
+				const { data, error } = await supabase
+					.from("institution")
+					.insert([{ name: formData.name, code: formData.code }])
 					.select();
-				if (roleError) {
-					toast.error(roleError.message);
-				} else if (role) {
-					return role;
+				if (error) {
+					toast.error(error.message);
+				} else if (data) {
+					console.log(data);
 				}
+			}
+			const { data: role, error: roleError } = await supabase
+				.from("user_role_link")
+				.insert([
+					{
+						user_id: user.id,
+						role_id: "71650c91-b579-4d1d-a90e-40d12a1c8ab3",
+					},
+				])
+				.select();
+			if (roleError) {
+				toast.error(roleError.message);
+			} else if (role) {
+				return role;
 			}
 		} else {
 			throw "User not found, please login again";

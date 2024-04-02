@@ -52,29 +52,30 @@ const EnablerRequest = (props: Props) => {
 			data: { user },
 		} = await supabase.auth.getUser();
 		if (user) {
-			const { data, error } = await supabase
-				.from("institution")
+			if (selectedLabel === "Other") {
+				const { data, error } = await supabase
+					.from("institution")
+					.insert([{ name: formData.name, code: formData.code }])
+					.select();
+				if (error) {
+					toast.error(error.message);
+				} else if (data) {
+					console.log(data);
+				}
+			}
+			const { data: role, error: roleError } = await supabase
+				.from("user_role_link")
 				.insert([
-					{ name: formData.name, code: formData.code },
+					{
+						user_id: user.id,
+						role_id: "71650c91-b579-4d1d-a90e-40d12a1c8ab3",
+					},
 				])
 				.select();
-			if (error) {
-				toast.error(error.message);
-			} else if (data) {
-				const { data: role, error: roleError } = await supabase
-					.from("user_role_link")
-					.insert([
-						{
-							user_id: user.id,
-							role_id: "71650c91-b579-4d1d-a90e-40d12a1c8ab3",
-						},
-					])
-					.select();
-				if (roleError) {
-					toast.error(roleError.message);
-				} else if (role) {
-					return role;
-				}
+			if (roleError) {
+				toast.error(roleError.message);
+			} else if (role) {
+				return role;
 			}
 		} else {
 			throw "User not found, please login again";
