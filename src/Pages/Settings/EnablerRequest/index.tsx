@@ -70,7 +70,7 @@ const EnablerRequest = (props: Props) => {
 					if (error) {
 						toast.error(error.message);
 					} else if (profileUpdate) {
-						return data;
+						console.log(profileUpdate);
 					}
 				}
 			} else {
@@ -82,7 +82,7 @@ const EnablerRequest = (props: Props) => {
 				if (error) {
 					toast.error(error.message);
 				} else if (data) {
-					return data;
+					console.log(data);
 				}
 			}
 			const { data: role, error: roleError } = await supabase
