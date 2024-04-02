@@ -3,10 +3,11 @@ import styles from "./Settings.module.css";
 import { supabase } from "../../utils/supabase";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import AdminRequest from "./AdminRequest";
 import EnablerRequest from "./EnablerRequest";
+import Select, { SingleValue } from "react-select";
 
 const schema = z.object({
 	first_name: z.string().min(1, { message: "First name is required" }),
@@ -30,11 +31,13 @@ type FormFields = z.infer<typeof schema>;
 export const Settings = () => {
 	const [adminIsOpen, setAdminIsOpen] = useState(false);
 	const [enablerIsOpen, setEnablerIsOpen] = useState(false);
+	const [institutionOptions, setInstitutionOptions] = useState<Options[]>([]);
 	const {
 		register,
 		handleSubmit,
 		setError,
 		reset,
+		control,
 		formState: { errors, isSubmitting },
 	} = useForm<FormFields>({
 		defaultValues: {},
@@ -55,6 +58,20 @@ export const Settings = () => {
 				throw error.message;
 			} else {
 				reset(users);
+				let { data: institution, error } = await supabase
+					.from("institution")
+					.select("*")
+					.eq("is_verified", true);
+				if (error) {
+					throw error.message;
+				} else if (institution) {
+					setInstitutionOptions(
+						institution?.map((institution) => ({
+							value: institution.id,
+							label: institution.name,
+						}))
+					);
+				}
 			}
 		} else {
 			throw "User not found, please login again";
@@ -204,19 +221,43 @@ export const Settings = () => {
 								)}
 							</div>
 							<div>
-								<label htmlFor="college">
-									Educational Institution :{" "}
-								</label>
-								<input
-									type="text"
-									placeholder="eg:Christ College of Engineering"
-									{...register("institution")}
-								/>
-								{errors.institution && (
-									<div className={styles.error}>
-										{errors.institution.message}
-									</div>
-								)}
+								<div>
+									<label htmlFor="institution">
+										Educational Institution:
+									</label>
+									<Controller
+										name="institution"
+										control={control}
+										render={({ field }) => (
+											<Select
+												{...field}
+												options={institutionOptions}
+												placeholder="eg: Christ College of Engineering"
+												onChange={(
+													option: SingleValue<Options>
+												) =>
+													field.onChange(
+														option?.value
+													)
+												}
+												value={
+													institutionOptions.find(
+														(option: {
+															value: string;
+														}) =>
+															option.value ===
+															field.value
+													) || null
+												}
+											/>
+										)}
+									/>
+									{errors.institution && (
+										<div className={styles.error}>
+											{errors.institution.message}
+										</div>
+									)}
+								</div>
 								<div className={styles.checkboxcontainer}>
 									<input
 										type="checkbox"
