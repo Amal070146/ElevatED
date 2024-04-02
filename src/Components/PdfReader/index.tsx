@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GenerateQA } from "./generateQA";
 
 // Define a type for the response data
 type ReadData = {
@@ -43,7 +44,6 @@ export const PdfReader = () => {
     <div style={{ display: "flex", flexDirection: "column" }}>
       <input type="file" id="resumeInput" name="resume" />
       <button onClick={uploadResume}>Upload Resume</button>
-      {/* Render the text directly in JSX instead of appending to the body */}
       {readData?.text && <p style={{ color: "black" }}>{readData.text}</p>}
       {readData?.image_urls &&
         readData.image_urls.map((url, index) => (
@@ -54,6 +54,7 @@ export const PdfReader = () => {
             style={{ maxWidth: "100%", marginTop: "10px" }}
           />
         ))}
+      <GenerateQA text={readData?.text} />
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "./Quiz.module.css";
-import quizSecMainImg from "./quizImage/quizSecMainImg.png"
+import quizSecMainImg from "./quizImage/quizSecMainImg.png";
 
 type Props = {};
 
@@ -19,7 +19,7 @@ export const Quiz = (_props: Props) => {
   const initialQuestions: Question[] = [
     {
       id: 1,
-      questionText: "Q. What is the full form of DBMS?",
+      questionText: "Q. Whaeqvct is the full form of DBMS?",
       options: [
         { id: 1, text: "DataBase Management System" },
         { id: 2, text: "Data Base Manipulation System" },
@@ -28,7 +28,7 @@ export const Quiz = (_props: Props) => {
       ],
     },
     {
-      id: 1,
+      id: 2,
       questionText: "Q. What is the full form of DBMS?",
       options: [
         { id: 1, text: "Management System" },
@@ -38,22 +38,22 @@ export const Quiz = (_props: Props) => {
       ],
     },
     {
-      id: 1,
-      questionText: "Q. What is the full form of DBMS?",
+      id: 3,
+      questionText: "Q. What is the full form of DBeqvMS?",
       options: [
         { id: 1, text: "DataBase Management System" },
         { id: 2, text: "Data Base Manipulation System" },
         { id: 3, text: "DataBank Management System" },
-        { id: 4, text: "Document Base Management System" },
+        { id: 4, text: "Document Bawvese Maneveagement System" },
       ],
     },
     {
-      id: 1,
-      questionText: "Q. What is the full form of DBMS?",
+      id: 4,
+      questionText: "Q. What is the full form of DBMSqevqqw?",
       options: [
         { id: 1, text: "Management System" },
         { id: 2, text: "Data Base System" },
-        { id: 3, text: "DataBank Management System" },
+        { id: 3, text: "DatsvwaBank Management System" },
         { id: 4, text: "Document Base Management System" },
       ],
     },
@@ -63,7 +63,6 @@ export const Quiz = (_props: Props) => {
   const [questions] = useState(initialQuestions);
   const [selectedOptions, setSelectedOptions] = useState<number[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-
   const handleOptionChange = (optionId: number) => {
     setSelectedOptions((_prevSelectedOptions) => {
       const newSelectedOptions = [optionId];
@@ -78,7 +77,16 @@ export const Quiz = (_props: Props) => {
     }
   };
 
+  // New function to handle submission
+  const handleSubmit = () => {
+   
+    console.log("Quiz submitted");
+  };
+
   const isNextButtonDisabled = selectedOptions.length === 0;
+
+  // Check if it's the last question
+  const isLastQuestion = currentQuestionIndex === questions.length - 1;
 
   return (
     <div className={styles.quizSecWrapper}>
@@ -87,7 +95,9 @@ export const Quiz = (_props: Props) => {
         <div className={styles.QuizWrapper}>
           {/* Quiz content and other buttons */}
           <div className={styles.QuizQuestionsWrapper}>
-            <h2 className={styles.QuizHeading}>{questions[currentQuestionIndex].questionText}</h2>
+            <h2 className={styles.QuizHeading}>
+              {questions[currentQuestionIndex].questionText}
+            </h2>
             {questions[currentQuestionIndex].options.map((option) => (
               <div className={styles.QuizOptionsWrapper} key={option.id}>
                 <input
@@ -100,20 +110,29 @@ export const Quiz = (_props: Props) => {
             ))}
           </div>
           <div className={styles.buttonss}>
-            <button 
-              style={{backgroundColor:"#E0E4E4",color:"black"}}
+            <button
+              style={{ backgroundColor: "#E0E4E4", color: "black" }}
               onClick={() => setCurrentQuestionIndex(currentQuestionIndex - 1)}
-              disabled={currentQuestionIndex === 0}>
+              disabled={currentQuestionIndex === 0}
+            >
               Previous
             </button>
-            <button onClick={goToNextQuestion} disabled={isNextButtonDisabled}>
-              Next
-            </button>
+            {isLastQuestion ? (
+              <button onClick={handleSubmit} disabled={isNextButtonDisabled}>
+                Submit
+              </button>
+            ) : (
+              <button
+                onClick={goToNextQuestion}
+                disabled={isNextButtonDisabled}
+              >
+                Next
+              </button>
+            )}
           </div>
         </div>
 
         <img className={styles.quizSecMainImg} src={quizSecMainImg} alt="" />
-        
       </div>
     </div>
   );
