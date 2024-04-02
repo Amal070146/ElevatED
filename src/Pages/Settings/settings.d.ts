@@ -1,4 +1,4 @@
-interface OptionType {
-	value: string;
-	label: string;
+export interface OptionType {
+  value: string;
+  label: string;
 }

@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { supabase } from "../../../utils/supabase";
 import Select, { Options, SingleValue } from "react-select";
 import { useState } from "react";
+import { OptionType } from "../settings.d";
 
 type Props = {
 	isOpen: boolean;

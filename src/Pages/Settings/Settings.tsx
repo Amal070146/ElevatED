@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import AdminRequest from "./AdminRequest";
 import EnablerRequest from "./EnablerRequest";
 import Select, { Options, SingleValue } from "react-select";
+import { OptionType } from "./settings.d";
 
 const schema = z.object({
 	first_name: z.string().min(1, { message: "First name is required" }),
