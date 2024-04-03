@@ -28,6 +28,12 @@ const schema = z.object({
 
 type FormFields = z.infer<typeof schema>;
 
+export interface OptionType {
+	value: string;
+	label: string;
+  }
+  
+
 export const Settings = () => {
 	const [adminIsOpen, setAdminIsOpen] = useState(false);
 	const [isRoleChangeVisible, setIsRoleChangeVisible] = useState("2");
