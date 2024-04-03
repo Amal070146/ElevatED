@@ -19,7 +19,7 @@ export const loginUser = async (data1: any) => {
 				check_user_id: data.user?.id,
 			});
 			if(user_has_role) {
-				window.location.href = "/admindashboard";
+				window.location.href = "/admindashboard/organisation";
 			}
 			if (error) console.error(error);
 			else console.log(data);

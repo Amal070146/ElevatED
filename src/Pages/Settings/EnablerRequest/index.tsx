@@ -6,7 +6,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { supabase } from "../../../utils/supabase";
 import Select, { Options, SingleValue } from "react-select";
 import { useState } from "react";
-import { OptionType } from "../settings.d";
 
 type Props = {
 	isOpen: boolean;
@@ -55,7 +54,7 @@ const EnablerRequest = (props: Props) => {
 			if (selectedLabel === "Other") {
 				const { data, error } = await supabase
 					.from("institution")
-					.insert([{ name: formData.name, code: formData.code }])
+					.insert([{ name: formData.name, code: formData.code, created_by: user.id }])
 					.select();
 				if (error) {
 					toast.error(error.message);
