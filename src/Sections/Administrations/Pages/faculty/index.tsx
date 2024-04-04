@@ -26,9 +26,14 @@ export const FacultyApproval = () => {
 			} else if (user_data) {
 				let { data: users, error } = await supabase
 					.from("extended_user_view")
-					.select("*, users(first_name, last_name, email)")
+					.select(
+						"*, users(first_name, last_name, email), user_role_link(status)"
+					)
 					.eq("role_id", "71650c91-b579-4d1d-a90e-40d12a1c8ab3")
-					.eq("users.working_institute_id", user_data.working_institute_id);
+					.eq(
+						"users.working_institute_id",
+						user_data.working_institute_id
+					);
 				if (error) {
 					toast.error(error.message);
 				} else if (users) {
@@ -73,31 +78,69 @@ export const FacultyApproval = () => {
 				</p>
 			</div>
 			<div className={styles.Content}>
-				{data.map((member) => (
-					<div key={member.id} className={styles.Individual}>
-						<div>
-							<img src={demo} alt="" />
-							<h3>
-								{member?.users?.first_name}{" "}
-								{member?.users?.last_name}
-							</h3>
-							<p>{member.email}</p>
-							{/* <p>{member.email}</p> */}
+				{data
+					.filter((member) => !member.user_role_link.status)
+					.map((member) => (
+						<div key={member.id} className={styles.Individual}>
+							<div>
+								<img src={demo} alt="" />
+								<h3>
+									{member?.users?.first_name}{" "}
+									{member?.users?.last_name}
+								</h3>
+								<p>{member.email}</p>
+								{/* <p>{member.email}</p> */}
+							</div>
+							<div>
+								<button
+									onClick={() =>
+										handleApproveDecline(true, member.id)
+									}
+								>
+									Approve
+								</button>
+								<button onClick={() => handleDelete(member.id)}>
+									Reject
+								</button>
+							</div>
 						</div>
-						<div>
-							<button
-								onClick={() =>
-									handleApproveDecline(true, member.id)
-								}
-							>
-								Approve
-							</button>
-							<button onClick={() => handleDelete(member.id)}>
-								Reject
-							</button>
+					))}
+			</div>
+			<div className={styles.Header}>
+				<h1>Faculty Accepted</h1>
+				<p>
+					View pending requests from faculty members to join your
+					organization
+				</p>
+			</div>
+			<div className={styles.Content}>
+				{data
+					.filter((member) => member.user_role_link.status)
+					.map((member) => (
+						<div key={member.id} className={styles.Individual}>
+							<div>
+								<img src={demo} alt="" />
+								<h3>
+									{member?.users?.first_name}{" "}
+									{member?.users?.last_name}
+								</h3>
+								<p>{member.email}</p>
+								{/* <p>{member.email}</p> */}
+							</div>
+							<div>
+								<button
+									onClick={() =>
+										handleApproveDecline(false, member.id)
+									}
+								>
+									Mark pending
+								</button>
+								<button onClick={() => handleDelete(member.id)}>
+									Reject
+								</button>
+							</div>
 						</div>
-					</div>
-				))}
+					))}
 			</div>
 		</div>
 	);
