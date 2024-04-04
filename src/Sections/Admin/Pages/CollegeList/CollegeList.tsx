@@ -1,99 +1,153 @@
+import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
+import { supabase } from "../../../../utils/supabase";
 import styles from "./CollegeList.module.css";
 
-type Props = {};
+export const CollegeList = () => {
+	const [institutionOptions, setInstitutionOptions] = useState<
+		InstitutionsType[]
+	>([]);
 
-export const CollegeList = (_props: Props) => {
-  const data = [
-    {
-      name: "Harvard University",
-      student: "Sophia Martinez	",
-      status: "Accepted",
-      actions: "taken",
-    },
-    {
-      name: "Yale University	",
-      student: "William Brown	",
-      status: "Rejected",
-      actions: "taken",
-    },
-    {
-      name: "Stanford University	",
-      student: "Emma White	",
-      status: "Pending",
-      actions: "taken",
-    },
-    {
-      name: "Massachusetts Institute of Technology	",
-      student: "Samuel Lee	",
-      status: "Accepted",
-      actions: "taken",
-    },
-    {
-      name: "University of California, Berkeley	",
-      student: "Olivia Johnson	",
-      status: "",
-      actions: "nottaken",
-    },
-  ];
-  return (
-    <div className={styles.Wrapper}>
-      <h1>College Name Requests</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>College Name</th>
-            <th>Student</th>
-            <th>Status</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((item, index) => (
-            <tr key={index}>
-              <td>{item.name}</td>
-              <td>{item.student}</td>
-              <td>{item.status}</td>
-              <td>
-                {item.actions === "taken" ? (
-                  <button>Reject</button>
-                ) : (
-                  <div>
-                    <button>Accept</button>
-                    <button>Reject</button>
-                  </div>
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <h1>College Name</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>College Name</th>
-            <th>Student</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((item, index) => (
-            <tr key={index}>
-              <td>{item.name}</td>
-              <td>{item.student}</td>
-              <td>
-                {item.actions === "taken" ? (
-                  <button>Reject</button>
-                ) : (
-                  <div>
-                    <button>Reject</button>
-                  </div>
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
+	useEffect(() => {
+		fetchData();
+	}, []);
+
+	const fetchData = async () => {
+		let { data: institution, error } = await supabase.from("institution")
+			.select(`
+            *,
+            created_by_user:users!public_institution_created_by_fkey (
+            id,
+            first_name,
+            last_name,
+            email,
+            phone
+        )
+        `);
+		if (error) {
+			toast.error(error.message);
+		} else if (institution) {
+			setInstitutionOptions(institution);
+		}
+	};
+
+	const handleApproveDecline = async (status: boolean, id: string) => {
+		const {
+			data: { user },
+		} = await supabase.auth.getUser();
+		if (user) {
+			const { data, error } = await supabase
+				.from("institution")
+				.update({ is_verified: status, approved_by: user.id })
+				.eq("id", id)
+				.select();
+			if (error) {
+				toast.error(error.message);
+			} else if (data) {
+				toast.success("Organisation request updated successfully");
+			}
+		}
+	};
+
+	const handleDelete = async (id: string) => {
+		const { error } = await supabase
+			.from("institution")
+			.delete()
+			.eq("id", id);
+		if (error) {
+			toast.error(error.message);
+		}
+	};
+
+	return (
+		<div className={styles.Wrapper}>
+			<h1>College Name Requests</h1>
+			<table>
+				<thead>
+					<tr>
+						<th>College Name</th>
+						<th>User</th>
+						<th>Status</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{institutionOptions
+						.filter((item) => item.is_verified === false)
+						.map((item, index) => (
+							<tr key={index}>
+								<td>{item.name}</td>
+								<td>
+									{item.created_by_user?.first_name}{" "}
+									{item.created_by_user?.last_name} (
+									{item?.created_by_user?.email})
+								</td>
+								<td>
+									{item.is_verified ? "Accepted" : "Pending"}
+								</td>
+								<td>
+									<div>
+										<button
+											onClick={() =>
+												handleApproveDecline(
+													true,
+													item.id
+												)
+											}
+										>
+											Accept
+										</button>
+										<button
+											onClick={() =>
+												handleDelete(item.id)
+											}
+										>
+											Reject
+										</button>
+									</div>
+								</td>
+							</tr>
+						))}
+				</tbody>
+			</table>
+			<h1>College Name</h1>
+			<table>
+				<thead>
+					<tr>
+						<th>College Name</th>
+						<th>User</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{institutionOptions
+						.filter((item) => item.is_verified === true)
+						.map((item, index) => (
+							<tr key={index}>
+								<td>{item.name}</td>
+								<td>
+									{item.created_by_user?.first_name}{" "}
+									{item.created_by_user?.last_name} (
+									{item?.created_by_user?.email})
+								</td>
+								<td>
+									<div>
+										<button
+											onClick={() =>
+												handleApproveDecline(
+													false,
+													item.id
+												)
+											}
+										>
+											Mark as Pending
+										</button>
+									</div>
+								</td>
+							</tr>
+						))}
+				</tbody>
+			</table>
+		</div>
+	);
 };
