@@ -6,7 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { supabase } from "../../../utils/supabase";
 import Select, { Options, SingleValue } from "react-select";
 import { useState } from "react";
-import { OptionType } from "../settings.d";
+import { OptionType } from "../Settings";
+
 
 type Props = {
 	isOpen: boolean;
@@ -52,29 +53,52 @@ const EnablerRequest = (props: Props) => {
 			data: { user },
 		} = await supabase.auth.getUser();
 		if (user) {
-			const { data, error } = await supabase
-				.from("institution")
+			if (selectedLabel === "Other") {
+				const { data, error } = await supabase
+					.from("institution")
+					.insert([{ name: formData.name, code: formData.code, created_by: user.id }])
+					.select();
+				if (error) {
+					toast.error(error.message);
+				} else if (data) {
+					const { data: profileUpdate, error } = await supabase
+						.from("users")
+						.update({
+							working_institute_id: data[0].id,
+						})
+						.eq("id", user.id)
+						.select();
+					if (error) {
+						toast.error(error.message);
+					} else if (profileUpdate) {
+						console.log(profileUpdate);
+					}
+				}
+			} else {
+				const { data, error } = await supabase
+					.from("users")
+					.update({ working_institute_id: formData.institution_id })
+					.eq("id", user.id)
+					.select();
+				if (error) {
+					toast.error(error.message);
+				} else if (data) {
+					console.log(data);
+				}
+			}
+			const { data: role, error: roleError } = await supabase
+				.from("user_role_link")
 				.insert([
-					{ name: formData.name, code: formData.code },
+					{
+						user_id: user.id,
+						role_id: "71650c91-b579-4d1d-a90e-40d12a1c8ab3",
+					},
 				])
 				.select();
-			if (error) {
-				toast.error(error.message);
-			} else if (data) {
-				const { data: role, error: roleError } = await supabase
-					.from("user_role_link")
-					.insert([
-						{
-							user_id: user.id,
-							role_id: "71650c91-b579-4d1d-a90e-40d12a1c8ab3",
-						},
-					])
-					.select();
-				if (roleError) {
-					toast.error(roleError.message);
-				} else if (role) {
-					return role;
-				}
+			if (roleError) {
+				toast.error(roleError.message);
+			} else if (role) {
+				return role;
 			}
 		} else {
 			throw "User not found, please login again";

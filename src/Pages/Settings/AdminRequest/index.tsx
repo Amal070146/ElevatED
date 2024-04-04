@@ -6,7 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { supabase } from "../../../utils/supabase";
 import Select, { Options, SingleValue } from "react-select";
 import { useState } from "react";
-import { OptionType } from "../settings.d";
+import { OptionType } from "../Settings";
+
 type Props = {
 	isOpen: boolean;
 	setIsOpen: (isOpen: boolean) => void;
@@ -51,27 +52,52 @@ const AdminRequest = (props: Props) => {
 			data: { user },
 		} = await supabase.auth.getUser();
 		if (user) {
-			const { data, error } = await supabase
-				.from("institution")
-				.insert([{ name: formData.name, code: formData.code }])
-				.select();
-			if (error) {
-				toast.error(error.message);
-			} else if (data) {
-				const { data: role, error: roleError } = await supabase
-					.from("user_role_link")
-					.insert([
-						{
-							user_id: user.id,
-							role_id: "8a43634f-f5a2-4823-84f4-a8a9600de4ae",
-						},
-					])
+			if (selectedLabel === "Other") {
+				const { data, error } = await supabase
+					.from("institution")
+					.insert([{ name: formData.name, code: formData.code, created_by: user.id }])
 					.select();
-				if (roleError) {
-					toast.error(roleError.message);
-				} else if (role) {
-					return role;
+				if (error) {
+					toast.error(error.message);
+				} else if (data) {
+					const { data: profileUpdate, error } = await supabase
+						.from("users")
+						.update({
+							working_institute_id: data[0].id,
+						})
+						.eq("id", user.id)
+						.select();
+					if (error) {
+						toast.error(error.message);
+					} else if (profileUpdate) {
+						console.log(profileUpdate);
+					}
 				}
+			} else {
+				const { data, error } = await supabase
+					.from("users")
+					.update({ working_institute_id: formData.institution_id })
+					.eq("id", user.id)
+					.select();
+				if (error) {
+					toast.error(error.message);
+				} else if (data) {
+					console.log(data);
+				}
+			}
+			const { data: role, error: roleError } = await supabase
+				.from("user_role_link")
+				.insert([
+					{
+						user_id: user.id,
+						role_id: "8a43634f-f5a2-4823-84f4-a8a9600de4ae",
+					},
+				])
+				.select();
+			if (roleError) {
+				toast.error(roleError.message);
+			} else if (role) {
+				return role;
 			}
 		} else {
 			throw "User not found, please login again";
