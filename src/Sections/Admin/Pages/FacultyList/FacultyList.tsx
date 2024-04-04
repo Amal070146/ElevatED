@@ -1,40 +1,89 @@
+import { useEffect, useState } from "react";
 import styles from "./FacultyList.module.css";
 import demo from "./demo.png"; // Assuming all faculty members use the same demo image
+import { supabase } from "../../../../utils/supabase";
+import toast from "react-hot-toast";
 
-type Props = {};
+export const FacultyList = () => {
+	const [data, setData] = useState<any[]>([]);
 
-// Example dataset of faculty members
-const facultyMembers = [
-  { id: 1, name: "Dr. Alice Brown", email: "alice.brown@example.com" },
-  { id: 2, name: "Dr. Bob Smith", email: "bob.smith@example.com" },
-  { id: 3, name: "Dr. Carol Jones", email: "carol.jones@example.com" },
-  // Add more faculty members as needed
-];
+	useEffect(() => {
+		fetchData();
+	}, []);
 
-export const FacultyList = (_props: Props) => {
-  return (
-    <div className={styles.Wrapper}>
-      <div className={styles.Header}>
-        <h1>Faculty Requests</h1>
-        <p>
-          View pending requests from faculty members to join your organization
-        </p>
-      </div>
-      <div className={styles.Content}>
-        {facultyMembers.map((member) => (
-          <div key={member.id} className={styles.Individual}>
-            <div>
-              <img src={demo} alt="" />
-              <h3>{member.name}</h3>
-              <p>{member.email}</p>
-            </div>
-            <div>
-              <button>Approve</button>
-              <button>Reject</button>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+	const fetchData = async () => {
+		let { data: users, error } = await supabase
+			.from("extended_user_view")
+			.select("*, users(first_name, last_name, email)")
+			.eq("role_id", "71650c91-b579-4d1d-a90e-40d12a1c8ab3");
+		if (error) {
+			toast.error(error.message);
+		} else if (users) {
+			setData(users);
+		}
+	};
+
+	const handleApproveDecline = async (status: boolean, id: string) => {
+		const { data, error } = await supabase
+			.from("user_role_link")
+			.update({ status: status })
+			.eq("user_id", id)
+			.select();
+		if (error) {
+			toast.error(error.message);
+		} else if (data) {
+			toast.success("Request updated successfully");
+		}
+	};
+
+	const handleDelete = async (id: string) => {
+		const { error } = await supabase
+			.from("user_role_link")
+			.delete()
+			.eq("user_id", id);
+		if (error) {
+			toast.error(error.message);
+		} else {
+			toast.success("Request deleted successfully");
+		}
+	};
+
+	return (
+		<div className={styles.Wrapper}>
+			<div className={styles.Header}>
+				<h1>Faculty Requests</h1>
+				<p>
+					View pending requests from faculty members to join your
+					organization
+				</p>
+			</div>
+			<div className={styles.Content}>
+				{data.map((member) => (
+					<div key={member.id} className={styles.Individual}>
+						<div>
+							<img src={demo} alt="" />
+							<h3>
+								{member?.users?.first_name}{" "}
+								{member?.users?.last_name}
+							</h3>
+							<p>{member.email}</p>
+							{/* <p>{member.email}</p> */}
+						</div>
+						<div>
+							<button
+								onClick={() =>
+									handleApproveDecline(true, member.id)
+								}
+							>
+								Approve
+							</button>
+							<button onClick={() => handleDelete(member.id)}>
+								Reject
+							</button>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	);
 };
