@@ -4,30 +4,23 @@ import toast from "react-hot-toast";
 import { supabase } from "../../../../utils/supabase";
 
 export const Organisation = () => {
-	const [institutionOptions, setInstitutionOptions] = useState<
-		InstitutionsType[]
-	>([]);
+	const [data, setData] = useState<AdminApprovalData[]>([]);
 
 	useEffect(() => {
 		fetchData();
 	}, []);
 
 	const fetchData = async () => {
-		let { data: institution, error } = await supabase.from("institution")
-			.select(`
-            *,
-            created_by_user:users!public_institution_created_by_fkey (
-            id,
-            first_name,
-            last_name,
-            email,
-            phone
-        )
-        `);
+		let { data: users, error } = await supabase
+			.from("user_role_link")
+			.select(
+				"*, extended_user_view(email, users(first_name, last_name, phone, institution!public_institution_created_by_fkey(name, code)))"
+			)
+			.eq("role_id", "8a43634f-f5a2-4823-84f4-a8a9600de4ae");
 		if (error) {
 			toast.error(error.message);
-		} else if (institution) {
-			setInstitutionOptions(institution);
+		} else if (users) {
+			setData(users);
 		}
 	};
 
@@ -37,23 +30,24 @@ export const Organisation = () => {
 		} = await supabase.auth.getUser();
 		if (user) {
 			const { data, error } = await supabase
-				.from("institution")
-				.update({ is_verified: status, approved_by: user.id })
-				.eq("id", id)
+				.from("user_role_link")
+				.update({ status: status })
+				.eq("user_id", id)
 				.select();
 			if (error) {
 				toast.error(error.message);
 			} else if (data) {
-				toast.success("Organisation request updated successfully");
+				toast.success("Admin request updated successfully");
 			}
 		}
 	};
 
 	const handleDelete = async (id: string) => {
 		const { error } = await supabase
-			.from("institution")
+			.from("user_role_link")
 			.delete()
-			.eq("id", id);
+			.eq("user_id", id);
+
 		if (error) {
 			toast.error(error.message);
 		}
@@ -70,24 +64,31 @@ export const Organisation = () => {
 			</div>
 
 			<div className={styles.Organisations}>
-				{institutionOptions
-					.filter((institution) => !institution.is_verified)
-					.map((institution) => (
-						<div
-							className={styles.Individuals}
-							key={institution.id}
-						>
+				{data
+					.filter((item) => !item.status)
+					.map((item) => (
+						<div className={styles.Individuals} key={item.user_id}>
 							<div className={styles.Top}>
 								<div>
-									<h3>{institution.name}</h3>
-									<p>{institution.code}</p>
+									<h3>
+										{
+											item?.extended_user_view?.users
+												?.institution[0]?.name
+										}
+									</h3>
+									<p>
+										{
+											item?.extended_user_view?.users
+												?.institution[0]?.code
+										}
+									</p>
 								</div>
 								<div className={styles.ButtonWrapper}>
 									<button
 										onClick={() =>
 											handleApproveDecline(
 												true,
-												institution.id
+												item.user_id
 											)
 										}
 									>
@@ -95,7 +96,7 @@ export const Organisation = () => {
 									</button>
 									<button
 										onClick={() =>
-											handleDelete(institution.id)
+											handleDelete(item.user_id)
 										}
 									>
 										Decline
@@ -106,17 +107,23 @@ export const Organisation = () => {
 							<div>
 								<div>
 									<h4>Contact Information</h4>
-									{institution.created_by_user && (
+									{item?.extended_user_view?.users && (
 										<p>
 											{
-												institution.created_by_user
+												item.extended_user_view.users
 													.first_name
 											}{" "}
 											{
-												institution.created_by_user
+												item.extended_user_view.users
 													.last_name
-											}{" "}
-											{institution.created_by_user.phone}
+											}
+											{" /"}
+											{item.extended_user_view.email}
+											{" /"}
+											{
+												item.extended_user_view.users
+													.phone
+											}
 										</p>
 									)}
 								</div>
@@ -134,24 +141,31 @@ export const Organisation = () => {
 				<button>Decline All</button>
 			</div>
 			<div className={styles.Organisations}>
-				{institutionOptions
-					.filter((institution) => institution.is_verified)
-					.map((institution) => (
-						<div
-							className={styles.Individuals}
-							key={institution.id}
-						>
+				{data
+					.filter((item) => item.status)
+					.map((item) => (
+						<div className={styles.Individuals} key={item.user_id}>
 							<div className={styles.Top}>
 								<div>
-									<h3>{institution.name}</h3>
-									<p>{institution.code}</p>
+									<h3>
+										{
+											item?.extended_user_view?.users
+												?.institution[0]?.name
+										}
+									</h3>
+									<p>
+										{
+											item?.extended_user_view?.users
+												?.institution[0]?.code
+										}
+									</p>
 								</div>
 								<div className={styles.ButtonWrapper}>
 									<button
 										onClick={() =>
 											handleApproveDecline(
 												false,
-												institution.id
+												item.user_id
 											)
 										}
 									>
@@ -159,7 +173,7 @@ export const Organisation = () => {
 									</button>
 									<button
 										onClick={() =>
-											handleDelete(institution.id)
+											handleDelete(item.user_id)
 										}
 									>
 										Delete
@@ -170,17 +184,20 @@ export const Organisation = () => {
 							<div>
 								<div>
 									<h4>Contact Information</h4>
-									{institution.created_by_user && (
+									{item?.extended_user_view?.users && (
 										<p>
 											{
-												institution.created_by_user
-													.first_name
+												item?.extended_user_view?.users
+													?.first_name
 											}{" "}
 											{
-												institution.created_by_user
-													.last_name
+												item?.extended_user_view?.users
+													?.last_name
 											}{" "}
-											{institution.created_by_user.phone}
+											{
+												item?.extended_user_view?.users
+													?.phone
+											}
 										</p>
 									)}
 								</div>
