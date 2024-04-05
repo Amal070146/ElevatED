@@ -40,7 +40,8 @@ export const Settings = () => {
 	const [enablerIsOpen, setEnablerIsOpen] = useState(false);
 	const [institutionOptions, setInstitutionOptions] = useState<
 		Options<OptionType>
-	>([]);
+		>([]);
+	const [refresh, setRefresh] = useState(false);
 
 	const {
 		register,
@@ -104,11 +105,12 @@ export const Settings = () => {
 
 	useEffect(() => {
 		fetchUserData();
-	}, [reset]);
+	}, [reset, refresh]);
 
 	const onSubmit: SubmitHandler<FormFields> = async (data) => {
 		try {
 			await updateProfile(data).then(() => {
+				setRefresh(!refresh);
 				toast.success("Profile updated successfully");
 			});
 		} catch (error) {
@@ -342,6 +344,8 @@ export const Settings = () => {
 							</div>
 							{enablerIsOpen && (
 								<EnablerRequest
+									refresh={refresh}
+									setRefresh={setRefresh}
 									isOpen={enablerIsOpen}
 									setIsOpen={setEnablerIsOpen}
 									institutionOptions={institutionOptions}
@@ -349,6 +353,8 @@ export const Settings = () => {
 							)}
 							{adminIsOpen && (
 								<AdminRequest
+									refresh={refresh}
+									setRefresh={setRefresh}
 									isOpen={adminIsOpen}
 									setIsOpen={setAdminIsOpen}
 									institutionOptions={institutionOptions}

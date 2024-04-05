@@ -6,10 +6,11 @@ import toast from "react-hot-toast";
 
 export const FacultyApproval = () => {
 	const [data, setData] = useState<any[]>([]);
+	const [refresh, setRefresh] = useState(false);
 
 	useEffect(() => {
 		fetchData();
-	}, []);
+	}, [refresh]);
 
 	const fetchData = async () => {
 		const {
@@ -52,6 +53,7 @@ export const FacultyApproval = () => {
 		if (error) {
 			toast.error(error.message);
 		} else if (data) {
+			setRefresh(!refresh);
 			toast.success("Request updated successfully");
 		}
 	};
@@ -64,6 +66,7 @@ export const FacultyApproval = () => {
 		if (error) {
 			toast.error(error.message);
 		} else {
+			setRefresh(!refresh);
 			toast.success("Request deleted successfully");
 		}
 	};

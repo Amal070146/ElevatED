@@ -12,6 +12,8 @@ type Props = {
 	isOpen: boolean;
 	setIsOpen: (isOpen: boolean) => void;
 	institutionOptions: Options<OptionType>;
+	refresh: boolean;
+	setRefresh: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const schema = z.object({
@@ -38,6 +40,7 @@ const AdminRequest = (props: Props) => {
 	const onSubmit: SubmitHandler<FormFields> = async (data) => {
 		try {
 			await requestAdminAccess(data).then(() => {
+				props.setRefresh(!props.refresh);
 				toast.success("Enabler request sent successfully");
 			});
 		} catch (error) {

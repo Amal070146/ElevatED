@@ -6,11 +6,12 @@ import styles from "./CollegeList.module.css";
 export const CollegeList = () => {
 	const [institutionOptions, setInstitutionOptions] = useState<
 		InstitutionsType[]
-	>([]);
+		>([]);
+	const [refresh, setRefresh] = useState(false);
 
 	useEffect(() => {
 		fetchData();
-	}, []);
+	}, [refresh]);
 
 	const fetchData = async () => {
 		let { data: institution, error } = await supabase.from("institution")
@@ -44,6 +45,7 @@ export const CollegeList = () => {
 			if (error) {
 				toast.error(error.message);
 			} else if (data) {
+				setRefresh(!refresh);
 				toast.success("Organisation request updated successfully");
 			}
 		}
@@ -56,6 +58,9 @@ export const CollegeList = () => {
 			.eq("id", id);
 		if (error) {
 			toast.error(error.message);
+		} else {
+			setRefresh(!refresh);
+			toast.success("Request deleted successfully");
 		}
 	};
 

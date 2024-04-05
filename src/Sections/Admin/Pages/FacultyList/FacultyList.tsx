@@ -6,10 +6,11 @@ import toast from "react-hot-toast";
 
 export const FacultyList = () => {
 	const [data, setData] = useState<any[]>([]);
+	const [refresh, setRefresh] = useState(false);
 
 	useEffect(() => {
 		fetchData();
-	}, []);
+	}, [refresh]);
 
 	const fetchData = async () => {
 		let { data: users, error } = await supabase
@@ -32,6 +33,7 @@ export const FacultyList = () => {
 		if (error) {
 			toast.error(error.message);
 		} else if (data) {
+			setRefresh(!refresh);
 			toast.success("Request updated successfully");
 		}
 	};
@@ -44,6 +46,7 @@ export const FacultyList = () => {
 		if (error) {
 			toast.error(error.message);
 		} else {
+			setRefresh(!refresh);
 			toast.success("Request deleted successfully");
 		}
 	};

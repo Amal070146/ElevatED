@@ -5,10 +5,11 @@ import { supabase } from "../../../../utils/supabase";
 
 export const Organisation = () => {
 	const [data, setData] = useState<AdminApprovalData[]>([]);
+	const [refresh, setRefresh] = useState(false);
 
 	useEffect(() => {
 		fetchData();
-	}, []);
+	}, [refresh]);
 
 	const fetchData = async () => {
 		let { data: users, error } = await supabase
@@ -37,6 +38,7 @@ export const Organisation = () => {
 			if (error) {
 				toast.error(error.message);
 			} else if (data) {
+				setRefresh(!refresh);
 				toast.success("Admin request updated successfully");
 			}
 		}
@@ -50,6 +52,9 @@ export const Organisation = () => {
 
 		if (error) {
 			toast.error(error.message);
+		} else {
+			setRefresh(!refresh);
+			toast.success("Admin request deleted successfully");
 		}
 	};
 
