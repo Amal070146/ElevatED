@@ -131,7 +131,6 @@ export const Quiz = (_props: Props) => {
             )}
           </div>
         </div>
-
         <img className={styles.quizSecMainImg} src={quizSecMainImg} alt="" />
       </div>
     </div>
