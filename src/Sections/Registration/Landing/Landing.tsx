@@ -99,7 +99,7 @@ export const Landing = (_props: Props) => {
           </div>
         </section>
 
-        <section>
+        
           <div className={styles.featuresWrapper}>
             <div className={styles.featuresSecHeading} >
               <h2>Student Enrichment</h2>
@@ -111,7 +111,7 @@ export const Landing = (_props: Props) => {
                   <div className={styles.featuresName}>
                     <img src={img} alt="" />
                     <div className={styles.featuresNameTextDiv}>
-                      <h4>{featureName}</h4>
+                      <h3>{featureName}</h3>
                       <p>{desc}</p>
                     </div>
                   </div>
@@ -119,13 +119,14 @@ export const Landing = (_props: Props) => {
               })}
             </div>
           </div>
-        </section>
+
 
         <section>
           <div className={styles.functionWrapper}>
             <div>
-              <h2>Discover how ElevatED transforms your learning!</h2>
-              <h4>Your one-stop destination for online learning</h4>
+              <h2>Discover how ElevatED</h2> 
+              <h2>transforms your learning!</h2>
+              <p>Your one-stop destination for online learning</p>
             </div>
             <div className={styles.functionWrapWrapper}>
               {Functionss.map(({ image, name, description }) => {
@@ -133,18 +134,19 @@ export const Landing = (_props: Props) => {
                   <div className={styles.eachFunctionWrapper}>
                     <img src={image} alt="" />
                     <div className={styles.eachFunctionWrapperText}>
-                      <h4>{name}</h4>
+                      <h3>{name}</h3>
                       <p>{description}</p>
                     </div>
                   </div>
                 );
               })}
             </div>
-
           </div>
+
         </section>
 
       </div>
+
       <section>
         <div className={styles.landingFooterWrapper}>
 

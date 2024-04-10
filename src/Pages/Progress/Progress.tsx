@@ -1,7 +1,7 @@
 import BarCharts from "../../Components/ProgressContainers/Barchart/Barchart";
 import CircularGraph from "../../Components/ProgressContainers/CircularGraph/CircularGraph";
 import SimpleAreaGraph from "../../Components/ProgressContainers/SimpleAreaChart/SimpleAreaChart";
-import progresspageImg from "../../assets/progressPage/progressPgImg.png" 
+import progresspageImg from "../../assets/progressPage/progressPgImg.png"
 import styles from "./Progress.module.css";
 
 type Props = {};
@@ -93,34 +93,34 @@ export const Progress = (_props: Props) => {
     <div className={styles.Wrapper}>
       <h3>PROGRESS</h3>
       <div className={styles.WrapperWrapper}>
-      <div className={styles.DailyTracker}>
-        <h2>Daily Tracker</h2>
-        <div>
-          <h1>15 qts</h1>
-          <p>Average questions you do per day</p>
-        </div>
-        <BarCharts data={DailyTackerdata} />
-      </div>
- 
-    
-      <div className={styles.pie}>
-        <div className={styles.inner_pie}>
-          <h2>Subject-wise Tracker</h2>
+        <div className={styles.DailyTracker}>
+          <h2>Daily Tracker</h2>
           <div>
-            <p>Subject knowledge can be analysed </p> <br />
-            <button>Week</button>
+            <h1>15 qts</h1>
+            <p>Average questions you do per day</p>
           </div>
-          <CircularGraph data={Subjectdata} />
+          <BarCharts data={DailyTackerdata} />
         </div>
-      </div>
 
-      <div className={styles.DailyProgress}>
-        <div>
-          <h2>Daily Progress</h2>
-          <p>(or overall progress of correct answers attended) </p>
+
+        
+          <div className={styles.inner_pie}>
+            <h2>Subject-wise Tracker</h2>
+            <div>
+              <p>Subject knowledge can be analysed </p> <br />
+              <button>Week</button>
+            </div>
+            <CircularGraph data={Subjectdata} />
+          </div>
+       
+
+        <div className={styles.DailyProgress}>
+          <div>
+            <h2>Daily Progress</h2>
+            <p>(or overall progress of correct answers attended) </p>
+          </div>
+          <SimpleAreaGraph data={Graphdata} />
         </div>
-        <SimpleAreaGraph data={Graphdata} />
-      </div> 
       </div>
       <div >
         <img className={styles.progresspageImg} src={progresspageImg} alt="" />
