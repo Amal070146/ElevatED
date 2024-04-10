@@ -1,10 +1,9 @@
 .Wrapper {
   display: flex;
   flex-direction: column;
-  height: 100%;
   padding: 0px 10vw 3vh;
   gap: 6vh;
-  background-color: #daedeb;
+  background-color: #E1F3EF;
 }
 
 .Wrapper .TopNavbar {
@@ -71,10 +70,12 @@
 
 .Wrapper .bodyWrapper .featuresWrapper{
   display: flex;
- justify-content: space-between;
+  justify-content: space-between;
   width: 100%;
   background-color: white;
+  padding: 20px;
 }
+
 .Wrapper .bodyWrapper .featuresWrapper .featuresSecHeading{
   display: flex;
   flex-direction: column;
@@ -83,6 +84,10 @@
   gap: 20px;
 }
 
+.Wrapper .bodyWrapper .featuresWrapper .featuresSecHeading >h2{
+  font-size: 35px;
+  font-weight: 700;
+}
 .Wrapper .bodyWrapper .featuresWrapper .featuresName{ 
  display: flex;
  gap:20px;
@@ -108,11 +113,29 @@
   text-align: left;
 }
 
-.Wrapper .bodyWrapper .functionWrapper .functionWrapWrapper .eachFunctionWrapper{
-  display: flex;
-  gap: 20px;
+.functionWrapper >div >h2 {
+  font-size: 35px;
+  font-weight: 700;
 }
 
+.Wrapper .bodyWrapper .functionWrapper .functionWrapWrapper .eachFunctionWrapper{
+  background-color: white;
+  filter: drop-shadow(13px 15px 4px rgba(147, 222, 214, 0.20));
+  border-radius: 10px;
+  padding: 50px;
+  margin: 10px;
+  display: flex;
+  justify-content: space-between;
+  gap: 100px;
+  width: 100%;
+}
+
+.Wrapper .bodyWrapper .functionWrapper .functionWrapWrapper .eachFunctionWrapper > img{ 
+
+}
+.eachFunctionWrapperText{
+ width: 50%;
+}
 
 /*
 .Wrapper .functionWrapper {
