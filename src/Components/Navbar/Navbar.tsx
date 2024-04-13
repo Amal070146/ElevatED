@@ -42,6 +42,11 @@ export const Navbar = () => {
 			roleToBeChecked: "administrator",
 			icon: CoursesIcons,
 		},
+		{
+			title: 'Manage Courses',
+			roleToBeChecked: "enabler",
+			icon: CoursesIcons,
+		}
 	];
 
 	const getIconColor = (path: string) => {

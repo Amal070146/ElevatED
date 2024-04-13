@@ -22,6 +22,7 @@ import { DetailCourse } from "./Pages/Courses/components/Detail";
 import { Verify } from "./Sections/Registration/verify";
 import { PdfReader } from "./Components/PdfReader";
 import { FacultyApproval } from "./Sections/Administrations/Pages/faculty";
+import { Subjects } from "./Sections/Faculties/Pages/Courses/Subjects";
 
 const App = () => {
   return (
@@ -46,6 +47,7 @@ const App = () => {
           <Route path="profile" element={<Profile />} />
           <Route path="quiz" element={<Quiz />} />
           <Route path="/enablerlist" element={<FacultyApproval />} />
+          <Route path="/managecourses" element={<Subjects />} />
         </Route>
         <Route path="/landing" element={<Landing />} />
         <Route path="/login" element={<Login />} />
