@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
+    "@react-oauth/google": "^0.12.1",
     "@react-pdf/renderer": "^3.4.0",
     "@supabase/supabase-js": "^2.39.6",
     "install": "^0.13.0",
