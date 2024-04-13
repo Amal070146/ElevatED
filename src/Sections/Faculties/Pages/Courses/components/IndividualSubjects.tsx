@@ -9,6 +9,8 @@ export const IndividualSubjects = () => {
   const [refresh, setRefresh] = useState(false);
   const [data, setData] = useState<CoursesDB>();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
+  const [moduleID, setModuleID] = useState();
 
   useEffect(() => {
     fetchData();
@@ -33,12 +35,28 @@ export const IndividualSubjects = () => {
         <h1>{data?.name}</h1>
         <div>
           {data?.modules?.map((module) => (
-            <div key={module.id} className={styles.Individual}>
+            <div
+              key={module.id}
+              className={styles.Individual}
+              onClick={() => {
+                setIsEdit(true)
+                setModuleID(module.id)
+              }}
+            >
               {module.name}
               <span>{module.yt_link}</span>
               <p>{module.description}</p>
             </div>
           ))}
+          <AddModuleModal
+            isOpen={isEdit}
+            onClose={() => setIsEdit(false)}
+            refresh={() => setRefresh(!refresh)}
+            id={id!}
+            moduleID={moduleID}
+            modules={data?.modules!}
+            isEdit={isEdit}
+          />
         </div>
       </div>
       <div>
@@ -49,6 +67,7 @@ export const IndividualSubjects = () => {
           refresh={() => setRefresh(!refresh)}
           id={id!}
           modules={data?.modules!}
+          isEdit={false}
         />
       </div>
     </div>
