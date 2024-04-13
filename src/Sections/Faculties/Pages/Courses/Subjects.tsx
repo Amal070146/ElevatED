@@ -2,11 +2,13 @@ import React, { useEffect } from "react";
 import AddCourseModal from "./components/addCourseModal";
 import { supabase } from "../../../../utils/supabase";
 import styles from "./index.module.css";
+import { useNavigate } from "react-router-dom";
 
 export const Subjects = () => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [refresh, setRefresh] = React.useState(false);
   const [data, setData] = React.useState<CoursesDB[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchData();
@@ -38,7 +40,13 @@ export const Subjects = () => {
         <h1>Courses</h1>
         <div className={styles.container}>
           {data.map((course) => (
-            <div key={course.id} className={styles.Individual}>{course.name}</div>
+            <div
+              key={course.id}
+              onClick={() => navigate(`/managecourses/${course.id}`)}
+              className={styles.Individual}
+            >
+              {course.name}
+            </div>
           ))}
         </div>
       </div>
