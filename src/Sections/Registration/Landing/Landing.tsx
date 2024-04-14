@@ -8,6 +8,7 @@ import courseFeatImg from "./landingPgImgs/courseFeatImg.png"
 import quizFeatImg from "./landingPgImgs/quizFeatImg.png"
 import monitoringFeatImg from "./landingPgImgs/monitoringFeatImg.png"
 import facultyFeatImg from "./landingPgImgs/facultyFeatImg.png"
+import rectangle from "./landingPgImgs/rectangle.png";
 
 
 type Props = {};
@@ -48,32 +49,32 @@ export const Landing = (_props: Props) => {
     {
       name: "Daily Quizzes",
       description: "Enhance learning through daily quizzes, reinforcing key concepts and fostering active engagement with course materials",
-      image: quiz,
+      image: rectangle,
     },
     {
       name: "Featured Courses",
       description: "Discover expert-curated courses, handpicked to inspire learning and cater to diverse educational interests and goals.",
-      image: quiz,
+      image: rectangle,
     },
     {
       name: "Student Monitoring",
       description: "Monitor student progress in real-time, identifying strengths and areas for improvement to provide tailored support and optimize learning outcomes.",
-      image: quiz,
+      image: rectangle,
     },
     {
       name: "Faculty Engagement",
       description: "Empower educators to upload resources, interact with students, and track progress, fostering a collaborative and dynamic learning environment.",
-      image: subject,
+      image: rectangle,
     },
     {
       name: "Organization Management",
       description: "Streamline course organization and management tasks, ensuring smooth operations and optimized learning experiences for all stakeholders.",
-      image: subject,
+      image: rectangle,
     },
     {
       name: "Reports and Statistics",
       description: "Gain valuable insights with comprehensive reports and statistics, enabling informed decision-making and continuous improvement in educational outcomes.",
-      image: subject,
+      image: rectangle,
     },
   ];
 
@@ -81,9 +82,19 @@ export const Landing = (_props: Props) => {
     <div className={styles.Wrapper}>
       <div className={styles.TopNavbar}>
         <img src={Logo} alt="" />
+        <div className={styles.navlinkelements}>
+          <h3>Home</h3>
+          <h3>Product</h3>
+          <h3>Features</h3>
+          <h3>About Us</h3>
+        </div>
         <div className={styles.Registration}>
-          <button onClick={handleLogin}>Login</button>
-          <button onClick={handleSignUP}>SignUp</button>
+          <button
+            style={{ backgroundColor: "#E1F3EF", color: "#0a8677", border: "1px solid #0a8677", fontWeight: 600, borderRadius: 5 }}
+            onClick={handleLogin}>Login</button>
+          <button
+            style={{ borderRadius: 5 }}
+            onClick={handleSignUP}>SignUp</button>
         </div>
       </div>
 
@@ -142,17 +153,37 @@ export const Landing = (_props: Props) => {
               })}
             </div>
           </div>
-
         </section>
 
       </div>
 
       <section>
         <div className={styles.landingFooterWrapper}>
+          <div className={styles.landingFooterContactSec}>
 
+            <div>
+              <img src={Logo} alt="" />
+            </div>
+            <div>
+              <p>Support</p>
+              <p>About </p>
+              <p>Contact Us</p>
+            </div>
+            <div>
+              <p>Contact Us</p>
+              <p>instagram</p>
+              <p>linkedin </p>
+            </div>
+
+          </div>
+
+          <div className={styles.landingFooterTermsAndCond}>
+            <p>Terms and Condtions</p>
+            <p>Privacy Policy</p>
+          </div>
         </div>
       </section>
+
     </div>
   );
 };
-// };

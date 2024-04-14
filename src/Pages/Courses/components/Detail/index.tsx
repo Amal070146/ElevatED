@@ -94,7 +94,8 @@ export const DetailCourse = (_props: Props) => {
               </button>
             </div>
           </div>
-          <div className={styles.RightPopUpMentorDetailsContainer}>
+
+          {/* <div className={styles.RightPopUpMentorDetailsContainer}>
             <h3>Mentor</h3>
             <div className={styles.mentorHeader}>
               <img src="" alt="" />
@@ -106,7 +107,8 @@ export const DetailCourse = (_props: Props) => {
                 <button>Back-End</button>
                 <button>Web Development</button>
             </div>
-          </div>
+
+          </div> */}
         </div>
       </div>
     </div>

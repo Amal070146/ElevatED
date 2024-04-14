@@ -1,27 +1,43 @@
+p{
+  color: rgb(90, 90, 90);
+}
+
 .Wrapper {
   display: flex;
   flex-direction: column;
-  padding: 0px 10vw 3vh;
   gap: 6vh;
   background-color: #E1F3EF;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .Wrapper .TopNavbar {
-  width: 100%;
+  margin: 30px 10% 30px 10%;
+  width: 80%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 20px 0vw;
+  justify-content:space-between;
+  
 }
 
 .Wrapper .TopNavbar img {
   width: 150px;
 }
 
+.Wrapper .TopNavbar .navlinkelements{
+  display: flex;
+  gap: 50px;
+}
+
+.Wrapper .TopNavbar .navlinkelements h3{
+  font-weight: 400;
+}
+
 .Wrapper .TopNavbar .Registration {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 10px;
 }
 
 .Wrapper .bodyWrapper {
@@ -32,6 +48,10 @@
 
 .Wrapper .bodyWrapper .landingHomeWrapper {
  display: flex;
+ margin:0 10% 0 10%;
+ justify-content: space-between;
+ height: 100vh-80px;
+ background-color: #E1F3EF;
 }
 
 .Wrapper .bodyWrapper .landingHomeWrapper .TextLandingHome{
@@ -53,7 +73,7 @@
   min-width: 300px;
   max-width: 80%;
   border-top: solid 7px #0a8677;
-  bottom:-20px;
+  bottom:-35px;
   border-radius:50%;
   height: 8px;
   left: 0;
@@ -65,15 +85,16 @@
   max-width: 70%;
 }
 .Wrapper .bodyWrapper .landingHomeWrapper img{
-  height: 700px;
+  height: 650px;
+  object-fit: contain;
 }
 
 .Wrapper .bodyWrapper .featuresWrapper{
   display: flex;
   justify-content: space-between;
   width: 100%;
-  background-color: white;
-  padding: 20px;
+  padding:50px 10% ;
+  background-color: #F9F8FE;
 }
 
 .Wrapper .bodyWrapper .featuresWrapper .featuresSecHeading{
@@ -97,10 +118,11 @@
 
 .Wrapper .bodyWrapper .featuresWrapper .featuresName img{ 
   background-color: white;
-  padding: 8px;
+  padding: 10px;
   border-radius: 5px;
-  width: 30px;
-  height: 30px;
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
 }
 
 .Wrapper .bodyWrapper .featuresWrapper .featuresName .featuresNameTextDiv{
@@ -111,88 +133,103 @@
   display: flex;
   flex-direction: column;
   text-align: left;
+  gap: 30px;
+  margin-top: 35px;
 }
 
 .functionWrapper >div >h2 {
   font-size: 35px;
   font-weight: 700;
+  padding:0 10% 0 10%;
+}
+
+.functionWrapper >div >p {
+  padding:0 10% 0 10%;
+
+}
+
+.Wrapper .bodyWrapper .functionWrapper .functionWrapWrapper{
+  display: flex;
+  flex-direction: column;
+  gap:30px;
+  margin-top: 35px;
 }
 
 .Wrapper .bodyWrapper .functionWrapper .functionWrapWrapper .eachFunctionWrapper{
   background-color: white;
   filter: drop-shadow(13px 15px 4px rgba(147, 222, 214, 0.20));
   border-radius: 10px;
-  padding: 50px;
-  margin: 10px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   gap: 100px;
-  width: 100%;
+  width: 80%;
+  margin: 0 10% 0 10%;
+  padding: 40px ;
+
 }
 
 .Wrapper .bodyWrapper .functionWrapper .functionWrapWrapper .eachFunctionWrapper > img{ 
-
+  height: 125px;
+  object-fit: contain;
 }
 .eachFunctionWrapperText{
  width: 50%;
 }
 
-/*
-.Wrapper .functionWrapper {
+.Wrapper .landingFooterWrapper{
+  width: 100%;
+  background-color:#161C28;
+  color: #E1F3EF;
+  height: 250px;
   display: flex;
   gap: 20px;
-  justify-content: space-between;
+  text-align: right;
+  flex-direction: column ;
+  justify-content:center ;
+  align-items: center;
 }
 
-.Wrapper .functionWrapper > img {
-  max-width: 250px;
-  width: 100%;
-  height: auto;
-  object-fit: contain;
+.Wrapper .landingFooterWrapper div  >img{
+  width: 200px;
 }
 
-.Wrapper .functionWrapper > div {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 30px;
-}
-.Wrapper .functionWrapper .functionWrapWrapper {
+.Wrapper .landingFooterWrapper .landingFooterTermsAndCond{
   display: flex;
   gap: 20px;
-  width: calc(100%);
-  flex-wrap: wrap;
+  text-align: end;
 }
 
-.Wrapper .bodyWrapper .eachFunctionWrapper {
-  justify-content: center;
-  width: calc(100% / 4 - 20px);
-  min-height: 220px;
-  min-width: 200px;
-  height: fit-content;
-  border: 2px solid #888585;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(26, 70, 142, 0.2);
-  padding: 20px;
+.landingFooterContactSec{
+  display: flex;
+  gap: 450px;
+  color: #F9F8FE;
 }
 
-.Wrapper .bodyWrapper .eachFunctionWrapper h5{
-  font-weight: 500;
-}
-.Wrapper .bodyWrapper .eachFunctionWrapper:hover {
-  background-color: #daedeb;
-}
-.Wrapper .bodyWrapper .eachFunctionWrapper img {
-  max-width: 100%;
-  width: 100px;
-}
 
 @media screen and (max-width: 900px) {
-  .Wrapper .functionWrapper > img {
+  .Wrapper .bodyWrapper .landingHomeWrapper > img {
     display: none;
   }
   .Wrapper .functionWrapper .functionWrapWrapper {
     align-items: center;
     justify-content: center;
   }
-} */
+  .Wrapper .bodyWrapper .landingHomeWrapper .TextLandingHome{
+    max-width: 75%;
+  }
+  .Wrapper .bodyWrapper .featuresWrapper {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .Wrapper .bodyWrapper .featuresWrapper .featuresSecHeading {
+    max-width: 75%;
+  }
+  .Wrapper .bodyWrapper .functionWrapper .functionWrapWrapper .eachFunctionWrapper > img{ 
+    display: none;
+  }
+  .Wrapper .bodyWrapper .functionWrapper .functionWrapWrapper .eachFunctionWrapper{
+    margin: 0 10%;
+    padding: 20px ;
+  }
+
+} 
