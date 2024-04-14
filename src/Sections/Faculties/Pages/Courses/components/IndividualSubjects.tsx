@@ -1,8 +1,31 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../../../../../utils/supabase";
 import AddModuleModal from "./addModuleModal";
 import styles from "../index.module.css";
+import { create } from "zustand";
+
+type ModuleStoreType = {
+  moduleID: number;
+  setModuleID: (moduleID: number) => void;
+  courseID: string;
+  setCourseID: (courseID: string) => void;
+  modules: CoursesDB["modules"];
+  setModules: (modules: CoursesDB["modules"]) => void;
+  module: any;
+  setModule: (module: any) => void; 
+}
+
+export const useModuleStore = create<ModuleStoreType>((set) => ({
+  moduleID: 0,
+  setModuleID: (moduleID) => set({ moduleID }),
+  courseID: "",
+  setCourseID: (courseID) => set({ courseID }),
+  modules: [],
+  setModules: (modules) => set({ modules }),
+  module: {},
+  setModule: (module) => set({ module }),
+}));
 
 export const IndividualSubjects = () => {
   const { id } = useParams();
@@ -10,7 +33,14 @@ export const IndividualSubjects = () => {
   const [data, setData] = useState<CoursesDB>();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
-  const [moduleID, setModuleID] = useState();
+  const moduleID = useModuleStore((state) => state.moduleID);
+  const setModuleID = useModuleStore((state) => state.setModuleID);
+  const setCourseID = useModuleStore((state) => state.setCourseID);
+  const setModule = useModuleStore((state) => state.setModule);
+  const setModules = useModuleStore((state) => state.setModules);
+  const navigate = useNavigate();
+
+  setCourseID(id!);
 
   useEffect(() => {
     fetchData();
@@ -35,14 +65,20 @@ export const IndividualSubjects = () => {
         <h1>{data?.name}</h1>
         <div>
           {data?.modules?.map((module) => (
-            <div
-              key={module.id}
-              className={styles.Individual}
-              onClick={() => {
-                setIsEdit(true)
-                setModuleID(module.id)
-              }}
-            >
+            <div key={module.id} className={styles.Individual} onClick={()=>{
+              setModule(module);
+              setModuleID(module.id);
+              setModules(data?.modules!);
+              navigate(`/managecourses/module`);
+            }}>
+              <button
+                onClick={() => {
+                  setIsEdit(true);
+                  setModuleID(module.id);
+                }}
+              >
+                Edit
+              </button>
               {module.name}
               <span>{module.yt_link}</span>
               <p>{module.description}</p>

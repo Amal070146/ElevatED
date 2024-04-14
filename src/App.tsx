@@ -23,6 +23,7 @@ import { Verify } from "./Sections/Registration/verify";
 import { PdfReader } from "./Components/PdfReader";
 import { FacultyApproval } from "./Sections/Administrations/Pages/faculty";
 import { Subjects } from "./Sections/Faculties/Pages/Courses/Subjects";
+import ModalPage from "./Sections/Faculties/Pages/Courses/components/modalPage";
 import { IndividualSubjects } from "./Sections/Faculties/Pages/Courses/components/IndividualSubjects";
 
 const App = () => {
@@ -50,6 +51,7 @@ const App = () => {
           <Route path="/enablerlist" element={<FacultyApproval />} />
           <Route path="/managecourses" element={<Subjects />} />
           <Route path="/managecourses/:id" element={<IndividualSubjects />} />
+          <Route path="/managecourses/module" element={<ModalPage />} />
         </Route>
         <Route path="/landing" element={<Landing />} />
         <Route path="/login" element={<Login />} />
