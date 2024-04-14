@@ -19,7 +19,7 @@ export const PdfReader = () => {
       const formData = new FormData();
       formData.append("pdf_file", resumeInput.files[0]);
 
-      fetch("http://127.0.0.1:8000/pdf/extract/", {
+      fetch("https://pdf-extracter.vercel.app/pdf/extract/", {
         method: "POST",
         body: formData,
       })
