@@ -12,6 +12,7 @@ type Props = {
   refresh: () => void;
 };
 
+
 const schema = z.object({
   name: z.string().min(1, { message: "Course name is required" }),
 });

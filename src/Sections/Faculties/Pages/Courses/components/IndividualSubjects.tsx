@@ -13,7 +13,7 @@ type ModuleStoreType = {
   modules: CoursesDB["modules"];
   setModules: (modules: CoursesDB["modules"]) => void;
   module: any;
-  setModule: (module: any) => void; 
+  setModule: (module: any) => void;
 }
 
 export const useModuleStore = create<ModuleStoreType>((set) => ({
@@ -62,15 +62,16 @@ export const IndividualSubjects = () => {
   return (
     <div>
       <div>
-        <h1>{data?.name}</h1>
-        <div>
+        <h1 className={styles.courseHeading}>{data?.name}</h1>
+        <div className={styles.courseHeadingWrapper}>
           {data?.modules?.map((module) => (
-            <div key={module.id} className={styles.Individual} onClick={()=>{
+            <div key={module.id} className={styles.Individual} onClick={() => {
               setModule(module);
               setModuleID(module.id);
               setModules(data?.modules!);
               navigate(`/managecourses/module`);
             }}>
+              
               <button
                 onClick={() => {
                   setIsEdit(true);
@@ -79,9 +80,14 @@ export const IndividualSubjects = () => {
               >
                 Edit
               </button>
-              {module.name}
-              <span>{module.yt_link}</span>
-              <p>{module.description}</p>
+              <div className={styles.moduleInfo}>
+                <h4>{module.name}</h4>
+                <div className={styles.moduleLink}>
+                  <h4>Link:- </h4>
+                  <span>{module.yt_link}</span>
+                </div>
+                <p>{module.description}</p>
+              </div>
             </div>
           ))}
           <AddModuleModal
@@ -96,7 +102,7 @@ export const IndividualSubjects = () => {
         </div>
       </div>
       <div>
-        <button onClick={() => setIsModalOpen(true)}>Add a course</button>
+        <button onClick={() => setIsModalOpen(true)}>Add a Module</button>
         <AddModuleModal
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
