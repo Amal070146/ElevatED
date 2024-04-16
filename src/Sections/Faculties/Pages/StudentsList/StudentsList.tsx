@@ -5,6 +5,7 @@ import Table from '../../../../Components/Table/Table';
 import { EditSvg, ClickSvg, DeleteSvg } from './assets/svg';
 import { StoreOwnerColumn } from './services/studentColumn';
 import StudentEditModal from './services/studentEditModal';
+import { getStudentData } from './services/studentApi';
 type Props = {}
 
 export const StudentsList = (_props: Props) => {
@@ -14,7 +15,7 @@ export const StudentsList = (_props: Props) => {
 
  useEffect(() => {
    tableState.handleFetchData(() =>
-     getStoreOwnersData(
+     getStudentData(
        tableState.rowsPerPage,
        tableState.currentPage,
        tableState.searchTerm,
