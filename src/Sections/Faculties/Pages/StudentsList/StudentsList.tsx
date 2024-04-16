@@ -6,6 +6,7 @@ import { EditSvg, ClickSvg, DeleteSvg } from './assets/svg';
 import { StoreOwnerColumn } from './services/studentColumn';
 import StudentEditModal from './services/studentEditModal';
 import { getStudentData } from './services/studentApi';
+
 type Props = {}
 
 export const StudentsList = (_props: Props) => {
@@ -40,7 +41,7 @@ export const StudentsList = (_props: Props) => {
 
  return (
    <div className={styles.Wrapper}>
-     storeOwners
+     <h3>STUDENTS LIST</h3>
      <Table<StudentColumnData>
        keyColumn={"id"}
        columns={StoreOwnerColumn}

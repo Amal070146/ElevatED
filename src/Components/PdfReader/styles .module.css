@@ -1,0 +1,8 @@
+.pdfuploaderSec {
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+.pdfuploaderSec >button{
+    width: 100px
+}
