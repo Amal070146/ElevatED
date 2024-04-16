@@ -3,3 +3,9 @@
     width: 100px;
     height: 100px;
 }
+
+.Wrapper > h3{
+    margin: 30px;
+    color: #0a8677;
+    text-align: left;
+}
