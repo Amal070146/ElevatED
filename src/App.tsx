@@ -25,6 +25,7 @@ import { FacultyApproval } from "./Sections/Administrations/Pages/faculty";
 import { Subjects } from "./Sections/Faculties/Pages/Courses/Subjects";
 import ModalPage from "./Sections/Faculties/Pages/Courses/components/modalPage";
 import { IndividualSubjects } from "./Sections/Faculties/Pages/Courses/components/IndividualSubjects";
+import { StudentsList } from "./Sections/Faculties/Pages/StudentsList/StudentsList";
 
 const App = () => {
   return (
@@ -49,6 +50,7 @@ const App = () => {
           <Route path="profile" element={<Profile />} />
           <Route path="quiz" element={<Quiz />} />
           <Route path="/enablerlist" element={<FacultyApproval />} />
+          <Route path="/studentslist" element={<StudentsList />} />
           <Route path="/managecourses" element={<Subjects />} />
           <Route path="/managecourses/:id" element={<IndividualSubjects />} />
           <Route path="/managecourses/module" element={<ModalPage />} />

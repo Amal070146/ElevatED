@@ -48,7 +48,7 @@ export const PdfReader = () => {
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <input type="file" id="resumeInput" name="resume" />
-      <button onClick={uploadResume}>Upload Resume</button>
+      <button onClick={uploadResume}>Upload Pdf</button>
       {readData?.text && <p style={{ color: "black" }}>{readData.text}</p>}
       {readData?.image_urls &&
         readData.image_urls.map((url, index) => (

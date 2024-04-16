@@ -6,6 +6,7 @@ import {
 	ProgressIcons,
 	SettingsIcons,
 	CoursesIcons,
+	StudentList,
 } from "../../assets/DashboardIcons";
 
 import navimage from "../../assets/navbarImage.png";
@@ -35,7 +36,7 @@ export const Navbar = () => {
 		{
 			title: "Students List",
 			roleToBeChecked: "enabler",
-			icon: DashboardLogo,
+			icon: StudentList,
 		},
 		{
 			title: "Enabler List",

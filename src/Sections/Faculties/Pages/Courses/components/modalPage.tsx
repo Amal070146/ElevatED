@@ -23,11 +23,11 @@ const ModalPage = () => {
       <h1>{module.name}</h1>
       <div>
         <p>{module.description}</p>
-        <p>YT Link : {module.yt_link}</p>
+        <a href={module.yt_link} target="_blank">YT Link : {module.yt_link}</a>
       </div>
       <PdfReader />
     </div>
-  )
+  );
 }
 
 export default ModalPage
