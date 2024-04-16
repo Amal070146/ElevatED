@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { GenerateQA } from "./generateQA";
 import { useModuleStore } from "../../Sections/Faculties/Pages/Courses/components/IndividualSubjects";
+import { MCQQA } from "./mcgQA";
 
 // Define a type for the response data
 type ReadData = {
@@ -60,6 +61,7 @@ export const PdfReader = () => {
           />
         ))}
       <GenerateQA text={readData?.text} />
+      <MCQQA text={readData?.text} />
     </div>
   );
 };

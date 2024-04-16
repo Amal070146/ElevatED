@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState } from "react";
 
 type GenerateQAProps = {
   text?: string;
@@ -11,6 +11,7 @@ type QAPair = {
 
 export const GenerateQA = ({ text }: GenerateQAProps) => {
   const [qaPairs, setQAPairs] = useState<QAPair[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
   const noqs = "2"; // Define the number of questions you want to generate
 
   const handleAskQuestionClick = async () => {
@@ -19,6 +20,7 @@ export const GenerateQA = ({ text }: GenerateQAProps) => {
       return;
     }
 
+    setIsLoading(true); // Start loading
     try {
       const response = await fetch(
         "http://127.0.0.1:8000/quest/longanswergenerate/",
@@ -28,7 +30,7 @@ export const GenerateQA = ({ text }: GenerateQAProps) => {
           body: JSON.stringify({ context: text, noq: noqs }),
         }
       );
-      const data = await response.json(); // Handle response data within async/await
+      const data = await response.json(); // Handle response data
 
       if (data && data.set) {
         const pairs = data.set.map((item: QAPair) => ({
@@ -43,11 +45,15 @@ export const GenerateQA = ({ text }: GenerateQAProps) => {
     } catch (error) {
       console.error("Error fetching data:", error);
     }
+    setIsLoading(false); // End loading
   };
 
   return (
     <div>
-      <button onClick={handleAskQuestionClick}>Ask Long Questions and answers</button>
+      <button onClick={handleAskQuestionClick} disabled={isLoading}>
+        {isLoading ? "Loading..." : "Ask Long Questions and Answers"}
+      </button>
+      {isLoading && <div>Loading...</div>}
       {qaPairs.length > 0 && (
         <ul>
           {qaPairs.map((pair, index) => (
@@ -59,7 +65,9 @@ export const GenerateQA = ({ text }: GenerateQAProps) => {
           ))}
         </ul>
       )}
-      {qaPairs.length === 0 && <p>No questions and answers to display.</p>}
+      {qaPairs.length === 0 && !isLoading && (
+        <p>No questions and answers to display.</p>
+      )}
     </div>
   );
 };
