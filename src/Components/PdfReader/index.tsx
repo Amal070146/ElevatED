@@ -2,6 +2,8 @@ import { useState } from "react";
 import { GenerateQA } from "./generateQA";
 import { useModuleStore } from "../../Sections/Faculties/Pages/Courses/components/IndividualSubjects";
 import { MCQQA } from "./mcgQA";
+import  styles  from "./styles .module.css";
+
 
 // Define a type for the response data
 type ReadData = {
@@ -47,7 +49,7 @@ export const PdfReader = () => {
   }
 
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
+    <div className={styles.pdfuploaderSec} style={{  }}>
       <input type="file" id="resumeInput" name="resume" />
       <button onClick={uploadResume}>Upload Pdf</button>
       {readData?.text && <p style={{ color: "black" }}>{readData.text}</p>}

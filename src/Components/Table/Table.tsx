@@ -4,6 +4,7 @@ import { TbArrowsSort } from "react-icons/tb";
 import Pagination, { PaginationFooter } from "./components/Pagination";
 import { useState } from "react";
 import { RoleCheckerFunction } from "../../Services/RoleChecker";
+import searchIcon from "./components/searchIcon.png";
 
 
 type Action<T> = {
@@ -65,6 +66,7 @@ const Table = <T extends {}>({
     <>
       <div className={styles.tableHeader}>
         <div className={styles.search}>
+          <img className={styles.searchIcon} src={searchIcon} alt="" />
           <input
             type="text"
             placeholder="Search..."
@@ -92,7 +94,7 @@ const Table = <T extends {}>({
             <table>
               <thead>
                 <tr>
-                  <th>#</th>
+                  <th>SI No.</th>
                   {columns.map((column) => (
                     <th
                       key={column.key.toString()}

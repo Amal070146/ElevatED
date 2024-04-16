@@ -18,7 +18,7 @@ const StudentEditModal = (props: Props) => {
     >
       <h1>Edit Store</h1>
       <p>{props.item?.name}</p>
-      <p>{props.item?.address}</p>
+      {/* <p>{props.item?.address}</p> */}
     </Modal>
   );
 };
