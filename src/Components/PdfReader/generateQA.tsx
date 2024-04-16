@@ -10,7 +10,7 @@ export const GenerateQA = ({ text }: GenerateQAProps) => {
     }
 
     try {
-      const response = await fetch("YOUR_BACKEND_ENDPOINT", {
+      const response = await fetch("http://0.0.0.0:8001/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

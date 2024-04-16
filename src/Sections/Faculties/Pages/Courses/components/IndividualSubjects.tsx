@@ -14,6 +14,10 @@ type ModuleStoreType = {
   setModules: (modules: CoursesDB["modules"]) => void;
   module: any;
   setModule: (module: any) => void;
+  pdfImages: string[]
+  setPdfImages: (pdfImages: string[]) => void;
+  pdfText: string
+  setpdfText: (pdfText: string) => void;
 }
 
 export const useModuleStore = create<ModuleStoreType>((set) => ({
@@ -25,6 +29,10 @@ export const useModuleStore = create<ModuleStoreType>((set) => ({
   setModules: (modules) => set({ modules }),
   module: {},
   setModule: (module) => set({ module }),
+  pdfImages: [],
+  setPdfImages: (pdfImages) => set({pdfImages}),
+  pdfText: '',
+  setpdfText: (pdfText) => set({pdfText})
 }));
 
 export const IndividualSubjects = () => {

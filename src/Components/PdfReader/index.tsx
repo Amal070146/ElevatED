@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { GenerateQA } from "./generateQA";
+import { useModuleStore } from "../../Sections/Faculties/Pages/Courses/components/IndividualSubjects";
 
 // Define a type for the response data
 type ReadData = {
@@ -10,6 +11,8 @@ type ReadData = {
 export const PdfReader = () => {
   // Initialize readData with a type annotation
   const [readData, setReadData] = useState<ReadData | undefined>(undefined);
+  const setpdfText = useModuleStore((state) => state.setpdfText)
+  const setPdfImages = useModuleStore((state) => state.setPdfImages)
 
   function uploadResume() {
     const resumeInput = document.getElementById(
@@ -19,7 +22,7 @@ export const PdfReader = () => {
       const formData = new FormData();
       formData.append("pdf_file", resumeInput.files[0]);
 
-      fetch("https://pdf-extracter.vercel.app/pdf/extract/", {
+      fetch("http://127.0.0.1:8000/pdf/extract/", {
         method: "POST",
         body: formData,
       })
@@ -38,6 +41,8 @@ export const PdfReader = () => {
 
   function displayResponse(data: ReadData) {
     setReadData(data);
+    setpdfText(data?.text!)
+    setPdfImages(data.image_urls)
   }
 
   return (
