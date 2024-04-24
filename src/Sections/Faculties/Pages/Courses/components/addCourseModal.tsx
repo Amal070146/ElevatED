@@ -72,7 +72,7 @@ const AddCourseModal = (props: Props) => {
         className={styles.RightContaainer}
         onSubmit={handleSubmit(onSubmit)}
       >
-        <div>
+        <div className={styles.BoxOptions}>
           <label htmlFor="">Course name</label>
           <input
             type="text"
@@ -81,13 +81,23 @@ const AddCourseModal = (props: Props) => {
           />
         </div>
         {errors.name && <p className="error">{errors.name.message}</p>}
-        <button
-          disabled={isSubmitting}
-          type="submit"
-          className={styles.loginBtn}
-        >
-          {isSubmitting ? "Loading..." : "Continue"}
-        </button>
+        <div className={styles.BoxButtons}>
+          <button
+            type="button"
+            id={styles.cancelButton}
+            className={styles.loginBtn}
+            onClick={() => props.onClose()}
+          >
+            Cancel
+          </button>
+          <button
+            disabled={isSubmitting}
+            type="submit"
+            className={styles.loginBtn}
+          >
+            {isSubmitting ? "Loading..." : "Continue"}
+          </button>
+        </div>
         {errors.root && <div className="error">{errors.root.message}</div>}
       </form>
     </Modal>

@@ -51,7 +51,7 @@ export const PdfReader = () => {
   return (
     <div className={styles.pdfuploaderSec} style={{  }}>
       <input type="file" id="resumeInput" name="resume" />
-      <button onClick={uploadResume}>Upload Pdf</button>
+      <button className={styles.uploaderButton} onClick={uploadResume}>Upload Pdf</button>
       {readData?.text && <p style={{ color: "black" }}>{readData.text}</p>}
       {readData?.image_urls &&
         readData.image_urls.map((url, index) => (
@@ -65,5 +65,6 @@ export const PdfReader = () => {
       <GenerateQA text={readData?.text} />
       <MCQQA text={readData?.text} />
     </div>
+    
   );
 };

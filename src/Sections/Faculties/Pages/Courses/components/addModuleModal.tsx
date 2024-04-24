@@ -115,8 +115,8 @@ const AddModuleModal = (props: Props) => {
         className={styles.RightContaainer}
         onSubmit={handleSubmit(onSubmit)}
       >
-        <div>
-          <label htmlFor="">Course name</label>
+        <div className={styles.BoxOptions}>
+          <label htmlFor="">Module name</label>
           <input
             type="text"
             placeholder="Data Structures and Algorithms"
@@ -124,7 +124,7 @@ const AddModuleModal = (props: Props) => {
           />
         </div>
         {errors.name && <p className="error">{errors.name.message}</p>}
-        <div>
+        <div className={styles.BoxOptions}>
           <label htmlFor="">Youtube link</label>
           <input
             type="text"
@@ -133,7 +133,7 @@ const AddModuleModal = (props: Props) => {
           />
         </div>
         {errors.yt_link && <p className="error">{errors.yt_link.message}</p>}
-        <div>
+        <div className={styles.BoxOptions}>
           <label htmlFor="">Description</label>
           <textarea
             placeholder="Description"
@@ -143,20 +143,23 @@ const AddModuleModal = (props: Props) => {
         {errors.description && (
           <p className="error">{errors.description.message}</p>
         )}
-        <button
-          type="button"
-          className={styles.loginBtn}
-          onClick={() => props.onClose()}
-        >
-          Cancel
-        </button>
-        <button
-          disabled={isSubmitting}
-          type="submit"
-          className={styles.loginBtn}
-        >
-          {isSubmitting ? "Loading..." : "Continue"}
-        </button>
+        <div className={styles.BoxButtons}>
+          <button
+            type="button"
+            id={styles.cancelButton}
+            className={styles.loginBtn}
+            onClick={() => props.onClose()}
+          >
+            Cancel
+          </button>
+          <button
+            disabled={isSubmitting}
+            type="submit"
+            className={styles.loginBtn}
+          >
+            {isSubmitting ? "Loading..." : "Continue"}
+          </button>
+        </div>
         {errors.root && <div className="error">{errors.root.message}</div>}
       </form>
     </Modal>

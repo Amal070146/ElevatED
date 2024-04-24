@@ -165,5 +165,6 @@ const Table = <T extends {}>({
     </>
   );
 };
+// }
 
 export default Table;

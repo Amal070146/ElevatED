@@ -68,7 +68,7 @@ export const IndividualSubjects = () => {
     }
   };
   return (
-    <div>
+    <div className={styles.individualPageSec}>
       <div>
         <h1 className={styles.courseHeading}>{data?.name}</h1>
         <div className={styles.courseHeadingWrapper}>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from "./styles .module.css";
 
 type GenerateQAProps = {
   text?: string;
@@ -8,6 +9,7 @@ type QAPair = {
   question: string;
   answer: string;
 };
+
 
 export const GenerateQA = ({ text }: GenerateQAProps) => {
   const [qaPairs, setQAPairs] = useState<QAPair[]>([]);
@@ -49,7 +51,7 @@ export const GenerateQA = ({ text }: GenerateQAProps) => {
   };
 
   return (
-    <div>
+    <div className={styles.pdfSec}>
       <button onClick={handleAskQuestionClick} disabled={isLoading}>
         {isLoading ? "Loading..." : "Ask Long Questions and Answers"}
       </button>
