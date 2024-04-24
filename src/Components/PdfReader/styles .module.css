@@ -1,8 +1,29 @@
 .pdfuploaderSec {
 display: flex;
 flex-direction: column;
-gap: 20px;
+justify-content: center;
+gap: 30px;
+text-align: left;
+padding: 25px 30px;
 }
 .pdfuploaderSec >button{
-    width: 100px
+    width: 100px;
+}
+
+.pdfuploaderSec input{
+    width: 85%;
+    border: 2px solid #a9a8a8;
+    cursor: pointer;
+    padding: 15px;
+}
+
+.uploaderButton{
+    background-color: transparent;
+    color: rgb(39, 114, 84);
+    font-weight: 700;
+    border: 2px solid rgb(39, 114, 84); 
+}
+
+.uploaderButton :hover{
+    background-color:rgb(155, 222, 195) ;
 }

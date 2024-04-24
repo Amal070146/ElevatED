@@ -1,20 +1,20 @@
 .modalOverlay {
-    position: fixed; /* Make the modal overlay fixed position */
+    position: fixed;
+    /* Make the modal overlay fixed position */
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    display: flex; /* Use flexbox to center the modal content */
+    display: flex;
+    /* Use flexbox to center the modal content */
     justify-content: center;
     align-items: center;
-    background-color: rgba(
-        146,
-        146,
-        146,
-        0.11
-    ); /* Dark background with some transparency */
-    backdrop-filter: blur(5px); /* Blur the background behind the overlay */
-    z-index: 9999; /* Make sure it's on top of everything else */
+    background-color: rgba(146,146,146,0.11);
+    /* Dark background with some transparency */
+    backdrop-filter: blur(5px);
+    /* Blur the background behind the overlay */
+    z-index: 9999;
+    /* Make sure it's on top of everything else */
 }
 
 .modalContent {
@@ -135,8 +135,7 @@ button:hover {
 /* Optional: Mobile responsiveness. Adjust as necessary. */
 @media (max-width: 768px) {
     .modalContent {
-        width: 95%; /* Take up more width on smaller screens */
-    }
+        width: 95%; /* Take up more width on smaller screens */}
     .btn_cancel,
     .btn_submit {
         width: 100%;
