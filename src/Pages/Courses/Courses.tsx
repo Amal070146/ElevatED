@@ -11,6 +11,8 @@ import "./styles.css";
 
 import { FreeMode, Pagination } from "swiper/modules";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { supabase } from "../../utils/supabase";
 
 type Course = {
   name: string;
@@ -29,11 +31,27 @@ const ProgressBar = ({ progress }: { progress: string }) => {
 };
 
 export const Courses = () => {
+  const [exploreCoursesData, setExploreCoursesData] = useState<
+    CourseDisplayType[]
+  >([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    let { data: courses, error } = await supabase.from("courses").select("*");
+    if (error) {
+      console.log(error);
+    } else if (courses) {
+      setExploreCoursesData(courses);
+    }
+  };
+
   const data: Course[] = [
     {
       name: "DataBase Management System (DBMS)",
       progress: "20",
-      
     },
     {
       name: "Operating System (OS)",
@@ -56,57 +74,8 @@ export const Courses = () => {
       progress: "50",
     },
   ];
-  const NewCourse = [
-    {
-      name: "Chemistry",
-      description: `"Chemical Symphony: Where Molecules Dance and Reactions Speak."`,
-      author: "Rahul Dev - Delhi Public School, New Delhi",
-      noofmodules: 6,
-    },
-    {
-      name: "Maths",
-      description: `"Unlocking the Beauty of Numbers: Where Logic Meets Imagination."`,
-      author: "Rahul Dev - Delhi Public School, New Delhi",
-      noofmodules: 5,
-    },
-    {
-      name: "Physics",
-      description: `"Unraveling the mysteries of the universe through physics."`,
-      author: "Hari Krishna - Bishop Cotton School, Shimla",
-      noofmodules: 4,
-    },
-    {
-      name: "Geography",
-      description: `"Earth's wonders unfold in geography's diverse landscapes."`,
-      author: "Kevin John - La Martiniere for Boys, Kolkata",
-      noofmodules: 3,
-    },
-    {
-      name: "Chemistry",
-      description: `"Chemical Symphony: Where Molecules Dance and Reactions Speak."`,
-      author: "Rahul Dev - Delhi Public School, New Delhi",
-      noofmodules: 5,
-    },
-    {
-      name: "Maths",
-      description: `"Unlocking the Beauty of Numbers: Where Logic Meets Imagination."`,
-      author: "Rahul Dev - Delhi Public School, New Delhi",
-      noofmodules: 5,
-    },
-    {
-      name: "Physics",
-      description: `"Unraveling the mysteries of the universe through physics."`,
-      author: "Hari Krishna - Bishop Cotton School, Shimla",
-      noofmodules: 5,
-    },
-    {
-      name: "Geography",
-      description: `"Earth's wonders unfold in geography's diverse landscapes."`,
-      author: "Kevin John - La Martiniere for Boys, Kolkata",
-      noofmodules: 5,
-    },
-  ];
-  const navigate = useNavigate()
+
+  const navigate = useNavigate();
   return (
     <div className={styles.BaseCourseSelectWrapper}>
       <div className={styles.TopSet}>
@@ -147,21 +116,21 @@ export const Courses = () => {
           modules={[FreeMode, Pagination]}
           className="CourseSwiper"
         >
-          {NewCourse.map(({ name, description, author, noofmodules }) => {
-            return (
+          {exploreCoursesData
+            .filter((item) => item.modules.length > 0)
+            .map((item: CourseDisplayType) => (
               <SwiperSlide>
-                <div className={styles.newCourseSwiper}>
-                  <h2>{name}</h2> 
-                  <h4>{description}</h4>
-                  <p>{author}</p>
+                <div
+                  className={styles.newCourseSwiper}
+                  onClick={() => navigate(`/detailcourses/${item.id}`)}
+                >
+                  <h2>{item.name}</h2>
                 </div>
-                <h5>{noofmodules} MODULES</h5>
+                <h5>{item.modules.length} MODULES</h5>
               </SwiperSlide>
-            );
-          })}
+            ))}
         </Swiper>
       </div>
     </div>
   );
-        
 };

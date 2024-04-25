@@ -1,64 +1,63 @@
+import { useParams } from "react-router-dom";
 import styles from "./index.module.css";
 import { VideoSvg } from "./svg";
+import { useEffect, useState } from "react";
+import { supabase } from "../../../../utils/supabase";
+import toast from "react-hot-toast";
 
-type Props = {};
+export const DetailCourse = () => {
+  const { id } = useParams();
+  const [course, setCourse] = useState<CourseDisplayType>();
 
-export const DetailCourse = (_props: Props) => {
+  useEffect(() => {
+    featchData();
+  }, []);
+
+  const featchData = async () => {
+    let { data: courses, error } = await supabase
+      .from("courses")
+      .select("*")
+      .eq("id", id)
+      .single();
+    if (error) {
+      toast.error(error.message);
+      throw error.message;
+    } else if (courses) {
+      setCourse(courses);
+    }
+  };
+
   return (
     <div className={styles.Wrapper}>
-      <h2>DataBase Management System</h2>
+      <h2>{course?.name}</h2>
       <div className={styles.Header}>
         <div>
-          <h3>By Antony Davis</h3>
-          <p>
+          <h3>By {course?.user_id}</h3>
+          {/* <p>
             Pre-requisites : <button>MongoDB Query Language</button>{" "}
-          </p>
+          </p> */}
         </div>
         <button>Join</button>
       </div>
       <div className={styles.Content}>
         <div className={styles.Header}>
           <button>All</button>
-          <p>Created : 23 Oct 2024</p>
+          <p>Created : {course?.created_at}</p>
         </div>
         <div className={styles.ModuleContainer}>
           <div className={styles.ModuleWrapper}>
-            <button>
-              <h3>Module 1</h3>
-              <div>
-                <p>PDF</p>
-                <p>Quiz</p>
-              </div>
-            </button>{" "}
-            <button>
-              <h3>Module 2</h3>
-              <div>
-                <p>PDF</p>
-
-                <p>Videos</p>
-                <p>Quiz</p>
-              </div>
-            </button>{" "}
-            <button>
-              <h3>Module 3</h3>
-              <div>
-                <p>PDF</p>
-              </div>
-            </button>{" "}
-            <button>
-              <h3>Module 4</h3>
-              <div>
-                <p>PDF</p>
-                <p>Videos</p>
-              </div>
-            </button>
-            <button>
-              <h3>Module 5</h3>
-              <div>
-                <p>PDF</p>
-                <p>Quiz</p>
-              </div>
-            </button>
+            {course &&
+              course.modules &&
+              course.modules.length > 0 &&
+              course.modules.map((module) => (
+                <button key={module.id}>
+                  <h3>{module.name}</h3>
+                  <div>
+                    <p>{module.yt_link}</p>
+                    <p>{module.description}</p>
+                  </div>
+                </button>
+              ))}
           </div>
           <div className={styles.RightPopUpModuleContainer}>
             <div className={styles.Header}>
