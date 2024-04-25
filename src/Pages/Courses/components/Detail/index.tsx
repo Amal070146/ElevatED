@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { supabase } from "../../../../utils/supabase";
 import toast from "react-hot-toast";
 import Modal from "../../../../Components/modal";
-import { Courses } from "../../Courses";
 
 export const DetailCourse = () => {
   const { id } = useParams();

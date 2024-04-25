@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import useTableState from '../../../../Components/Table/services/hooks/useTableState';
 import styles from './StudentsList.module.css'
 import Table from '../../../../Components/Table/Table';
-import { EditSvg, ClickSvg, DeleteSvg } from './assets/svg';
+import { EditSvg } from './assets/svg';
 import { StoreOwnerColumn } from './services/studentColumn';
 import StudentEditModal from './services/studentEditModal';
 import { getStudentData } from './services/studentApi';
@@ -10,9 +10,9 @@ import { getStudentData } from './services/studentApi';
 type Props = {}
 
 export const StudentsList = (_props: Props) => {
- const tableState = useTableState<StudentColumnData>();
+ const tableState = useTableState<UserInfo>();
  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
- const [item, setItem] = useState<StudentColumnData>();
+ const [item, setItem] = useState<UserInfo>();
 
  useEffect(() => {
    tableState.handleFetchData(() =>
@@ -30,11 +30,11 @@ export const StudentsList = (_props: Props) => {
    tableState.sortColumn,
  ]);
 
- function handleClick(item: StudentColumnData): void {
+ function handleClick(item: UserInfo): void {
    console.log(item);
  }
 
- const handleEditClick = (item: StudentColumnData) => {
+ const handleEditClick = (item: UserInfo) => {
    setItem(item);
    setIsEditModalOpen(!isEditModalOpen);
  };
@@ -42,7 +42,7 @@ export const StudentsList = (_props: Props) => {
  return (
    <div className={styles.Wrapper}>
      <h3>STUDENTS LIST</h3>
-     <Table<StudentColumnData>
+     <Table<UserInfo>
        keyColumn={"id"}
        columns={StoreOwnerColumn}
        tableState={tableState}
@@ -52,20 +52,6 @@ export const StudentsList = (_props: Props) => {
            icon: <EditSvg />,
            onClick: (item) => {
              handleEditClick(item);
-           },
-           title: "View Details",
-         },
-         {
-           icon: <ClickSvg />,
-           onClick: (item) => {
-             handleClick(item);
-           },
-           title: "View Details",
-         },
-         {
-           icon: <DeleteSvg />,
-           onClick: (item) => {
-             handleClick(item);
            },
            title: "View Details",
          },

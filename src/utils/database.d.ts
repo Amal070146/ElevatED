@@ -37,3 +37,21 @@ interface LongQA {
   answer: string;
   question: string;
 }
+
+
+interface UserInfo {
+  id: string;
+  created_at: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone: string;
+  district: string;
+  degree: string;
+  department: string;
+  institution_id: string;
+  is_student: boolean;
+  yog: string;
+  allow_mail: boolean;
+  working_institute_id: string | null;
+}

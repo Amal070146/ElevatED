@@ -1,8 +1,15 @@
-export const StoreOwnerColumn: TableColumn<StudentColumnData>[] = [
-  { key: "name", header: "Student name", isSortable: true },
-  { key: "email_id", header: "email id", isSortable: true },
-  { key: "courese_entrolled", header: "Coureses entrolled",isSortable: true,},
+export const StoreOwnerColumn: TableColumn<UserInfo>[] = [
+  // { key: "name", header: "Student name", isSortable: true },
+  // { key: "email_id", header: "email id", isSortable: true },
+  // { key: "courese_entrolled", header: "Coureses entrolled",isSortable: true,},
   // { key: "status", header: "Status", isSortable: true },
   // { key: "plan", header: "Plan", isSortable: true },
   // { key: "phone", header: "Contact", isSortable: true },
+  { key: "first_name", header: "First Name", isSortable: false },
+  { key: "last_name", header: "Last Name", isSortable: false },
+  { key: "email", header: "Email", isSortable: false },
+  { key: "phone", header: "Phone", isSortable: false },
+  { key: "degree", header: "Degree", isSortable: false },
+  { key: "department", header: "Department", isSortable: false },
+  { key: "yog", header: "YOG", isSortable: false },
 ];

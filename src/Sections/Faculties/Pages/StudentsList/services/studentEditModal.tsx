@@ -4,7 +4,7 @@ import Modal from "../Modal/Modal";
 type Props = {
   isOpen: boolean;
   onClose: () => void;
-  item?: StudentColumnData;
+  item?: UserInfo;
 };
 
 const StudentEditModal = (props: Props) => {
@@ -17,7 +17,7 @@ const StudentEditModal = (props: Props) => {
       onDone={() => console.log("done")}
     >
       <h1>Edit Store</h1>
-      <p>{props.item?.name}</p>
+      <p>{props.item?.first_name}</p>
       {/* <p>{props.item?.address}</p> */}
     </Modal>
   );
