@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GenerateQA } from "./generateQA";
 import { useModuleStore } from "../../Sections/Faculties/Pages/Courses/components/IndividualSubjects";
 import { MCQQA } from "./mcgQA";
@@ -19,6 +19,29 @@ export const PdfReader = () => {
   const setPdfImages = useModuleStore((state) => state.setPdfImages);
   const courseID = useModuleStore((state) => state.courseID);
 
+  const setModules = useModuleStore((state) => state.setModules);
+  const modules = useModuleStore.getState().modules;
+  const moduleID = useModuleStore.getState().moduleID;
+
+  const [refresh, setRefresh] = useState(false);
+
+  useEffect(() => {
+    fetchData();
+  }, [refresh]);
+
+  const fetchData = async () => {
+    let { data: courses, error } = await supabase
+      .from("courses")
+      .select("*")
+      .eq("id", courseID)
+      .single();
+    if (error) {
+      throw error.message;
+    } else if (courses) {
+      setModules(courses.modules);
+      return courses;
+    }
+  };
   function uploadResume() {
     const resumeInput = document.getElementById(
       "resumeInput"
@@ -44,16 +67,16 @@ export const PdfReader = () => {
     }
   }
 
-  async function displayResponse (data: ReadData) {
+  async function displayResponse(data: ReadData) {
     setReadData(data);
     setpdfText(data?.text!);
     setPdfImages(data.image_urls);
 
-    const module = useModuleStore.getState().module;
-    const modules = useModuleStore.getState().modules;
-
-    const updatedModule = {...module, pdf: data};
-    const filteredModules = modules.filter((mod) => mod.id !== updatedModule.id);
+    const module = modules.filter((mod) => mod.id === moduleID);
+    const updatedModule = { ...module[0], pdf: data };
+    const filteredModules = modules.filter(
+      (mod) => mod.id !== updatedModule.id
+    );
     const updatedModules = [...filteredModules, updatedModule];
 
     const { data: updatedData, error } = await supabase
@@ -61,11 +84,12 @@ export const PdfReader = () => {
       .update({ modules: updatedModules })
       .eq("id", courseID)
       .select();
-      if (error) {
-        toast.error(error.message);
-      } else if (updatedData) {
-        toast.success("PDF added to Module");
-      }
+    if (error) {
+      toast.error(error.message);
+    } else if (updatedData) {
+      toast.success("PDF added to Module");
+      setRefresh(!refresh);
+    }
   }
 
   return (

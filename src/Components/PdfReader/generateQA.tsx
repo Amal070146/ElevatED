@@ -1,5 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./styles .module.css";
+import { supabase } from "../../utils/supabase";
+import { useModuleStore } from "../../Sections/Faculties/Pages/Courses/components/IndividualSubjects";
+import toast from "react-hot-toast";
 
 type GenerateQAProps = {
   text?: string;
@@ -10,13 +13,36 @@ type QAPair = {
   answer: string;
 };
 
-
 export const GenerateQA = ({ text }: GenerateQAProps) => {
   const [qaPairs, setQAPairs] = useState<QAPair[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const noqs = "2"; // Define the number of questions you want to generate
+  const modules = useModuleStore.getState().modules;
+  const courseID = useModuleStore.getState().courseID;
+  const setModules = useModuleStore((state) => state.setModules);
+  const [refresh, setRefresh] = useState(false);
+  const moduleID = useModuleStore.getState().moduleID;
+
+  useEffect(() => {
+    fetchData();
+  }, [refresh]);
+
+  const fetchData = async () => {
+    let { data: courses, error } = await supabase
+      .from("courses")
+      .select("*")
+      .eq("id", courseID)
+      .single();
+    if (error) {
+      throw error.message;
+    } else if (courses) {
+      setModules(courses.modules);
+      return courses;
+    }
+  };
 
   const handleAskQuestionClick = async () => {
+    setRefresh(!refresh);
     if (!text) {
       console.error("No text available to send");
       return;
@@ -39,7 +65,8 @@ export const GenerateQA = ({ text }: GenerateQAProps) => {
           question: item.question,
           answer: item.answer,
         }));
-        setQAPairs(pairs); // Update state with new data
+        setQAPairs(pairs);
+        savetoDB(pairs);
       } else {
         console.log("No data found");
         setQAPairs([]); // Clear previous data if no new data found
@@ -48,6 +75,25 @@ export const GenerateQA = ({ text }: GenerateQAProps) => {
       console.error("Error fetching data:", error);
     }
     setIsLoading(false); // End loading
+  };
+
+  const savetoDB = async (pairs: QAPair[]) => {
+    const module = modules.filter((mod) => mod.id === moduleID);
+    const updatedModule = { ...module[0], longQA: pairs };
+    const filteredModules = modules.filter(
+      (mod) => mod.id !== updatedModule.id
+    );
+    const updatedModules = [...filteredModules, updatedModule];
+    const { data: updatedData, error } = await supabase
+      .from("courses")
+      .update({ modules: updatedModules })
+      .eq("id", courseID)
+      .select();
+    if (error) {
+      toast.error(error.message);
+    } else if (updatedData) {
+      toast.success("Long Questions added to Module");
+    }
   };
 
   return (
