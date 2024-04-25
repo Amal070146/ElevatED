@@ -73,7 +73,7 @@ export const DetailCourse = () => {
               <button>Video</button>
               <button onClick={() => setSection("pdf")}>PDF</button>
               <button onClick={() => setSection("mcq")}>MCQ</button>
-              <button>Long QA</button>
+              <button onClick={() => setSection("longqa")}>Long QA</button>
             </div>
             <div className={styles.VideosPDF}>
               <Link to={course?.modules[moduleIndex].yt_link!} target="_blank" rel="noreferrer">
@@ -110,13 +110,30 @@ export const DetailCourse = () => {
             <div>
               {course?.modules[moduleIndex]?.mcq.map((item, index) => (
                 <div key={index}>
-                  <h2><b>Question :</b>{item.question}</h2>
+                  <h4><b>Question :</b>{item.question}</h4>
                   <ul>
                     {item.options.map((option) => (
                       <li>{option}</li>
                     ))}
                   </ul>
                   <p><b>Correct Answer :</b>{item.correctAnswer}</p>
+                </div>
+              ))}
+            </div>
+          </Modal>
+          <Modal
+            isOpen={section === "longqa"}
+            onClose={() => {
+              setSection("video");
+            }}
+            title={"Long Questions and Answers"}
+            type={"success"}
+          >
+            <div>
+              {course?.modules[moduleIndex]?.longQA.map((item, index) => (
+                <div key={index}>
+                  <h4><b>Question :</b>{item.question}</h4>
+                  <p><b>Answer :</b>{item.answer}</p>
                 </div>
               ))}
             </div>
