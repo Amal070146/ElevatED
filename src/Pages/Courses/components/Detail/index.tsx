@@ -72,11 +72,11 @@ export const DetailCourse = () => {
             <div className={styles.Filter}>
               <button>Video</button>
               <button onClick={() => setSection("pdf")}>PDF</button>
-              <button>MCQ</button>
+              <button onClick={() => setSection("mcq")}>MCQ</button>
               <button>Long QA</button>
             </div>
             <div className={styles.VideosPDF}>
-              <Link to={course?.modules[moduleIndex].yt_link!}>
+              <Link to={course?.modules[moduleIndex].yt_link!} target="_blank" rel="noreferrer">
                 <VideoSvg />
                 <p>Video 1</p>
               </Link>
@@ -108,11 +108,16 @@ export const DetailCourse = () => {
             type={"success"}
           >
             <div>
-              <h3>Text</h3>
-              <p>{course?.modules[moduleIndex]?.pdf?.text}</p>
-              <h3>Images</h3>
-              {course?.modules[moduleIndex]?.pdf?.image_urls.map((image) => (
-                <img src={image} alt="" />
+              {course?.modules[moduleIndex]?.mcq.map((item, index) => (
+                <div key={index}>
+                  <h2><b>Question :</b>{item.question}</h2>
+                  <ul>
+                    {item.options.map((option) => (
+                      <li>{option}</li>
+                    ))}
+                  </ul>
+                  <p><b>Correct Answer :</b>{item.correctAnswer}</p>
+                </div>
               ))}
             </div>
           </Modal>
