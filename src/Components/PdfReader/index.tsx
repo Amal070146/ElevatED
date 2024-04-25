@@ -2,8 +2,9 @@ import { useState } from "react";
 import { GenerateQA } from "./generateQA";
 import { useModuleStore } from "../../Sections/Faculties/Pages/Courses/components/IndividualSubjects";
 import { MCQQA } from "./mcgQA";
-import  styles  from "./styles .module.css";
-
+import styles from "./styles .module.css";
+import { supabase } from "../../utils/supabase";
+import toast from "react-hot-toast";
 
 // Define a type for the response data
 type ReadData = {
@@ -14,8 +15,9 @@ type ReadData = {
 export const PdfReader = () => {
   // Initialize readData with a type annotation
   const [readData, setReadData] = useState<ReadData | undefined>(undefined);
-  const setpdfText = useModuleStore((state) => state.setpdfText)
-  const setPdfImages = useModuleStore((state) => state.setPdfImages)
+  const setpdfText = useModuleStore((state) => state.setpdfText);
+  const setPdfImages = useModuleStore((state) => state.setPdfImages);
+  const courseID = useModuleStore((state) => state.courseID);
 
   function uploadResume() {
     const resumeInput = document.getElementById(
@@ -42,16 +44,36 @@ export const PdfReader = () => {
     }
   }
 
-  function displayResponse(data: ReadData) {
+  async function displayResponse (data: ReadData) {
     setReadData(data);
-    setpdfText(data?.text!)
-    setPdfImages(data.image_urls)
+    setpdfText(data?.text!);
+    setPdfImages(data.image_urls);
+
+    const module = useModuleStore.getState().module;
+    const modules = useModuleStore.getState().modules;
+
+    const updatedModule = {...module, pdf: data};
+    const filteredModules = modules.filter((mod) => mod.id !== updatedModule.id);
+    const updatedModules = [...filteredModules, updatedModule];
+
+    const { data: updatedData, error } = await supabase
+      .from("courses")
+      .update({ modules: updatedModules })
+      .eq("id", courseID)
+      .select();
+      if (error) {
+        toast.error(error.message);
+      } else if (updatedData) {
+        toast.success("PDF added to Module");
+      }
   }
 
   return (
-    <div className={styles.pdfuploaderSec} style={{  }}>
+    <div className={styles.pdfuploaderSec} style={{}}>
       <input type="file" id="resumeInput" name="resume" />
-      <button className={styles.uploaderButton} onClick={uploadResume}>Upload Pdf</button>
+      <button className={styles.uploaderButton} onClick={uploadResume}>
+        Upload Pdf
+      </button>
       {readData?.text && <p style={{ color: "black" }}>{readData.text}</p>}
       {readData?.image_urls &&
         readData.image_urls.map((url, index) => (
@@ -65,6 +87,5 @@ export const PdfReader = () => {
       <GenerateQA text={readData?.text} />
       <MCQQA text={readData?.text} />
     </div>
-    
   );
 };
