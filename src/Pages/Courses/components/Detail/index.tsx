@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "../../../../utils/supabase";
 import toast from "react-hot-toast";
 import Modal from "../../../../Components/modal";
+import { Courses } from "../../Courses";
 
 export const DetailCourse = () => {
   const { id } = useParams();
@@ -76,7 +77,11 @@ export const DetailCourse = () => {
               <button onClick={() => setSection("longqa")}>Long QA</button>
             </div>
             <div className={styles.VideosPDF}>
-              <Link to={course?.modules[moduleIndex].yt_link!} target="_blank" rel="noreferrer">
+              <Link
+                to={course?.modules[moduleIndex].yt_link!}
+                target="_blank"
+                rel="noreferrer"
+              >
                 <VideoSvg />
                 <p>Video 1</p>
               </Link>
@@ -99,47 +104,70 @@ export const DetailCourse = () => {
               ))}
             </div>
           </Modal>
-          <Modal
-            isOpen={section === "mcq"}
-            onClose={() => {
-              setSection("video");
-            }}
-            title={"MCQ"}
-            type={"success"}
-          >
-            <div>
-              {course?.modules[moduleIndex]?.mcq.map((item, index) => (
-                <div key={index}>
-                  <h4><b>Question :</b>{item.question}</h4>
-                  <ul>
-                    {item.options.map((option) => (
-                      <li>{option}</li>
+          {course?.modules &&
+            course?.modules[moduleIndex]?.mcq &&
+            course?.modules[moduleIndex]?.mcq.length > 0 && (
+              <Modal
+                isOpen={section === "mcq"}
+                onClose={() => {
+                  setSection("video");
+                }}
+                title={"MCQ"}
+                type={"success"}
+              >
+                <div>
+                  {course &&
+                    course.modules &&
+                    course.modules.length > 0 &&
+                    course?.modules[moduleIndex]?.mcq &&
+                    course?.modules[moduleIndex]?.mcq.length > 0 &&
+                    course?.modules[moduleIndex]?.mcq.map((item, index) => (
+                      <div key={index}>
+                        <h4>
+                          <b>Question :</b>
+                          {item.question}
+                        </h4>
+                        <ul>
+                          {item.options.map((option) => (
+                            <li>{option}</li>
+                          ))}
+                        </ul>
+                        <p>
+                          <b>Correct Answer :</b>
+                          {item.correctAnswer}
+                        </p>
+                      </div>
                     ))}
-                  </ul>
-                  <p><b>Correct Answer :</b>{item.correctAnswer}</p>
                 </div>
-              ))}
-            </div>
-          </Modal>
-          <Modal
-            isOpen={section === "longqa"}
-            onClose={() => {
-              setSection("video");
-            }}
-            title={"Long Questions and Answers"}
-            type={"success"}
-          >
-            <div>
-              {course?.modules[moduleIndex]?.longQA.map((item, index) => (
-                <div key={index}>
-                  <h4><b>Question :</b>{item.question}</h4>
-                  <p><b>Answer :</b>{item.answer}</p>
+              </Modal>
+            )}
+          {course?.modules &&
+            course?.modules[moduleIndex]?.longQA &&
+            course?.modules[moduleIndex]?.longQA.length > 0 && (
+              <Modal
+                isOpen={section === "longqa"}
+                onClose={() => {
+                  setSection("video");
+                }}
+                title={"Long Questions and Answers"}
+                type={"success"}
+              >
+                <div>
+                  {course?.modules[moduleIndex]?.longQA.map((item, index) => (
+                    <div key={index}>
+                      <h4>
+                        <b>Question :</b>
+                        {item.question}
+                      </h4>
+                      <p>
+                        <b>Answer :</b>
+                        {item.answer}
+                      </p>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </Modal>
-
-
+              </Modal>
+            )}
 
           {/* <div className={styles.RightPopUpMentorDetailsContainer}>
             <h3>Mentor</h3>
