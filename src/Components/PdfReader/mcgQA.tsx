@@ -1,4 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useModuleStore } from "../../Sections/Faculties/Pages/Courses/components/IndividualSubjects";
+import { supabase } from "../../utils/supabase";
+import toast from "react-hot-toast";
 
 type MCQQAProps = {
   text?: string;
@@ -13,8 +16,32 @@ type QAPair = {
 export const MCQQA = ({ text }: MCQQAProps) => {
   const [qaPairs, setQAPairs] = useState<QAPair[]>([]);
   const noqs = "2"; // Define the number of questions you want to generate
+  const modules = useModuleStore.getState().modules;
+  const courseID = useModuleStore.getState().courseID;
+  const setModules = useModuleStore((state) => state.setModules);
+  const [refresh, setRefresh] = useState(false);
+  const moduleID = useModuleStore.getState().moduleID;
+
+  useEffect(() => {
+    fetchData();
+  }, [refresh]);
+
+  const fetchData = async () => {
+    let { data: courses, error } = await supabase
+      .from("courses")
+      .select("*")
+      .eq("id", courseID)
+      .single();
+    if (error) {
+      throw error.message;
+    } else if (courses) {
+      setModules(courses.modules);
+      return courses;
+    }
+  };
 
   const handleAskQuestionClick = async () => {
+    setRefresh(!refresh);
     if (!text) {
       console.error("No text available to send");
       return;
@@ -35,12 +62,32 @@ export const MCQQA = ({ text }: MCQQAProps) => {
           correctAnswer: item.correct_answer,
         }));
         setQAPairs(pairs); // Update state with new data
+        savetoDB(pairs);
       } else {
         console.log("No data found");
         setQAPairs([]); // Clear previous data if no new data found
       }
     } catch (error) {
       console.error("Error fetching data:", error);
+    }
+  };
+
+  const savetoDB = async (pairs: any[]) => {
+    const module = modules.filter((mod) => mod.id === moduleID);
+    const updatedModule = { ...module[0], mcq: pairs };
+    const filteredModules = modules.filter(
+      (mod) => mod.id !== updatedModule.id
+    );
+    const updatedModules = [...filteredModules, updatedModule];
+    const { data: updatedData, error } = await supabase
+      .from("courses")
+      .update({ modules: updatedModules })
+      .eq("id", courseID)
+      .select();
+    if (error) {
+      toast.error(error.message);
+    } else if (updatedData) {
+      toast.success("MCQ added to Module");
     }
   };
 
