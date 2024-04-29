@@ -74,6 +74,9 @@
   border-top: 25px solid #8a17d0cc;
   padding: 20px 20px;
   min-width: 180px;
+  min-height: 170px;
+  text-transform: capitalize;
+  cursor: pointer;
 }
 
 .ModuleContainer .ModuleWrapper > button > div {
@@ -128,6 +131,21 @@
   flex-wrap: wrap;
 }
 
+.filterOpt{
+  background-color:#d9f1ee;
+  border:2px #0a8677;
+  color: #0a8677;
+}
+
+.filterOpt :hover{
+  background-color: #0a8677;
+  color: white;
+}
+
+.Filter .filterVideo{
+  background-color: #407bff;
+}
+
 
 .ModuleContainer .VideosPDF{
     display: flex;
@@ -142,4 +160,9 @@
     flex-direction: column;
     gap: 10px;
     align-items: center;
+}
+
+.moduleDescrBox{
+  display: flex;
+  flex-direction:column;
 }
