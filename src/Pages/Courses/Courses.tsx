@@ -19,6 +19,16 @@ type Course = {
   progress: string;
 };
 
+type User = {
+  id: string;
+  first_name: string;
+  last_name: string;
+};
+
+interface UserMap {
+  [key: string]: User; // Now using string keys
+}
+
 const ProgressBar = ({ progress }: { progress: string }) => {
   return (
     <div className={styles.ProgressBar}>
@@ -34,9 +44,10 @@ export const Courses = () => {
   const [exploreCoursesData, setExploreCoursesData] = useState<
     CourseDisplayType[]
   >([]);
-
+  const [users, setUsers] = useState<UserMap>({});
   useEffect(() => {
     fetchData();
+    fetchUserData();
   }, []);
 
   const fetchData = async () => {
@@ -49,14 +60,18 @@ export const Courses = () => {
   };
 
   const fetchUserData = async () => {
-    let { data: courses, error } = await supabase.from("users").select("*");
-    if (error) {
-      console.log(error);
-    } else if (courses) {
-      setExploreCoursesData(courses);
+    let { data, error } = await supabase
+      .from("users")
+      .select("id, first_name, last_name");
+    if (data) {
+      const usersMap = data.reduce((acc: UserMap, user: User) => {
+        acc[user.id] = user; // user.id is a string, matches keys in UserMap
+        return acc;
+      }, {} as UserMap); // Casting the initial value as UserMap
+      setUsers(usersMap);
     }
+    if (error) console.error("Fetch users error:", error.message);
   };
-
 
   const data: Course[] = [
     {
@@ -112,6 +127,7 @@ export const Courses = () => {
           })}
         </div>
       </div>
+      <div></div>
       <div className={styles.BottonSet}>
         <h1>New Courses To Explore </h1>
 
@@ -137,7 +153,13 @@ export const Courses = () => {
                   <h2>{item.name}</h2>
                 </div>
                 <h5>{item.modules.length} MODULES</h5>
-                <h3>{item.user_id}</h3>
+                <h3>
+                  {users[item.user_id]
+                    ? `${users[item.user_id].first_name} ${
+                        users[item.user_id].last_name
+                      }`
+                    : "User not found"}
+                </h3>
               </SwiperSlide>
             ))}
         </Swiper>

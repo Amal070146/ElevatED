@@ -100,7 +100,7 @@ export const Dashboard = (_props: Props) => {
         <div>
           <h3>DASHBOARD</h3>
           <div>
-            <h1>Welcome, Amal C Paulson </h1>
+            <h1>Welcome, </h1>
             <p>Your Journey with elevatEd, an efficient learning</p>
           </div>
         </div>

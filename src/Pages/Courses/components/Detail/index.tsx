@@ -6,14 +6,24 @@ import { supabase } from "../../../../utils/supabase";
 import toast from "react-hot-toast";
 import Modal from "../../../../Components/modal";
 
+type User = {
+  id: string;
+  first_name: string;
+  last_name: string;
+};
+
+interface UserMap {
+  [key: string]: User; // Now using string keys
+}
 export const DetailCourse = () => {
   const { id } = useParams();
   const [course, setCourse] = useState<CourseDisplayType>();
   const [moduleIndex, setModuleIndex] = useState(0);
   const [section, setSection] = useState("video");
-
+  const [users, setUsers] = useState<UserMap>({});
   useEffect(() => {
     featchData();
+    fetchUserData();
   }, []);
 
   const featchData = async () => {
@@ -29,13 +39,35 @@ export const DetailCourse = () => {
       setCourse(courses);
     }
   };
+  const fetchUserData = async () => {
+    let { data, error } = await supabase
+      .from("users")
+      .select("id, first_name, last_name");
+    if (data) {
+      const usersMap = data.reduce((acc: UserMap, user: User) => {
+        acc[user.id] = user; // user.id is a string, matches keys in UserMap
+        return acc;
+      }, {} as UserMap); // Casting the initial value as UserMap
+      setUsers(usersMap);
+    }
+    if (error) console.error("Fetch users error:", error.message);
+  };
 
   return (
     <div className={styles.Wrapper}>
       <h2>{course?.name}</h2>
       <div className={styles.Header}>
         <div>
-          <h3>By {course?.user_id}</h3>
+          <h4 style={{ color: "grey", display: "flex" }}>
+            By&nbsp;
+            <h3 style={{ color: "black" }}>
+              {course && course.user_id && users[course.user_id]
+                ? `${users[course.user_id].first_name} ${
+                    users[course.user_id].last_name
+                  }`
+                : "User not found"}
+            </h3>
+          </h4>
           {/* <p>
             Pre-requisites : <button>MongoDB Query Language</button>{" "}
           </p> */}
@@ -70,10 +102,30 @@ export const DetailCourse = () => {
               </button> */}
             </div>
             <div className={styles.Filter}>
-              <button className={styles.filterOpt} id={styles.filterVideo} >Video</button>
-              <button className={styles.filterOpt} id={styles.filterPDF} onClick={() => setSection("pdf")}>PDF</button>
-              <button className={styles.filterOpt} id={styles.filterMCQ} onClick={() => setSection("mcq")}>MCQ</button>
-              <button className={styles.filterOpt} id={styles.filterlongQA} onClick={() => setSection("longqa")}>Long QA</button>
+              <button className={styles.filterOpt} id={styles.filterVideo}>
+                Video
+              </button>
+              <button
+                className={styles.filterOpt}
+                id={styles.filterPDF}
+                onClick={() => setSection("pdf")}
+              >
+                PDF
+              </button>
+              <button
+                className={styles.filterOpt}
+                id={styles.filterMCQ}
+                onClick={() => setSection("mcq")}
+              >
+                MCQ
+              </button>
+              <button
+                className={styles.filterOpt}
+                id={styles.filterlongQA}
+                onClick={() => setSection("longqa")}
+              >
+                Long QA
+              </button>
             </div>
             <div className={styles.VideosPDF}>
               <Link
