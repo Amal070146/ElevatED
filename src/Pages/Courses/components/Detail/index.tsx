@@ -55,7 +55,7 @@ export const DetailCourse = () => {
               course.modules.map((module, index) => (
                 <button key={module.id} onClick={() => setModuleIndex(index)}>
                   <h3>{module.name}</h3>
-                  <div>
+                  <div className={styles.moduleDescrBox}>
                     <p>{module.yt_link}</p>
                     <p>{module.description}</p>
                   </div>
@@ -70,10 +70,10 @@ export const DetailCourse = () => {
               </button> */}
             </div>
             <div className={styles.Filter}>
-              <button>Video</button>
-              <button onClick={() => setSection("pdf")}>PDF</button>
-              <button onClick={() => setSection("mcq")}>MCQ</button>
-              <button onClick={() => setSection("longqa")}>Long QA</button>
+              <button className={styles.filterOpt} id={styles.filterVideo} >Video</button>
+              <button className={styles.filterOpt} id={styles.filterPDF} onClick={() => setSection("pdf")}>PDF</button>
+              <button className={styles.filterOpt} id={styles.filterMCQ} onClick={() => setSection("mcq")}>MCQ</button>
+              <button className={styles.filterOpt} id={styles.filterlongQA} onClick={() => setSection("longqa")}>Long QA</button>
             </div>
             <div className={styles.VideosPDF}>
               <Link

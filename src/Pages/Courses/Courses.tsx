@@ -48,6 +48,16 @@ export const Courses = () => {
     }
   };
 
+  const fetchUserData = async () => {
+    let { data: courses, error } = await supabase.from("users").select("*");
+    if (error) {
+      console.log(error);
+    } else if (courses) {
+      setExploreCoursesData(courses);
+    }
+  };
+
+
   const data: Course[] = [
     {
       name: "DataBase Management System (DBMS)",
@@ -127,6 +137,7 @@ export const Courses = () => {
                   <h2>{item.name}</h2>
                 </div>
                 <h5>{item.modules.length} MODULES</h5>
+                <h3>{item.user_id}</h3>
               </SwiperSlide>
             ))}
         </Swiper>
