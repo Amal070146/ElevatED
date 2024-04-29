@@ -17,6 +17,8 @@ import { supabase } from "../../utils/supabase";
 type Course = {
   name: string;
   progress: string;
+  colorbase:string,
+  colorfront:string,
 };
 
 type User = {
@@ -29,12 +31,13 @@ interface UserMap {
   [key: string]: User; // Now using string keys
 }
 
-const ProgressBar = ({ progress }: { progress: string }) => {
+const ProgressBar = ({ progress, colorbase, colorfront }: { progress: string , colorbase:string,
+colorfront:string }) => {
   return (
-    <div className={styles.ProgressBar}>
+    <div className={styles.ProgressBar} style={{backgroundColor:colorbase}}>
       <div
         className={styles.ProgressBarFill}
-        style={{ width: `${progress}%` }}
+        style={{ width: `${progress}%`,backgroundColor:colorfront }}
       ></div>
     </div>
   );
@@ -77,26 +80,38 @@ export const Courses = () => {
     {
       name: "DataBase Management System (DBMS)",
       progress: "20",
+      colorbase:"	#F08080",
+      colorfront:"red",
     },
     {
       name: "Operating System (OS)",
       progress: "30",
+      colorbase:"#000",
+      colorfront:"#fff000",
     },
     {
       name: "Compiler Design (CD)",
       progress: "10",
+      colorbase:"#000",
+      colorfront:"#fff000",
     },
     {
       name: "DataBase Management System (DBMS)",
       progress: "70",
+      colorbase:"#000",
+      colorfront:"#fff000",
     },
     {
       name: "DataBase Management System (DBMS)",
       progress: "100",
+      colorbase:"#000",
+      colorfront:"#fff000",
     },
     {
       name: "DataBase Management System (DBMS)",
       progress: "50",
+      colorbase:"#000",
+      colorfront:"#fff000",
     },
   ];
 
@@ -112,7 +127,7 @@ export const Courses = () => {
           </h2>
         </div>
         <div className={styles.courseWrap}>
-          {data.map(({ name, progress }) => {
+          {data.map(({ name, progress,colorbase,colorfront }) => {
             return (
               <div
                 key={name}
@@ -120,7 +135,7 @@ export const Courses = () => {
               >
                 <p>{name}</p>
                 <div className={styles.Line}></div>
-                <ProgressBar progress={progress} />
+                <ProgressBar progress={progress}  colorbase={colorbase} colorfront={colorfront}/>
                 <p>{`${progress}%`} Completed</p>
               </div>
             );
