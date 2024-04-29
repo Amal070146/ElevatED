@@ -21,6 +21,7 @@ export const MCQQA = ({ text }: MCQQAProps) => {
   const setModules = useModuleStore((state) => state.setModules);
   const [refresh, setRefresh] = useState(false);
   const moduleID = useModuleStore.getState().moduleID;
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     fetchData();
@@ -46,7 +47,7 @@ export const MCQQA = ({ text }: MCQQAProps) => {
       console.error("No text available to send");
       return;
     }
-
+    setIsLoading(true); // Start loading
     try {
       const response = await fetch("http://127.0.0.1:8000/quest/mcq/", {
         method: "POST",
@@ -70,6 +71,7 @@ export const MCQQA = ({ text }: MCQQAProps) => {
     } catch (error) {
       console.error("Error fetching data:", error);
     }
+    setIsLoading(false); // End loading
   };
 
   const savetoDB = async (pairs: any[]) => {
@@ -93,7 +95,10 @@ export const MCQQA = ({ text }: MCQQAProps) => {
 
   return (
     <div>
-      <button onClick={handleAskQuestionClick}>Ask MCQ Questions</button>
+      {/* <button onClick={handleAskQuestionClick}>Ask MCQ Questions</button> */}
+      <button onClick={handleAskQuestionClick} disabled={isLoading}>
+        {isLoading ? "Loading..." : "Ask MCQ Questions"}
+      </button>
       {qaPairs.length > 0 && (
         <ul>
           {qaPairs.map((pair, index) => (
@@ -111,7 +116,7 @@ export const MCQQA = ({ text }: MCQQAProps) => {
                   </label>
                 ))}
               </form>
-              <p style={{display:"flex"}}>
+              <p style={{ display: "flex" }}>
                 correctAnswer:{" "}
                 <p style={{ color: "green" }}>{pair.correctAnswer}</p>
               </p>
@@ -120,7 +125,9 @@ export const MCQQA = ({ text }: MCQQAProps) => {
           ))}
         </ul>
       )}
-      {qaPairs.length === 0 && <p>No questions and answers to display.</p>}
+      {qaPairs.length === 0 && !isLoading && (
+        <p>No questions and answers to display.</p>
+      )}
     </div>
   );
 };
