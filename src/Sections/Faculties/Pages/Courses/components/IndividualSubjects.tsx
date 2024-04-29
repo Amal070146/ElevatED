@@ -14,11 +14,11 @@ type ModuleStoreType = {
   setModules: (modules: CoursesDB["modules"]) => void;
   module: any;
   setModule: (module: any) => void;
-  pdfImages: string[]
+  pdfImages: string[];
   setPdfImages: (pdfImages: string[]) => void;
-  pdfText: string
+  pdfText: string;
   setpdfText: (pdfText: string) => void;
-}
+};
 
 export const useModuleStore = create<ModuleStoreType>((set) => ({
   moduleID: 0,
@@ -30,9 +30,9 @@ export const useModuleStore = create<ModuleStoreType>((set) => ({
   module: {},
   setModule: (module) => set({ module }),
   pdfImages: [],
-  setPdfImages: (pdfImages) => set({pdfImages}),
-  pdfText: '',
-  setpdfText: (pdfText) => set({pdfText})
+  setPdfImages: (pdfImages) => set({ pdfImages }),
+  pdfText: "",
+  setpdfText: (pdfText) => set({ pdfText }),
 }));
 
 export const IndividualSubjects = () => {
@@ -69,55 +69,60 @@ export const IndividualSubjects = () => {
   };
   return (
     <div className={styles.individualPageSec}>
-      <div>
-        <h1 className={styles.courseHeading}>{data?.name}</h1>
-        <div className={styles.courseHeadingWrapper}>
-          {data?.modules?.map((module) => (
-            <div key={module.id} className={styles.Individual} onClick={() => {
+      <div className={styles.courseHeadingWrapper}>
+        {" "}
+        <h1 className={styles.courseHeading}>{data?.name}</h1>{" "}
+        <div>
+          <button onClick={() => setIsModalOpen(true)}>Add a Module</button>
+          <AddModuleModal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            refresh={() => setRefresh(!refresh)}
+            id={id!}
+            modules={data?.modules!}
+            isEdit={false}
+          />
+        </div>
+      </div>
+
+      <div className={styles.courseHeadingWrapper}>
+        {data?.modules?.map((module) => (
+          <div
+            key={module.id}
+            className={styles.Individual}
+            onClick={() => {
               setModule(module);
               setModuleID(module.id);
               setModules(data?.modules!);
               navigate(`/managecourses/module`);
-            }}>
-              
-              <button
-                onClick={() => {
-                  setIsEdit(true);
-                  setModuleID(module.id);
-                }}
-              >
-                Edit
-              </button>
-              <div className={styles.moduleInfo}>
-                <h4>{module.name}</h4>
-                <div className={styles.moduleLink}>
-                  <h4>Link:- </h4>
-                  <span>{module.yt_link}</span>
-                </div>
-                <p>{module.description}</p>
+            }}
+          >
+            <button
+              onClick={() => {
+                setIsEdit(true);
+                setModuleID(module.id);
+              }}
+            >
+              Edit
+            </button>
+            <div className={styles.moduleInfo}>
+              <h4>{module.name}</h4>
+              <div className={styles.moduleLink}>
+                <h4>Link:- </h4>
+                <span>{module.yt_link}</span>
               </div>
+              <p>{module.description}</p>
             </div>
-          ))}
-          <AddModuleModal
-            isOpen={isEdit}
-            onClose={() => setIsEdit(false)}
-            refresh={() => setRefresh(!refresh)}
-            id={id!}
-            moduleID={moduleID}
-            modules={data?.modules!}
-            isEdit={isEdit}
-          />
-        </div>
-      </div>
-      <div>
-        <button onClick={() => setIsModalOpen(true)}>Add a Module</button>
+          </div>
+        ))}
         <AddModuleModal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
+          isOpen={isEdit}
+          onClose={() => setIsEdit(false)}
           refresh={() => setRefresh(!refresh)}
           id={id!}
+          moduleID={moduleID}
           modules={data?.modules!}
-          isEdit={false}
+          isEdit={isEdit}
         />
       </div>
     </div>

@@ -36,27 +36,28 @@ export const Subjects = () => {
 
   return (
     <div className={styles.Wrapper}>
-      <div>
-        <h1>Courses</h1>
-        <div className={styles.container}>
-          {data.map((course) => (
-            <div
-              key={course.id}
-              onClick={() => navigate(`/managecourses/${course.id}`)}
-              className={styles.Individual}
-            >
-              {course.name}
-            </div>
-          ))}
+      {" "}
+      <div className={styles.courseHeadingWrapper}>
+        <h1>Courses</h1>{" "}
+        <div>
+          <button onClick={() => setIsModalOpen(true)}>Add a course</button>
+          <AddCourseModal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            refresh={() => setRefresh(!refresh)}
+          />
         </div>
       </div>
-      <div>
-        <button onClick={() => setIsModalOpen(true)}>Add a course</button>
-        <AddCourseModal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          refresh={() => setRefresh(!refresh)}
-        />
+      <div className={styles.container}>
+        {data.map((course) => (
+          <div
+            key={course.id}
+            onClick={() => navigate(`/managecourses/${course.id}`)}
+            className={styles.Individual}
+          >
+            {course.name}
+          </div>
+        ))}
       </div>
     </div>
   );

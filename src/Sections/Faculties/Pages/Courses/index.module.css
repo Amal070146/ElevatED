@@ -1,5 +1,6 @@
 .Wrapper {
   display: flex;
+  flex-direction: column;
 }
 
 .container {
@@ -11,19 +12,22 @@
 
 .individualPageSec{
   text-transform: capitalize;
+  display: flex;
+  flex-direction: column;
 }
 
 .Individual {
   display: flex;
   gap: 20px;
   padding: 20px;
-  /* border: 2px solid rgb(39, 114, 84); */
+  border: 2px solid rgb(39, 114, 84);
   background-color: rgb(186, 227, 214);
-  width: 300px;
+  width: fit-content;
   cursor: pointer;
   text-align: left;
   border-radius: 5px;
   text-transform: capitalize;
+  min-width: 250px;
 }
 
 .Individual >button {
@@ -38,7 +42,10 @@
 .courseHeadingWrapper{
   display: flex;
   gap: 50px;
-  padding: 50px;
+  padding:20px 50px;
+  width: 100%;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 
