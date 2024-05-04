@@ -14,7 +14,7 @@ export const Verify = (_props: Props) => {
 					<img className={styles.logo_design} src={Logo} alt="" />
 					<div className={styles.welc}>
 						<p>Verify your Email 👋🏻</p>
-						<h1>check your email</h1>
+						<h1>Check your Email</h1>
 					</div>
 					<button onClick={() => navigate("/login")}>login</button>
 				</div>

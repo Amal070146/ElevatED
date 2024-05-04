@@ -16,7 +16,7 @@ const StudentEditModal = (props: Props) => {
       type={"success"}
       onDone={() => console.log("done")}
     >
-      <h1>Edit Store</h1>
+      {/* <h1>Edit Store</h1> */}
       <p>{props.item?.first_name}</p>
       {/* <p>{props.item?.address}</p> */}
     </Modal>

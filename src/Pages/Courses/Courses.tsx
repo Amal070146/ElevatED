@@ -80,38 +80,38 @@ export const Courses = () => {
     {
       name: "DataBase Management System (DBMS)",
       progress: "20",
-      colorbase:"	#F08080",
-      colorfront:"red",
+      colorbase:"#C8FFC8",
+      colorfront:"#62E462",
     },
     {
       name: "Operating System (OS)",
       progress: "30",
-      colorbase:"#000",
-      colorfront:"#fff000",
+      colorbase:"#FFFF99",
+      colorfront:" #FFD700",
     },
     {
       name: "Compiler Design (CD)",
       progress: "10",
-      colorbase:"#000",
-      colorfront:"#fff000",
+      colorbase:"#E6E6FA",
+      colorfront:"#9370DB",
     },
     {
       name: "DataBase Management System (DBMS)",
       progress: "70",
-      colorbase:"#000",
-      colorfront:"#fff000",
+      colorbase:"#FFDAB9",
+      colorfront:"#FFA07A",
     },
     {
       name: "DataBase Management System (DBMS)",
       progress: "100",
-      colorbase:"#000",
-      colorfront:"#fff000",
+      colorbase:" #FFC0CB",
+      colorfront:" #FF69B4",
     },
     {
       name: "DataBase Management System (DBMS)",
       progress: "50",
-      colorbase:"#000",
-      colorfront:"#fff000",
+      colorbase:" #AFEEEE",
+      colorfront:" #40E0D0",
     },
   ];
 
@@ -144,7 +144,7 @@ export const Courses = () => {
       </div>
       <div></div>
       <div className={styles.BottonSet}>
-        <h1>New Courses To Explore </h1>
+        <h2>New Courses To Explore </h2>
 
         <Swiper
           slidesPerView={4}

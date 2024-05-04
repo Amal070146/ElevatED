@@ -55,6 +55,7 @@ export const DetailCourse = () => {
 
   return (
     <div className={styles.Wrapper}>
+      
       <h2>{course?.name}</h2>
       <div className={styles.Header}>
         <div>
@@ -74,6 +75,7 @@ export const DetailCourse = () => {
         </div>
         <button>Join</button>
       </div>
+
       <div className={styles.Content}>
         <div className={styles.Header}>
           <button>All</button>
