@@ -5,7 +5,14 @@
 }
 
 .Wrapper > h3{
-    margin: 30px;
     color: #0a8677;
     text-align: left;
+}
+
+.Wrapper{
+    /* margin: 30px; */
+    margin: 10px 30px ;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }

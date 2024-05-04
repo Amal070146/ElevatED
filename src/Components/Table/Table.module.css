@@ -8,9 +8,10 @@
 }
 
 .search input {
-    border: 2px solid var(--secondary);
+    margin-left: 8px;
+    border: .5px solid #ccc;
     padding: 0.7rem 1rem;
-    border-radius: 10px;
+    border-radius: 15px;
     width: 20rem;
 }
 .searchIcon{
@@ -92,10 +93,7 @@
 }
 
 .table {
-    /* width: 70vw; */
-    /* height: 90vh; */
     background-color: #fff5;
-
     backdrop-filter: blur(7px);
     border-radius: 0.8rem;
 

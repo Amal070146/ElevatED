@@ -119,12 +119,12 @@
 }
 
 .btn_submit {
-    background-color: var(--primary);
+    background-color:#2ea294;
     color: white;
 }
 
 .btn_submit:hover {
-    background-color: rgb(29, 79, 205);
+    background-color:#0a8677;
 }
 button:active {
     transform: scale(0.95);

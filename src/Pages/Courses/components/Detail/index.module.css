@@ -10,6 +10,7 @@
   margin-top: 10px;
   color: #8a17d0cc;
   font-weight: 600;
+  text-transform: capitalize;
 }
 
 .Wrapper .Header {
@@ -17,6 +18,7 @@
   justify-content: space-between;
   width: 100%;
   align-items: center;
+  margin-bottom: 15px;
 }
 .Wrapper .Header > div {
   display: flex;
@@ -40,6 +42,7 @@
   flex-direction: column;
   border-top: 1px solid #797878;
   width: 100%;
+  margin-bottom: 15px;
 }
 
 .Wrapper .Content > .Header button {
