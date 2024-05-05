@@ -76,6 +76,11 @@ export const Courses = () => {
     if (error) console.error("Fetch users error:", error.message);
   };
 
+  const getRandomColor = (): string => {
+    const colors = ["#EBF2FF", "#F3E8FF", "#E6F6E9", "#F5F1E3", "#EAF0EA", "#F5E3E3", "#F7FFF7", "#FEFCEA", "#E9E8F0", "#FEF7E3", "#FEECF5", "#EAFDFD"];
+    return colors[Math.floor(Math.random() * colors.length)];
+  };
+  
   const data: Course[] = [
     {
       name: "DataBase Management System (DBMS)",
@@ -144,7 +149,8 @@ export const Courses = () => {
       </div>
       <div></div>
       <div className={styles.BottonSet}>
-        <h2>New Courses To Explore </h2>
+        {/* <h1>New Courses To Explore </h1> */}
+        <h1>NEW COURSES TO EXPLORE</h1>
 
         <Swiper
           slidesPerView={4}
@@ -160,7 +166,10 @@ export const Courses = () => {
           {exploreCoursesData
             .filter((item) => item.modules.length > 0)
             .map((item: CourseDisplayType) => (
-              <SwiperSlide>
+              <SwiperSlide
+              className={styles.newNewCourseSwiper}
+              style={{ backgroundColor: getRandomColor() }}
+              >
                 <div
                   className={styles.newCourseSwiper}
                   onClick={() => navigate(`/detailcourses/${item.id}`)}
@@ -168,7 +177,7 @@ export const Courses = () => {
                   <h2>{item.name}</h2>
                 </div>
                 <h5>{item.modules.length} MODULES</h5>
-                <h3>
+                <h3>  <span style={{ color:"#656060", fontWeight:"600" }}>By: </span>
                   {users[item.user_id]
                     ? `${users[item.user_id].first_name} ${
                         users[item.user_id].last_name

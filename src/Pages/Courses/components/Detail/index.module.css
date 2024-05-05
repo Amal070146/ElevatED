@@ -82,6 +82,10 @@
   cursor: pointer;
 }
 
+.ModuleContainer .ModuleWrapper > button:hover {
+  background-color:#f4f4f4;
+}
+
 .ModuleContainer .ModuleWrapper > button > div {
   display: flex;
   justify-content: space-between;
@@ -89,23 +93,28 @@
   width: 100%;
 }
 .ModuleContainer .ModuleWrapper > button p {
-  background-color: #d9d9d9;
-  padding: 5px 8px;
-  border-radius: 15px;
+  background-color: #e6e4e4;
+  color: #3F3D56;
+  padding: 8px 11px;
+  border-radius: 5px;
   font-size: 14px;
+  text-align: left;
+  font-weight: 600;
 }
 
 .ModuleContainer .RightPopUpModuleContainer {
-  background-color: white;
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   max-width: 420px;
   min-width: 330px;
-  padding: 15px;
+  padding: 20px;
   align-items: flex-start;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 8px;
   border-radius: 10px;
 }
+
 
 .ModuleContainer .RightPopUpMentorDetailsContainer{
   text-align: left;
@@ -118,10 +127,9 @@
 
 .ModuleContainer .RightPopUpMentorDetailsContainer .mentorHeader{
   display: flex;
-  
 }
 
-.ModuleContainer .RightPopUpMentorDetailsContainer .MentorSkills button{
+.ModuleContainer .RightPopUpMentorDetailsContainer .MentorSkills > button{
   background-color: #daedeb;
   color:#0a8677 ;
   margin: 5px;
@@ -135,14 +143,15 @@
 }
 
 .filterOpt{
-  background-color:#d9f1ee;
+  background-color:#e7f3f1;
   border:2px #0a8677;
   color: #0a8677;
 }
 
-.filterOpt :hover{
-  background-color: #0a8677;
-  color: white;
+.filterOpt:hover{
+  background-color: #daedeb;
+  color: #09796b;
+  font-weight: 600;
 }
 
 .Filter .filterVideo{
@@ -154,10 +163,17 @@
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.ModuleContainer .VideosPDF:hover{
+  background-color: rgb(245, 245, 245);
+  border-radius: 5px;
 }
 
 .ModuleContainer .VideosPDF button{
-    background-color:#F3F3F3 ;
+    background-color:#483e3e ;
     color: black;
     display: flex;
     flex-direction: column;
