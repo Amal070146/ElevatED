@@ -55,7 +55,7 @@ export const DetailCourse = () => {
 
   return (
     <div className={styles.Wrapper}>
-      
+
       <h2>{course?.name}</h2>
       <div className={styles.Header}>
         <div>
@@ -63,9 +63,8 @@ export const DetailCourse = () => {
             By&nbsp;
             <h3 style={{ color: "black" }}>
               {course && course.user_id && users[course.user_id]
-                ? `${users[course.user_id].first_name} ${
-                    users[course.user_id].last_name
-                  }`
+                ? `${users[course.user_id].first_name} ${users[course.user_id].last_name
+                }`
                 : "User not found"}
             </h3>
           </h4>
@@ -90,15 +89,15 @@ export const DetailCourse = () => {
                 <button key={module.id} onClick={() => setModuleIndex(index)}>
                   <h3>{module.name}</h3>
                   <div className={styles.moduleDescrBox}>
-                    <p>{module.yt_link}</p>
-                    <p>{module.description}</p>
+                    <p >Link: {module.yt_link}</p>
+                    <p>desc.{module.description}</p>
                   </div>
                 </button>
               ))}
           </div>
           <div className={styles.RightPopUpModuleContainer}>
             <div className={styles.Header}>
-              <h2>Module {course?.modules[moduleIndex].name}</h2>
+              <h2> <span style={{ color: "#3F3D56", fontWeight: "600" }} > Module:  </span> {course?.modules[moduleIndex].name}</h2>
               {/* <button>
                 <p>Edit</p>
               </button> */}
@@ -222,20 +221,7 @@ export const DetailCourse = () => {
               </Modal>
             )}
 
-          {/* <div className={styles.RightPopUpMentorDetailsContainer}>
-            <h3>Mentor</h3>
-            <div className={styles.mentorHeader}>
-              <img src="" alt="" />
-              <h4>Antony Davis</h4>
-            </div>
-            <div className={styles.MentorSkills}>
-                <button>Teaching</button>
-                <button>Front-End</button>
-                <button>Back-End</button>
-                <button>Web Development</button>
-            </div>
 
-          </div> */}
         </div>
       </div>
     </div>
