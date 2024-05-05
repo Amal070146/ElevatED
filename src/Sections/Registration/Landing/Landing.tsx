@@ -2,13 +2,17 @@ import styles from "./Landing.module.css";
 import Logo from "../../../Logo.png";
 import { useNavigate } from "react-router-dom";
 import women from './landingPgImgs/women.png'
-import quiz from './landingPgImgs/quiz.png'
-import subject from "./landingPgImgs/subject.png";
+import online from "./landingPgImgs/online.png";
 import courseFeatImg from "./landingPgImgs/courseFeatImg.png"
 import quizFeatImg from "./landingPgImgs/quizFeatImg.png"
 import monitoringFeatImg from "./landingPgImgs/monitoringFeatImg.png"
 import facultyFeatImg from "./landingPgImgs/facultyFeatImg.png"
 import rectangle from "./landingPgImgs/rectangle.png";
+import featuredCourses from "./landingPgImgs/featuredCourses.png";
+import facultyEngagement from "./landingPgImgs/facultyEngagement.png";
+import studentsMonitoring from "./landingPgImgs/studentsMonitoring.png";
+import OrganizationManagement from "./landingPgImgs/OrganizationManagement.png";
+import ReportsAndStatistics from "./landingPgImgs/ReportsAndStatistics.png";
 
 
 type Props = {};
@@ -49,32 +53,32 @@ export const Landing = (_props: Props) => {
     {
       name: "Daily Quizzes",
       description: "Enhance learning through daily quizzes, reinforcing key concepts and fostering active engagement with course materials",
-      image: rectangle,
+      image: online,
     },
     {
       name: "Featured Courses",
       description: "Discover expert-curated courses, handpicked to inspire learning and cater to diverse educational interests and goals.",
-      image: rectangle,
+      image: featuredCourses,
     },
     {
       name: "Student Monitoring",
       description: "Monitor student progress in real-time, identifying strengths and areas for improvement to provide tailored support and optimize learning outcomes.",
-      image: rectangle,
+      image: studentsMonitoring,
     },
     {
       name: "Faculty Engagement",
       description: "Empower educators to upload resources, interact with students, and track progress, fostering a collaborative and dynamic learning environment.",
-      image: rectangle,
+      image: facultyEngagement,
     },
     {
       name: "Organization Management",
       description: "Streamline course organization and management tasks, ensuring smooth operations and optimized learning experiences for all stakeholders.",
-      image: rectangle,
+      image: OrganizationManagement,
     },
     {
       name: "Reports and Statistics",
       description: "Gain valuable insights with comprehensive reports and statistics, enabling informed decision-making and continuous improvement in educational outcomes.",
-      image: rectangle,
+      image: ReportsAndStatistics,
     },
   ];
 
@@ -143,6 +147,7 @@ export const Landing = (_props: Props) => {
               {Functionss.map(({ image, name, description }) => {
                 return (
                   <div className={styles.eachFunctionWrapper}>
+
                     <img src={image} alt="" />
                     <div className={styles.eachFunctionWrapperText}>
                       <h3>{name}</h3>
