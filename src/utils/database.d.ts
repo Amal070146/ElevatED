@@ -55,3 +55,5 @@ interface UserInfo {
   allow_mail: boolean;
   working_institute_id: string | null;
 }
+
+declare module "react-pdftotext";
