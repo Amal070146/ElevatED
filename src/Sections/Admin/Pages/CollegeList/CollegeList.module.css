@@ -19,3 +19,8 @@
   width: 100%;
   text-align: left;
 }
+
+.aprrovalDiv{
+  display: flex;
+  gap: 10px;
+}

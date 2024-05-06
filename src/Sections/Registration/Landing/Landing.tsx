@@ -7,7 +7,6 @@ import courseFeatImg from "./landingPgImgs/courseFeatImg.png"
 import quizFeatImg from "./landingPgImgs/quizFeatImg.png"
 import monitoringFeatImg from "./landingPgImgs/monitoringFeatImg.png"
 import facultyFeatImg from "./landingPgImgs/facultyFeatImg.png"
-import rectangle from "./landingPgImgs/rectangle.png";
 import featuredCourses from "./landingPgImgs/featuredCourses.png";
 import facultyEngagement from "./landingPgImgs/facultyEngagement.png";
 import studentsMonitoring from "./landingPgImgs/studentsMonitoring.png";

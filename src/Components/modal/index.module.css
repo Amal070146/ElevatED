@@ -29,6 +29,7 @@
   overflow: hidden;
   position: relative;
   max-height: 100vh;
+  text-align: justify;
   /* This will make sure the modal content does not exceed 80% of the viewport height */
   overflow-y: auto;
   /* This will enable vertical scrolling when the content exceeds the max height */
