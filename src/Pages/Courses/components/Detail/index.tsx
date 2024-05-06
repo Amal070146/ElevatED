@@ -144,7 +144,7 @@ export const DetailCourse = () => {
             onClose={() => {
               setSection("video");
             }}
-            title={"PDF"}
+            title={"PDF"} 
             type={"success"}
           >
             <div>
@@ -152,7 +152,7 @@ export const DetailCourse = () => {
               <p>{course?.modules[moduleIndex]?.pdf?.text}</p>
               <h3>Images</h3>
               {course?.modules[moduleIndex]?.pdf?.image_urls.map((image) => (
-                <img src={image} alt="" />
+                <img className={styles.pdfImageSec} src={image} alt="" />
               ))}
             </div>
           </Modal>

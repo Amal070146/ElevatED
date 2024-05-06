@@ -60,8 +60,9 @@ export const Organisation = () => {
 
 	return (
 		<div className={styles.Wrapper}>
+			<h2 className={styles.adminHeadrerStyle}>ADMINISTRATOR DASHBOARD</h2>
 			<div className={styles.Header}>
-				<h1>Pending Organizations</h1>
+				<h2>Pending Organizations</h2>
 				<div>
 					<button>Approve All</button>
 					<button>Decline All</button>
@@ -141,7 +142,7 @@ export const Organisation = () => {
 					))}
 			</div>
 			<div className={styles.Header}>
-				<h1>Accepted Organizations</h1>
+				<h2>Accepted Organizations</h2>
 
 				<button>Decline All</button>
 			</div>

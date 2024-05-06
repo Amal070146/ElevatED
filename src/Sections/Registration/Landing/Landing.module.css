@@ -34,9 +34,7 @@ p{
   font-weight: 400;
   
 }
-/* .Wrapper .TopNavbar .navlinkelements-selected {
- color: #161C28;
-} */
+
 .Wrapper .TopNavbar .Registration {
   display: flex;
   justify-content: center;
@@ -164,7 +162,7 @@ p{
   border-radius: 10px;
   display: flex;
   justify-content: center;
-  gap: 100px;
+  gap: 150px;
   width: 80%;
   margin: 0 10% 0 10%;
   padding: 40px ;
@@ -172,9 +170,8 @@ p{
 }
 
 .Wrapper .bodyWrapper .functionWrapper .functionWrapWrapper .eachFunctionWrapper > img{ 
-  height: 125px;
+  height: 165px;
   object-fit: contain;
-  
 }
 .eachFunctionWrapperText{
  width: 50%;

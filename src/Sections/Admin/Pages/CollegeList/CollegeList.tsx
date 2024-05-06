@@ -66,7 +66,7 @@ export const CollegeList = () => {
 
 	return (
 		<div className={styles.Wrapper}>
-			<h1>College Name Requests</h1>
+			 <h2 style={{  marginTop: "5", color: "#0a8677" }} >COLLEGE NAME REQUESTS</h2>
 			<table>
 				<thead>
 					<tr>
@@ -91,7 +91,7 @@ export const CollegeList = () => {
 									{item.is_verified ? "Accepted" : "Pending"}
 								</td>
 								<td>
-									<div>
+									<div className={styles.aprrovalDiv}>
 										<button
 											onClick={() =>
 												handleApproveDecline(

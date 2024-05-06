@@ -185,3 +185,8 @@
   display: flex;
   flex-direction:column;
 }
+
+.pdfImageSec{
+  width: 100%;
+  margin: 10px;
+}

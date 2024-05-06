@@ -57,7 +57,7 @@ export const FacultyList = () => {
   return (
     <div className={styles.Wrapper}>
       <div className={styles.Header}>
-        <h1>Faculty Requests</h1>
+        <h2 style={{  marginTop: "5", color: "#0a8677" }} >FACULTY REQUESTS</h2>
         <p>
           View pending requests from faculty members to join your organization
         </p>
@@ -87,7 +87,7 @@ export const FacultyList = () => {
             ))}
       </div>
       <div className={styles.Header}>
-        <h1>Approved Faculty</h1>
+        <h2>Approved Faculty</h2>
         <p>Approved Faculty</p>
       </div>
       <div className={styles.Content}>
