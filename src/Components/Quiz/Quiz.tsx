@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import styles from "./Quiz.module.css";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode, Pagination } from "swiper/modules";
 import { supabase } from "../../utils/supabase";
 import QuizPage from "./components/quizPage";
 import Modal from "../modal";
@@ -22,8 +20,18 @@ export const Quiz = () => {
     if (error) {
       console.log(error);
     } else if (courses) {
-      setExploreCoursesData(courses);
-      console.log(courses);
+      const Courses: CourseDisplayType[] = courses;
+      const filteredCourses = Courses.filter(
+        (item) =>
+          item &&
+          item.modules &&
+          item.modules[0] &&
+          item.modules[0].mcq &&
+          item.modules[0].mcq[0] &&
+          item.modules[0].mcq[0].question
+      );
+      setExploreCoursesData(filteredCourses);
+      console.log(filteredCourses);
     }
   };
 
@@ -48,45 +56,30 @@ export const Quiz = () => {
   return (
     <div className={styles.quizSecWrapper}>
       <h3>QUIZ</h3>
-
-      <Swiper
-        slidesPerView={4}
-        spaceBetween={20}
-        freeMode={true}
-        loop={true}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[FreeMode, Pagination]}
-        className="CourseSwiper"
-      >
-        {exploreCoursesData
-          .filter((item) => item.modules.length > 0)
-          .map((item: CourseDisplayType) => (
-            <SwiperSlide
-              className={styles.newNewCourseSwiper}
-              style={{ backgroundColor: getRandomColor() }}
-              onClick={() => {
-                setCourse(item);
-                setShowModal(true)}}
-
-            >
-              <div
-                className={styles.newCourseSwiper}
-              >
-                <h2>{item.name}</h2>
-              </div>
-              <h5>{item.modules.length} MODULES</h5>
-            </SwiperSlide>
-          ))}
-      </Swiper>
+      {exploreCoursesData
+        .filter((item) => item.modules.length > 0)
+        .map((item: CourseDisplayType) => (
+          <div
+            className={styles.newNewCourseSwiper}
+            style={{ backgroundColor: getRandomColor() }}
+            onClick={() => {
+              setCourse(item);
+              setShowModal(true);
+            }}
+          >
+            <div className={styles.newCourseSwiper}>
+              <h2>{item.name}</h2>
+            </div>
+            <h5>{item.modules.length} MODULES</h5>
+          </div>
+        ))}
       <Modal
         isOpen={showModal}
         onClose={() => setShowModal(false)}
         title={"Quiz"}
         type={"success"}
       >
-        <QuizPage item={course!}/>
+        <QuizPage item={course!} />
       </Modal>
     </div>
   );
