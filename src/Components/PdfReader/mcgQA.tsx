@@ -15,13 +15,13 @@ type QAPair = {
 
 export const MCQQA = ({ text }: MCQQAProps) => {
   const [qaPairs, setQAPairs] = useState<QAPair[]>([]);
-  const noqs = "2"; // Define the number of questions you want to generate
   const modules = useModuleStore.getState().modules;
   const courseID = useModuleStore.getState().courseID;
   const setModules = useModuleStore((state) => state.setModules);
   const [refresh, setRefresh] = useState(false);
   const moduleID = useModuleStore.getState().moduleID;
   const [isLoading, setIsLoading] = useState(false);
+  const [mcqNo, setMcqNo] = useState("2");
 
   useEffect(() => {
     fetchData();
@@ -52,13 +52,13 @@ export const MCQQA = ({ text }: MCQQAProps) => {
       const response = await fetch("http://127.0.0.1:8000/quest/mcq/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ context: text, noq: noqs }),
+        body: JSON.stringify({ context: text, noq: mcqNo }),
       });
       const data = await response.json(); // Handle response data within async/await
 
       if (data && data.set) {
         const pairs = data.set.map((item: any) => ({
-          question: item.question,
+          question: item.question,  
           options: item.options,
           correctAnswer: item.correct_answer,
         }));
@@ -99,6 +99,7 @@ export const MCQQA = ({ text }: MCQQAProps) => {
       <button onClick={handleAskQuestionClick} disabled={isLoading}>
         {isLoading ? "Loading..." : "Ask MCQ Questions"}
       </button>
+      No. of questions: <input type="text" onChange={(e)=>setMcqNo(e.target.value)}/>
       {qaPairs.length > 0 && (
         <ul>
           {qaPairs.map((pair, index) => (

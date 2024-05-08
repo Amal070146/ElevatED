@@ -16,12 +16,12 @@ type QAPair = {
 export const GenerateQA = ({ text }: GenerateQAProps) => {
   const [qaPairs, setQAPairs] = useState<QAPair[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const noqs = "2"; // Define the number of questions you want to generate
   const modules = useModuleStore.getState().modules;
   const courseID = useModuleStore.getState().courseID;
   const setModules = useModuleStore((state) => state.setModules);
   const [refresh, setRefresh] = useState(false);
   const moduleID = useModuleStore.getState().moduleID;
+  const [qaNo, setQaNo] = useState("2");
 
   useEffect(() => {
     fetchData();
@@ -55,7 +55,7 @@ export const GenerateQA = ({ text }: GenerateQAProps) => {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ context: text, noq: noqs }),
+          body: JSON.stringify({ context: text, noq: qaNo }),
         }
       );
       const data = await response.json(); // Handle response data
@@ -101,6 +101,8 @@ export const GenerateQA = ({ text }: GenerateQAProps) => {
       <button onClick={handleAskQuestionClick} disabled={isLoading}>
         {isLoading ? "Loading..." : "Ask Long Questions and Answers"}
       </button>
+      No. of questions:{" "}
+      <input type="text" onChange={(e) => setQaNo(e.target.value)} />
       {isLoading && <div>Loading...</div>}
       {qaPairs.length > 0 && (
         <ul>
