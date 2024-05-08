@@ -3,17 +3,13 @@ import styles from "./Quiz.module.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Pagination } from "swiper/modules";
 import { supabase } from "../../utils/supabase";
-import { useNavigate } from "react-router-dom";
 import QuizPage from "./components/quizPage";
 import Modal from "../modal";
 
-type Props = {};
-
-export const Quiz = (_props: Props) => {
+export const Quiz = () => {
   const [exploreCoursesData, setExploreCoursesData] = useState<
     CourseDisplayType[]
   >([]);
-  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
@@ -26,6 +22,7 @@ export const Quiz = (_props: Props) => {
       console.log(error);
     } else if (courses) {
       setExploreCoursesData(courses);
+      console.log(courses);
     }
   };
 
@@ -72,7 +69,6 @@ export const Quiz = (_props: Props) => {
             >
               <div
                 className={styles.newCourseSwiper}
-                onClick={() => navigate(`/detailcourses/${item.id}`)}
               >
                 <h2>{item.name}</h2>
               </div>
