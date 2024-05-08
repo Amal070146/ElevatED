@@ -10,6 +10,7 @@ export const Quiz = () => {
   const [exploreCoursesData, setExploreCoursesData] = useState<
     CourseDisplayType[]
   >([]);
+  const [course, setCourse] = useState<CourseDisplayType>();
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
@@ -65,7 +66,10 @@ export const Quiz = () => {
             <SwiperSlide
               className={styles.newNewCourseSwiper}
               style={{ backgroundColor: getRandomColor() }}
-              onClick={() => setShowModal(true)}
+              onClick={() => {
+                setCourse(item);
+                setShowModal(true)}}
+
             >
               <div
                 className={styles.newCourseSwiper}
@@ -82,7 +86,7 @@ export const Quiz = () => {
         title={"Quiz"}
         type={"success"}
       >
-        <QuizPage />
+        <QuizPage item={course!}/>
       </Modal>
     </div>
   );
