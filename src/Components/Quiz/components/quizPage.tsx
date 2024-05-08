@@ -11,13 +11,14 @@ function QuizPage({ item }: Props) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [showResult, setShowResult] = useState(false); // State to toggle result display
   const [score, setScore] = useState(0); // State to store score
+  const combinedMCQ = item.modules.flatMap((module) => module.mcq);
 
   const handleOptionChange = (optionId: number) => {
     setSelectedOptions([optionId]); // Update selected option for the current question
   };
 
   const goToNextQuestion = () => {
-    if (currentQuestionIndex < item.modules[0].mcq.length - 1) {
+    if (currentQuestionIndex < combinedMCQ.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setSelectedOptions([]);
     }
@@ -41,7 +42,7 @@ function QuizPage({ item }: Props) {
 
   const isNextButtonDisabled = selectedOptions.length === 0;
   const isLastQuestion =
-    currentQuestionIndex === item.modules[0].mcq.length - 1;
+    currentQuestionIndex === combinedMCQ.length - 1;
 
   return (
     <div className={styles.WrapQuizWrapper}>
@@ -91,10 +92,10 @@ function QuizPage({ item }: Props) {
         <div className={styles.ResultWrapper}>
           <h2>Quiz Result</h2>
           <p>
-            Score: {score} / {item.modules[0].mcq.length}
+            Score: {score} / {combinedMCQ.length}
           </p>
           <h3>Answers:</h3>
-          {item.modules[0].mcq.map((question, index) => (
+          {combinedMCQ.map((question, index) => (
             <ul>
               <li key={index}>
                 <h4>{question.question}</h4>
