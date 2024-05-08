@@ -1,138 +1,93 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Quiz.module.css";
-import quizSecMainImg from "./quizImage/quizSecMainImg.png";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode, Pagination } from "swiper/modules";
+import { supabase } from "../../utils/supabase";
+import { useNavigate } from "react-router-dom";
+import QuizPage from "./components/quizPage";
+import Modal from "../modal";
 
 type Props = {};
 
-type Question = {
-  id: number;
-  questionText: string;
-  options: Option[];
-};
-
-type Option = {
-  id: number;
-  text: string;
-};
-
 export const Quiz = (_props: Props) => {
-  const initialQuestions: Question[] = [
-    {
-      id: 1,
-      questionText: "Q. Whaeqvct is the full form of DBMS?",
-      options: [
-        { id: 1, text: "DataBase Management System" },
-        { id: 2, text: "Data Base Manipulation System" },
-        { id: 3, text: "DataBank Management System" },
-        { id: 4, text: "Document Base Management System" },
-      ],
-    },
-    {
-      id: 2,
-      questionText: "Q. What is the full form of DBMS?",
-      options: [
-        { id: 1, text: "Management System" },
-        { id: 2, text: "Data Base System" },
-        { id: 3, text: "DataBank Management System" },
-        { id: 4, text: "Document Base Management System" },
-      ],
-    },
-    {
-      id: 3,
-      questionText: "Q. What is the full form of DBeqvMS?",
-      options: [
-        { id: 1, text: "DataBase Management System" },
-        { id: 2, text: "Data Base Manipulation System" },
-        { id: 3, text: "DataBank Management System" },
-        { id: 4, text: "Document Bawvese Maneveagement System" },
-      ],
-    },
-    {
-      id: 4,
-      questionText: "Q. What is the full form of DBMSqevqqw?",
-      options: [
-        { id: 1, text: "Management System" },
-        { id: 2, text: "Data Base System" },
-        { id: 3, text: "DatsvwaBank Management System" },
-        { id: 4, text: "Document Base Management System" },
-      ],
-    },
-    // Add more questions with their options here
-  ];
+  const [exploreCoursesData, setExploreCoursesData] = useState<
+    CourseDisplayType[]
+  >([]);
+  const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
 
-  const [questions] = useState(initialQuestions);
-  const [selectedOptions, setSelectedOptions] = useState<number[]>([]);
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const handleOptionChange = (optionId: number) => {
-    setSelectedOptions((_prevSelectedOptions) => {
-      const newSelectedOptions = [optionId];
-      return newSelectedOptions;
-    });
-  };
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-  const goToNextQuestion = () => {
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-      setSelectedOptions([]);
+  const fetchData = async () => {
+    let { data: courses, error } = await supabase.from("courses").select("*");
+    if (error) {
+      console.log(error);
+    } else if (courses) {
+      setExploreCoursesData(courses);
     }
   };
 
-  // New function to handle submission
-  const handleSubmit = () => {
-   
-    console.log("Quiz submitted");
+  const getRandomColor = (): string => {
+    const colors = [
+      "#EBF2FF",
+      "#F3E8FF",
+      "#E6F6E9",
+      "#F5F1E3",
+      "#EAF0EA",
+      "#F5E3E3",
+      "#F7FFF7",
+      "#FEFCEA",
+      "#E9E8F0",
+      "#FEF7E3",
+      "#FEECF5",
+      "#EAFDFD",
+    ];
+    return colors[Math.floor(Math.random() * colors.length)];
   };
-
-  const isNextButtonDisabled = selectedOptions.length === 0;
-
-  // Check if it's the last question
-  const isLastQuestion = currentQuestionIndex === questions.length - 1;
 
   return (
     <div className={styles.quizSecWrapper}>
       <h3>QUIZ</h3>
-      <div className={styles.WrapQuizWrapper}>
-        <div className={styles.QuizWrapper}>
-          {/* Quiz content and other buttons */}
-          <div className={styles.QuizQuestionsWrapper}>
-            <h2 className={styles.QuizHeading}>
-              {questions[currentQuestionIndex].questionText}
-            </h2>
-            {questions[currentQuestionIndex].options.map((option) => (
-              <div className={styles.QuizOptionsWrapper} key={option.id}>
-                <input
-                  type="checkbox"
-                  checked={selectedOptions.includes(option.id)}
-                  onChange={() => handleOptionChange(option.id)}
-                />{" "}
-                {option.text}
-              </div>
-            ))}
-          </div>
-          <div className={styles.buttonss}>
-            <button
-              style={{ backgroundColor: "#E0E4E4", color: "black" }}
-              onClick={() => setCurrentQuestionIndex(currentQuestionIndex - 1)}
-              disabled={currentQuestionIndex === 0}
+
+      <Swiper
+        slidesPerView={4}
+        spaceBetween={20}
+        freeMode={true}
+        loop={true}
+        pagination={{
+          clickable: true,
+        }}
+        modules={[FreeMode, Pagination]}
+        className="CourseSwiper"
+      >
+        {exploreCoursesData
+          .filter((item) => item.modules.length > 0)
+          .map((item: CourseDisplayType) => (
+            <SwiperSlide
+              className={styles.newNewCourseSwiper}
+              style={{ backgroundColor: getRandomColor() }}
+              onClick={() => setShowModal(true)}
             >
-              Previous
-            </button>
-            {isLastQuestion ? (
-              <button onClick={handleSubmit} disabled={isNextButtonDisabled}>
-                Submit
-              </button>
-            ) : (
-              <button
-                onClick={goToNextQuestion}
-                disabled={isNextButtonDisabled}
+              <div
+                className={styles.newCourseSwiper}
+                onClick={() => navigate(`/detailcourses/${item.id}`)}
               >
-                Next
-              </button>
-            )}
-          </div>
-        </div>
-        <img className={styles.quizSecMainImg} src={quizSecMainImg} alt="" />
-      </div>
+                <h2>{item.name}</h2>
+              </div>
+              <h5>{item.modules.length} MODULES</h5>
+            </SwiperSlide>
+          ))}
+      </Swiper>
+      <Modal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        title={"Quiz"}
+        type={"success"}
+      >
+        <QuizPage />
+      </Modal>
     </div>
   );
 };
