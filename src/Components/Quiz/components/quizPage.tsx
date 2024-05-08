@@ -41,44 +41,48 @@ function QuizPage({ item }: Props) {
 
   return (
     <div className={styles.WrapQuizWrapper}>
-      <div className={styles.QuizWrapper}>
-        <div className={styles.QuizQuestionsWrapper}>
-          <h2 className={styles.QuizHeading}>
-            {item.modules[0].mcq[currentQuestionIndex].question}
-          </h2>
-          {item.modules[0].mcq[currentQuestionIndex].options.map(
-            (option, index) => (
-              <div className={styles.QuizOptionsWrapper} key={option}>
-                <input
-                  type="radio" // Change to radio button to allow selecting only one option
-                  checked={selectedOptions[0] === index}
-                  onChange={() => handleOptionChange(index)}
-                />{" "}
-                {option}
-              </div>
-            )
-          )}
-        </div>
-        <div className={styles.buttonss}>
-          <button
-            style={{ backgroundColor: "#E0E4E4", color: "black" }}
-            onClick={() => setCurrentQuestionIndex(currentQuestionIndex - 1)}
-            disabled={currentQuestionIndex === 0}
-          >
-            Previous
-          </button>
-          {isLastQuestion ? (
-            <button onClick={handleSubmit} disabled={isNextButtonDisabled}>
-              Submit
+      {!showResult && (
+        <div className={styles.QuizWrapper}>
+          <div className={styles.QuizQuestionsWrapper}>
+            <h2 className={styles.QuizHeading}>
+              {item.modules[0].mcq[currentQuestionIndex].question}
+            </h2>
+            {item.modules[0].mcq[currentQuestionIndex].options.map(
+              (option, index) => (
+                <div className={styles.QuizOptionsWrapper} key={option}>
+                  <input
+                    type="radio" // Change to radio button to allow selecting only one option
+                    checked={selectedOptions[0] === index}
+                    onChange={() => handleOptionChange(index)}
+                  />{" "}
+                  {option}
+                </div>
+              )
+            )}
+          </div>
+          <div className={styles.buttonss}>
+            <button
+              style={{ backgroundColor: "#E0E4E4", color: "black" }}
+              onClick={() => setCurrentQuestionIndex(currentQuestionIndex - 1)}
+              disabled={currentQuestionIndex === 0}
+            >
+              Previous
             </button>
-          ) : (
-            <button onClick={goToNextQuestion} disabled={isNextButtonDisabled}>
-              Next
-            </button>
-          )}
+            {isLastQuestion ? (
+              <button onClick={handleSubmit} disabled={isNextButtonDisabled}>
+                Submit
+              </button>
+            ) : (
+              <button
+                onClick={goToNextQuestion}
+                disabled={isNextButtonDisabled}
+              >
+                Next
+              </button>
+            )}
+          </div>
         </div>
-      </div>
-      <img className={styles.quizSecMainImg} src={quizSecMainImg} alt="" />
+      )}
       {showResult && (
         <div className={styles.ResultWrapper}>
           <h2>Quiz Result</h2>
@@ -87,14 +91,20 @@ function QuizPage({ item }: Props) {
           </p>
           <h3>Answers:</h3>
           {item.modules[0].mcq.map((question, index) => (
-            <div key={index}>
-              <p>{question.question}</p>
-              <p>Correct Answer: {question.correctAnswer}</p>
-              <p>Your Answer: {question.options[selectedOptions[index]]}</p>
-            </div>
+            <ul>
+              <li key={index}>
+                <p>{question.question}</p>
+                <p>
+                  {" "}
+                  <b> Correct Answer:</b> {question.correctAnswer}
+                </p>
+                {/* <p>Your Answer: {question.options[selectedOptions[index]]}</p> */}
+              </li>
+            </ul>
           ))}
         </div>
       )}
+      <img className={styles.quizSecMainImg} src={quizSecMainImg} alt="" />
     </div>
   );
 }
