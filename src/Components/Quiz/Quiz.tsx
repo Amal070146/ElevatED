@@ -25,7 +25,7 @@ export const Quiz = () => {
         (item) =>
           item &&
           item.modules &&
-          item.modules[0] &&
+          item.modules[0] &&  
           item.modules[0].mcq &&
           item.modules[0].mcq[0] &&
           item.modules[0].mcq[0].question

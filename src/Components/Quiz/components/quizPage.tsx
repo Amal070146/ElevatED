@@ -13,7 +13,7 @@ function QuizPage({ item }: Props) {
   const [score, setScore] = useState(0); // State to store score
 
   const handleOptionChange = (optionId: number) => {
-    setSelectedOptions([optionId]); // Only allow selecting one option
+    setSelectedOptions([optionId]); // Update selected option for the current question
   };
 
   const goToNextQuestion = () => {
@@ -27,6 +27,10 @@ function QuizPage({ item }: Props) {
     // Calculate score
     let newScore = 0;
     item.modules[0].mcq.forEach((question, index) => {
+      console.log("Question:", question.question);
+      console.log("Selected Option:", selectedOptions[index]);
+      console.log("Correct Answer:", question.correctAnswer);
+
       if (question.correctAnswer === question.options[selectedOptions[index]]) {
         newScore++;
       }
@@ -44,9 +48,9 @@ function QuizPage({ item }: Props) {
       {!showResult && (
         <div className={styles.QuizWrapper}>
           <div className={styles.QuizQuestionsWrapper}>
-            <h2 className={styles.QuizHeading}>
+            <h4 className={styles.QuizHeading}>
               {item.modules[0].mcq[currentQuestionIndex].question}
-            </h2>
+            </h4>
             {item.modules[0].mcq[currentQuestionIndex].options.map(
               (option, index) => (
                 <div className={styles.QuizOptionsWrapper} key={option}>
@@ -93,7 +97,7 @@ function QuizPage({ item }: Props) {
           {item.modules[0].mcq.map((question, index) => (
             <ul>
               <li key={index}>
-                <p>{question.question}</p>
+                <h4>{question.question}</h4>
                 <p>
                   {" "}
                   <b> Correct Answer:</b> {question.correctAnswer}
