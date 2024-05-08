@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 
 import styles from "./HeroSection.module.css";
 import { Navbar } from "../../Components/Navbar/Navbar";
-import { TopNav } from "../../Components/Navbar/TopNav";
+// import { TopNav } from "../../Components/Navbar/TopNav";
 
 export const HeroSectionAdmin = () => {
   return (
@@ -11,7 +11,7 @@ export const HeroSectionAdmin = () => {
         <Navbar />
       </div>
       <div className={styles.RightSectionWrapper}>
-        <TopNav />
+        {/* <TopNav /> */}
         <Outlet />
       </div>
     </div>

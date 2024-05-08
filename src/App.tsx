@@ -26,7 +26,6 @@ import { Subjects } from "./Sections/Faculties/Pages/Courses/Subjects";
 import ModalPage from "./Sections/Faculties/Pages/Courses/components/modalPage";
 import { IndividualSubjects } from "./Sections/Faculties/Pages/Courses/components/IndividualSubjects";
 import { StudentsList } from "./Sections/Faculties/Pages/StudentsList/StudentsList";
-import { PdfReaderTest } from "./Components/testpdfread";
 
 const App = () => {
   return (
@@ -61,7 +60,6 @@ const App = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/verify" element={<Verify />} />
         <Route path="/pdfreader" element={<PdfReader />} />
-        <Route path="/pdfreadertext" element={<PdfReaderTest />} />
 
         {/* Super Admin */}
         <Route path="/admindashboard" element={<HeroSectionAdmin />}>
