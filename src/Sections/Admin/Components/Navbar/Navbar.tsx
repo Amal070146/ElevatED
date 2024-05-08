@@ -1,17 +1,22 @@
 import styles from "./Navbar.module.css";
 import logo from "../../../../../Logo.png";
-import miniLogo from '../../../../../Logo_small.png'
+import miniLogo from "../../../../../Logo_small.png";
 
 import navimage from "../../../../assets/navbarImage.png";
 
 import React from "react";
-import { useLocation } from "react-router-dom";
-import { DashboardLogo, CoursesIcons, ProgressIcons, SettingsIcons } from "../../../../assets/DashboardIcons";
+import { useLocation, useNavigate } from "react-router-dom";
+import {
+  DashboardLogo,
+  CoursesIcons,
+  ProgressIcons,
+  SettingsIcons,
+} from "../../../../assets/DashboardIcons";
 import { Logoutsvg } from "../../../../assets/svg";
 
 export const Navbar = () => {
   const location = useLocation();
-
+  const navigate = useNavigate();
   const navContent = ["organisation", "College", "Faculty", "settings"];
   const svgIcons = [DashboardLogo, CoursesIcons, ProgressIcons, SettingsIcons];
 
@@ -56,6 +61,8 @@ export const Navbar = () => {
       <button
         onClick={() => {
           localStorage.removeItem("accessToken");
+          localStorage.removeItem("refreshToken");
+          navigate("/login");
           window.location.reload();
         }}
       >

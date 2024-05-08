@@ -13,10 +13,11 @@
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
     "@react-oauth/google": "^0.12.1",
+    "@react-pdf/renderer": "^3.4.4",
     "@supabase/supabase-js": "^2.39.6",
     "install": "^0.13.0",
     "npm": "^10.5.0",
-    "pdfjs-dist": "^4.0.379",
+    "pdfjs-dist": "^4.2.67",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.51.1",
